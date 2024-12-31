@@ -1,0 +1,25 @@
+[Object(RefCounted,"script":Resource("res://Level/LevelGen/WFC/WFC_Tile.gd"),"tile_name":"deep_water","atlas":Vector2i(46, 0),"options_for_direction":{
+"east": ["deep_water", "shallow_water", "beach", "grass"],
+"north": ["deep_water", "shallow_water", "beach", "grass"],
+"south": ["deep_water", "shallow_water", "beach", "grass", "deep_water", "s", "b", "g"],
+"west": ["deep_water", "shallow_water", "beach", "grass"]
+})
+, Object(RefCounted,"script":Resource("res://Level/LevelGen/WFC/WFC_Tile.gd"),"tile_name":"shallow_water","atlas":Vector2i(47, 0),"options_for_direction":{
+"east": ["deep_water", "shallow_water", "beach", "grass"],
+"north": ["deep_water", "shallow_water", "beach", "grass", "deep_water", "shallow_water", "b", "g"],
+"south": ["deep_water", "shallow_water", "beach", "grass", "deep_water", "shallow_water", "beach", "g"],
+"west": ["deep_water", "shallow_water", "beach", "grass"]
+})
+, Object(RefCounted,"script":Resource("res://Level/LevelGen/WFC/WFC_Tile.gd"),"tile_name":"beach","atlas":Vector2i(63, 0),"options_for_direction":{
+"east": ["deep_water", "shallow_water", "beach", "grass", "deep_water", "shallow_water", "beach", "grass"],
+"north": ["deep_water", "shallow_water", "beach", "grass"],
+"south": ["deep_water", "shallow_water", "beach", "grass"],
+"west": ["deep_water", "shallow_water", "beach", "grass"]
+})
+, Object(RefCounted,"script":Resource("res://Level/LevelGen/WFC/WFC_Tile.gd"),"tile_name":"grass","atlas":Vector2i(31, 0),"options_for_direction":{
+"east": ["deep_water", "shallow_water", "beach", "grass", "deep_water", "shallow_water", "beach", "grass"],
+"north": ["deep_water", "shallow_water", "beach", "grass", "deep_water", "shallow_water", "beach", "grass"],
+"south": ["deep_water", "shallow_water", "beach", "grass"],
+"west": ["deep_water", "shallow_water", "beach", "grass", "deep_water", "shallow_water", "beach", "grass"]
+})
+]

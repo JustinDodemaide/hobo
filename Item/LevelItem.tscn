@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs0cgbsr1uy5b"]
+
+[ext_resource type="Script" path="res://Item/LevelItem.gd" id="1_g3yrc"]
+[ext_resource type="PackedScene" uid="uid://dfcsb62rmmpgh" path="res://Item/MovingObjectHandler.tscn" id="2_ixckb"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_08nu4"]
+
+[sub_resource type="Animation" id="Animation_juldh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ljtce"]
+resource_name = "item_bob"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.25, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i2tpe"]
+_data = {
+"RESET": SubResource("Animation_juldh"),
+"item_bob": SubResource("Animation_ljtce")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_exoha"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="LevelItem" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_g3yrc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+shape = SubResource("BoxShape3D_08nu4")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture_filter = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i2tpe")
+}
+autoplay = "item_bob"
+speed_scale = 0.25
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_exoha")
+
+[node name="DepositCheck" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0.1, 0)
+hit_from_inside = true
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="MovingObjectHandler" parent="." instance=ExtResource("2_ixckb")]
+raycast_length = 1.5

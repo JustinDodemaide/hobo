@@ -1,0 +1,139 @@
+[gd_scene load_steps=3 format=3 uid="uid://wc8dsrf684k4"]
+
+[ext_resource type="Script" path="res://Level/LevelGen/WFC/TileMaker/wfc_tile_maker_item.gd" id="1_yx51s"]
+[ext_resource type="Script" path="res://Level/LevelGen/WFC/TileMaker/options.gd" id="2_bfw23"]
+
+[node name="Item" type="PanelContainer" node_paths=PackedStringArray("name_edit")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yx51s")
+name_edit = NodePath("VBoxContainer/Name")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Tile "
+
+[node name="Name" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Name"
+
+[node name="Atlas" type="TextEdit" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+text = "0"
+placeholder_text = "Atlas X"
+
+[node name="Directions" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="north" type="PanelContainer" parent="VBoxContainer/Directions" node_paths=PackedStringArray("option_buttons")]
+layout_mode = 2
+script = ExtResource("2_bfw23")
+option_buttons = NodePath("VBoxContainer/OptionButtons")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Directions/north"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/Directions/north/VBoxContainer"]
+layout_mode = 2
+text = "North"
+
+[node name="Add" type="Button" parent="VBoxContainer/Directions/north/VBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="OptionButtons" type="VBoxContainer" parent="VBoxContainer/Directions/north/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Directions/north/VBoxContainer/OptionButtons"]
+layout_mode = 2
+
+[node name="south" type="PanelContainer" parent="VBoxContainer/Directions" node_paths=PackedStringArray("option_buttons")]
+layout_mode = 2
+script = ExtResource("2_bfw23")
+option_buttons = NodePath("VBoxContainer/OptionButtons")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Directions/south"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/Directions/south/VBoxContainer"]
+layout_mode = 2
+text = "South"
+
+[node name="Add" type="Button" parent="VBoxContainer/Directions/south/VBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="OptionButtons" type="VBoxContainer" parent="VBoxContainer/Directions/south/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Directions/south/VBoxContainer/OptionButtons"]
+layout_mode = 2
+
+[node name="east" type="PanelContainer" parent="VBoxContainer/Directions" node_paths=PackedStringArray("option_buttons")]
+layout_mode = 2
+script = ExtResource("2_bfw23")
+option_buttons = NodePath("VBoxContainer/OptionButtons")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Directions/east"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/Directions/east/VBoxContainer"]
+layout_mode = 2
+text = "East"
+
+[node name="Add" type="Button" parent="VBoxContainer/Directions/east/VBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="OptionButtons" type="VBoxContainer" parent="VBoxContainer/Directions/east/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Directions/east/VBoxContainer/OptionButtons"]
+layout_mode = 2
+
+[node name="west" type="PanelContainer" parent="VBoxContainer/Directions" node_paths=PackedStringArray("option_buttons")]
+layout_mode = 2
+script = ExtResource("2_bfw23")
+option_buttons = NodePath("VBoxContainer/OptionButtons")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Directions/west"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer/Directions/west/VBoxContainer"]
+layout_mode = 2
+text = "West"
+
+[node name="Add" type="Button" parent="VBoxContainer/Directions/west/VBoxContainer"]
+layout_mode = 2
+text = "+"
+
+[node name="OptionButtons" type="VBoxContainer" parent="VBoxContainer/Directions/west/VBoxContainer"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/Directions/west/VBoxContainer/OptionButtons"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[connection signal="text_changed" from="VBoxContainer/Name" to="." method="_on_name_text_changed"]
+[connection signal="text_changed" from="VBoxContainer/Atlas" to="." method="_on_atlas_text_changed"]
+[connection signal="pressed" from="VBoxContainer/Directions/north/VBoxContainer/Add" to="VBoxContainer/Directions/north" method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/Directions/south/VBoxContainer/Add" to="VBoxContainer/Directions/south" method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/Directions/east/VBoxContainer/Add" to="VBoxContainer/Directions/east" method="_on_add_pressed"]
+[connection signal="pressed" from="VBoxContainer/Directions/west/VBoxContainer/Add" to="VBoxContainer/Directions/west" method="_on_add_pressed"]

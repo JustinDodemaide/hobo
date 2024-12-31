@@ -1,0 +1,38 @@
+[gd_scene load_steps=8 format=3 uid="uid://7ryuaso11stc"]
+
+[ext_resource type="Script" path="res://yet another level gen test/level_test.gd" id="1_w5owu"]
+[ext_resource type="PackedScene" uid="uid://cs0cgbsr1uy5b" path="res://Item/LevelItem.tscn" id="2_bcw6t"]
+[ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="3_jl7u0"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
+panorama = ExtResource("3_jl7u0")
+
+[sub_resource type="Sky" id="Sky_864ur"]
+sky_material = SubResource("PanoramaSkyMaterial_5vixs")
+
+[sub_resource type="Environment" id="Environment_xp3qp"]
+background_mode = 2
+sky = SubResource("Sky_864ur")
+ambient_light_source = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mj46a"]
+albedo_color = Color(0.760784, 0.698039, 0.501961, 1)
+
+[node name="AnotherLevelGenTest" type="Node3D" node_paths=PackedStringArray("path")]
+script = ExtResource("1_w5owu")
+path = NodePath("Tracks")
+
+[node name="Tracks" type="Path3D" parent="."]
+
+[node name="Item" parent="." instance=ExtResource("2_bcw6t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.59316, 1.95283, 1.31927)
+item_name = "Coffee"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xp3qp")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_mj46a")

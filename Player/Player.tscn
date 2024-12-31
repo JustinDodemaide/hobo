@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://ccd2kgud4w32e"]
+
+[ext_resource type="Script" path="res://Player/Player.gd" id="1_26bnj"]
+[ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="2_2nyjv"]
+[ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/hand.png" id="4_883vw"]
+[ext_resource type="PackedScene" uid="uid://vq2es264bss8" path="res://Player/Inventory/player_inventory.tscn" id="5_7xsuc"]
+[ext_resource type="Script" path="res://Player/inventory_handler.gd" id="6_olwwk"]
+[ext_resource type="PackedScene" uid="uid://dfcsb62rmmpgh" path="res://Item/MovingObjectHandler.tscn" id="6_xqo3e"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fugl6"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_26bnj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape3D_fugl6")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = ExtResource("2_2nyjv")
+
+[node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]
+visible = false
+target_position = Vector3(0, 0, -1.5)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="HeldItem" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(0.283831, 0, -0.958874, 0, 1, 0, 0.958874, 0, 0.283831, 0.313791, -0.146981, -0.336494)
+texture_filter = 0
+
+[node name="HandIcon" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, -0.345098)
+texture = ExtResource("4_883vw")
+
+[node name="MovingObjectRaycast" type="RayCast3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+visible = false
+collision_mask = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PlayerInventory" parent="CanvasLayer" instance=ExtResource("5_7xsuc")]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="InventoryHandler" type="Node" parent="."]
+script = ExtResource("6_olwwk")
+
+[node name="MovingObjectRayCast" parent="." instance=ExtResource("6_xqo3e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272326, 0)

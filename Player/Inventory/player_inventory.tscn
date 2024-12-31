@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://vq2es264bss8"]
+
+[ext_resource type="Script" path="res://Player/Inventory/player_inventory.gd" id="1_ko0qn"]
+[ext_resource type="PackedScene" uid="uid://bdsao1btboyay" path="res://Player/Inventory/inventory_slot.tscn" id="2_e0i8r"]
+
+[node name="PlayerInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ko0qn")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -24.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 36
+
+[node name="SlotContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="InventorySlot" parent="MarginContainer/SlotContainer" instance=ExtResource("2_e0i8r")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="MarginContainer/SlotContainer" instance=ExtResource("2_e0i8r")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="MarginContainer/SlotContainer" instance=ExtResource("2_e0i8r")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="MarginContainer/SlotContainer" instance=ExtResource("2_e0i8r")]
+layout_mode = 2
