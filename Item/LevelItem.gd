@@ -23,8 +23,9 @@ func picked_up(by:Player) -> void:
 	queue_free()
 
 func dropped(by:Player) -> void:
-	var car = Global.level.car
-	var deposit = car.get_node("Deposit")
+	# var car = Global.level.car
+	print(Global.level.car)
+	var deposit = Global.level.car.get_node("Deposit")
 	$DepositCheck.force_raycast_update()
 	Log.prn($DepositCheck.get_collider())
 	var area = $DepositCheck.get_collider()
@@ -33,5 +34,5 @@ func dropped(by:Player) -> void:
 		global_position.y = deposit.global_position.y - 0.75
 		freeze = true
 		$MovingObjectHandler.enabled = false
-		reparent(car)
+		reparent(Global.level.car)
 	item.dropped(by)

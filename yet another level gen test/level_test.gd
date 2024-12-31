@@ -11,9 +11,12 @@ func _ready() -> void:
 	level_gen.generate()
 	
 	var train = load("res://Train/Train.tscn").instantiate()
-	car = train.get_node("Car")
 	$Tracks.add_child(train)
+	car = train.get_node("Car")
+	
 	var player = load("res://Player/Player.tscn").instantiate()
+	var timer = get_tree().create_timer(0.1)
+	await timer.timeout
 	add_child(player)
 	player.global_position = train.spawn_point.global_position
 	# train.add_players(self)
