@@ -7,34 +7,44 @@ extends Node3D
 # Make station, apart from town
 
 var level
-const WIDTH = 20
-const HEIGHT = 20
+const WIDTH:int = 20
+const HEIGHT:int = 20
+const TILE_SIZE:float = 4.5
+const HEIGHT_SCALE:float = 1.0 * TILE_SIZE
 
-const TILE_SIZE := 4.5
-const HEIGHT_SCALE := 1.0 * TILE_SIZE
+# At lower height scales, the noise values can be negative, which breaks
+# the astar grid, so just adding 1 fixes that
+const ALTITUDE_BUFFER:int = 1
+var terrain_specs:Dictionary = {
+	"altitude_map": null,
+	"highest_altitude": null,
+	"median_altitude":null,
+	"lowest_altitude": null,
+}
 
-enum {STREET,BUILDING,TRACK}
-var noise
-var tilemap = TileMapLayer.new()
 var astar_grid
-const NUM_LANDMARKS := 3
 
-const TOWN_SIZE := 10
-const MAX_BLOCK_WIDTH := 6
-const MAX_BLOCK_HEIGHT := 2
+var tilemap = TileMapLayer.new()
+enum {STREET,BUILDING,TRACK}
+
+var station:Vector2
 
 func _init(_level) -> void:
 	_level = level
 
 func generate():
+	init_terrain_specs()
 	generate_ground_mesh()
-	grid()
+	generate_grid_layout()
+	place_building_meshes()
+	place_train_meshes()
 
-func generate_ground_mesh():
-	noise = FastNoiseLite.new()
+func init_terrain_specs() -> void:
+	var noise = FastNoiseLite.new()
 	noise.seed = randi()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
 	noise.frequency = 0.1
+	terrain_specs.altitude_map = noise
 	
 	var lowest = 10000
 	var highest = -10000
@@ -46,8 +56,15 @@ func generate_ground_mesh():
 				lowest = val
 			if val > highest:
 				highest = val
-	print(lowest)
 	
+	lowest += ALTITUDE_BUFFER
+	highest += ALTITUDE_BUFFER
+	
+	terrain_specs.lowest_altitude = lowest + 1
+	terrain_specs.median_altitude = (lowest + highest) / 2
+	terrain_specs.highest_altitude = highest
+
+func generate_ground_mesh():
 	astar_grid = AStarGrid2D.new()
 	astar_grid.region = Rect2i(0, 0, WIDTH, HEIGHT)
 	astar_grid.cell_size = Vector2(TILE_SIZE, TILE_SIZE)
@@ -59,8 +76,9 @@ func generate_ground_mesh():
 	# Generate vertices and UVs
 	for y in HEIGHT:
 		for x in WIDTH:
-			var z = noise.get_noise_2d(x,y) * HEIGHT_SCALE + 1
-			astar_grid.set_point_weight_scale(Vector2i(x,y), z + 1)
+			var cell = Vector2(x,y)
+			var z = get_height_at(cell)
+			astar_grid.set_point_weight_scale(cell, z)
 			var vertex = Vector3(
 				x * TILE_SIZE,
 				z,
@@ -106,22 +124,29 @@ func generate_ground_mesh():
 	mesh.get_children()[0].collision_mask = 0b11
 	level.add_child(mesh)
 	
-	var material := StandardMaterial3D.new()
+	var material:Material = StandardMaterial3D.new()
 	material.albedo_color = Color(0.76,0.69,0.50)
 	mesh.material_override = material
 
-func grid():
+#region Town Layouts Procedures
+const TOWN_SIZE := 10
+const MAX_BLOCK_WIDTH := 6
+const MAX_BLOCK_HEIGHT := 2
+func generate_grid_layout():
 	tilemap.tile_set = load("res://TownGens/test_level_gens.tres")
 	
+	# Make the layout all buildings first, then do the streets
 	for x in TOWN_SIZE:
 		for y in TOWN_SIZE:
 			tm_set(Vector2i(x,y), BUILDING)
 	
-	#var displacement = Vector2i(round((WIDTH - TOWN_SIZE) / 2),
-	#							round((HEIGHT - TOWN_SIZE) / 2))
+	# Streets
 	for y in range(0,TOWN_SIZE,2):
 		for x in TOWN_SIZE:
+			# Fill in the row
 			tm_set(Vector2i(x,y),STREET)
+		
+		# Place side streets connecting rows
 		var intersections = []
 		var x = 0
 		while x < TOWN_SIZE:
@@ -134,42 +159,14 @@ func grid():
 			for var_names_are_hard in MAX_BLOCK_HEIGHT:
 				side_street.y += var_names_are_hard
 				tm_set(side_street, STREET)
-	#level.get_node("Player").get_node("Camera3D").add_child(tilemap)
-	place_buildings()
 	
-	# Train tracks/Station
-	var station = Vector2i(0,round(TOWN_SIZE/2))
-	var start_x = station.x# + randi_range(-3,3)
-	var end_x = station.x# + randi_range(-3,3)
-	var first_half = astar_grid.get_id_path(Vector2i(start_x, 0), station)
-	var second_half = astar_grid.get_id_path(station, Vector2i(end_x, HEIGHT - 1))
-	first_half.append_array(second_half)
-	
-	var curve = Curve3D.new()
-	for cell in first_half:
-		var z = get_height_at(cell)
-		curve.add_point(Vector3(cell.x * TILE_SIZE, z, cell.y * TILE_SIZE))
-		tm_set(cell,TRACK)
-		
-		#cell *= TILE_SIZE
-		#var sprite = Sprite3D.new()
-		#sprite.texture = load("res://icon.svg")
-		#level.add_child(sprite)
-		#sprite.position = Vector3(cell.x,1,cell.y)
-		
-	level.path.curve = curve
-
-func place_buildings():
-	var displacement = Vector2i(round((WIDTH - TOWN_SIZE) / 2),
+	var displacement = Vector2(round((WIDTH - TOWN_SIZE) / 2),
 								round((HEIGHT - TOWN_SIZE) / 2))
-	for cell in tilemap.get_used_cells_by_id(-1, Vector2i(BUILDING, 0)):
-		cell += displacement
-		var height = get_height_at(cell)
-		var building_mesh = load("res://suburb glbs/house.tscn").instantiate()
-		level.add_child(building_mesh)
-		building_mesh.position = Vector3(cell.x * TILE_SIZE, height, cell.y * TILE_SIZE)
+	station = Vector2(TOWN_SIZE, TOWN_SIZE/2) + displacement
+	#level.get_node("Player").get_node("Camera3D").add_child(tilemap)
 
-func linear():
+const NUM_LANDMARKS := 3
+func generate_linear_layout():
 	var center = Vector2i(WIDTH/2, HEIGHT/4)
 	var street = astar_grid.get_id_path(center, Vector2i(center.x, HEIGHT - 2))
 
@@ -230,7 +227,37 @@ func linear():
 	
 	minimap_sprite.texture = load("res://icon.svg")
 	update_minimap()
+#endregion
 
+func place_building_meshes():
+	var displacement = Vector2i(round((WIDTH - TOWN_SIZE) / 2),
+								round((HEIGHT - TOWN_SIZE) / 2))
+	for cell in tilemap.get_used_cells_by_id(-1, Vector2i(BUILDING, 0)):
+		cell += displacement
+		var height = get_height_at(cell)
+		var building_mesh = load("res://suburb glbs/house.tscn").instantiate()
+		level.add_child(building_mesh)
+		building_mesh.position = Vector3(cell.x * TILE_SIZE, height, cell.y * TILE_SIZE)
+
+func place_train_meshes():
+	# Get the highest altitude on the train's path
+	var highest = -10000
+	for y in HEIGHT:
+		var tile = Vector2(station.x, y)
+		var height = get_height_at(tile)
+		if height > highest:
+			highest = height
+	
+	var z = highest
+	var curve = Curve3D.new()
+	for y in HEIGHT:
+		var cell = Vector2(station.x, y) * TILE_SIZE
+		curve.add_point(Vector3(cell.x, z, cell.y))
+		tm_set(cell,TRACK)
+		
+	level.path.curve = curve
+
+#region Helper Functions
 func tm_set(where,atlas:int):
 	tilemap.set_cell(where,0,Vector2i(atlas,0))
 
@@ -249,6 +276,5 @@ func update_minimap() -> void:
 	timer.timeout.connect(update_minimap)
 
 func get_height_at(where:Vector2) -> float:
-	# At lower height scales, the noise values can be negative, which breaks
-	# the astar grid, so just adding 1 fixes that
-	return noise.get_noise_2dv(where) * HEIGHT_SCALE + 1
+	return (terrain_specs.altitude_map.get_noise_2dv(where) + ALTITUDE_BUFFER) * HEIGHT_SCALE
+#endregion
