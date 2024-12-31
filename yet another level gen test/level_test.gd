@@ -15,6 +15,7 @@ func _ready() -> void:
 	car = train.get_node("Car")
 	
 	var player = load("res://Player/Player.tscn").instantiate()
+	player.name = "Player"
 	var timer = get_tree().create_timer(0.1)
 	await timer.timeout
 	add_child(player)
