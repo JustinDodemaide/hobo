@@ -128,6 +128,11 @@ func generate_ground_mesh():
 	material.albedo_color = Color(0.76,0.69,0.50)
 	mesh.material_override = material
 
+	var grass_system = GrassSystem.new()
+	# Optional parameters after level_gen
+	var grass_instance = grass_system.create_grass_system(self, 0.8, 0.3, 1.0)
+	mesh.add_child(grass_instance)
+
 #region Town Layouts Procedures
 const TOWN_SIZE := 10
 const MAX_BLOCK_WIDTH := 6
