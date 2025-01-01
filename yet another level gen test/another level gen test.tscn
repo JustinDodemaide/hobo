@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://yet another level gen test/level_test.gd" id="1_w5owu"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="3_jl7u0"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="4_gvgk8"]
-[ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="4_vfpup"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("3_jl7u0")
@@ -15,6 +14,14 @@ sky_material = SubResource("PanoramaSkyMaterial_5vixs")
 background_mode = 2
 sky = SubResource("Sky_864ur")
 ambient_light_source = 3
+ssr_enabled = true
+ssao_enabled = true
+ssil_enabled = true
+glow_enabled = true
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o4etc"]
+auto_exposure_enabled = true
+dof_blur_far_distance = 20.0
 
 [node name="AnotherLevelGenTest" type="Node3D" node_paths=PackedStringArray("path")]
 script = ExtResource("1_w5owu")
@@ -24,6 +31,7 @@ path = NodePath("Tracks")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xp3qp")
+camera_attributes = SubResource("CameraAttributesPractical_o4etc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.86483, 0.382043, -0.325748, 0.0665658, 0.555838, 0.828621, 0.497632, -0.738301, 0.455274, -1.05107, 4.73361, -1.74183)
@@ -31,11 +39,6 @@ shadow_enabled = true
 
 [node name="Water" parent="." instance=ExtResource("4_gvgk8")]
 transform = Transform3D(85, 0, 0, 0, 1, 0, 0, 0, 85, 42.5, 3.5, 43)
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 85, 6, 85)
-texture_filter = 0
-texture = ExtResource("4_vfpup")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
