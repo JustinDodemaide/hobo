@@ -9,8 +9,11 @@ extends Node3D
 var level
 const WIDTH:int = 20
 const HEIGHT:int = 20
-const TILE_SIZE:float = 4.5
-const HEIGHT_SCALE:float = 1.0 * TILE_SIZE
+const WIDTH_SCALE:float = 4.5
+const LENGTH_SCALE:float = 4.5
+const HEIGHT_SCALE:float = 4.5
+const SCALE:Vector3 = Vector3(WIDTH_SCALE, HEIGHT_SCALE, LENGTH_SCALE)
+const SCALE2D:Vector2 = Vector2(WIDTH_SCALE,LENGTH_SCALE)
 
 # At lower height scales, the noise values can be negative, which breaks
 # the astar grid, so just adding 1 fixes that
@@ -51,7 +54,7 @@ func init_terrain_specs() -> void:
 	for y in HEIGHT:
 		for x in WIDTH:
 			var where = Vector2(x,y)
-			var val = get_height_at(where)
+			var val = get_unscaled_height_at(where)
 			if val < lowest:
 				lowest = val
 			if val > highest:
@@ -67,7 +70,7 @@ func init_terrain_specs() -> void:
 func generate_ground_mesh():
 	astar_grid = AStarGrid2D.new()
 	astar_grid.region = Rect2i(0, 0, WIDTH, HEIGHT)
-	astar_grid.cell_size = Vector2(TILE_SIZE, TILE_SIZE)
+	astar_grid.cell_size = Vector2(SCALE.x, SCALE.y)
 	astar_grid.update()
 
 	var surface_tool = SurfaceTool.new()
@@ -77,13 +80,14 @@ func generate_ground_mesh():
 	for y in HEIGHT:
 		for x in WIDTH:
 			var cell = Vector2(x,y)
-			var z = get_height_at(cell)
+			var z = get_unscaled_height_at(cell)
 			astar_grid.set_point_weight_scale(cell, z)
 			var vertex = Vector3(
-				x * TILE_SIZE,
+				x,
 				z,
-				y * TILE_SIZE
+				y
 			)
+			vertex *= SCALE
 			
 			# Calculate UVs (useful for texturing)
 			var uv = Vector2(
@@ -127,10 +131,10 @@ func generate_ground_mesh():
 	var material:Material = StandardMaterial3D.new()
 	material.albedo_color = Color(0.76,0.69,0.50)
 	mesh.material_override = material
-
+	
 	var grass_system = GrassSystem.new()
 	# Optional parameters after level_gen
-	var grass_instance = grass_system.create_grass_system(self, 0.8, 0.3, 1.0)
+	var grass_instance = grass_system.create_grass_system(self, 1, 0.3, 1.0)
 	mesh.add_child(grass_instance)
 
 #region Town Layouts Procedures
@@ -172,6 +176,8 @@ func generate_grid_layout():
 
 const NUM_LANDMARKS := 3
 func generate_linear_layout():
+	tilemap.tile_set = load("res://TownGens/test_level_gens.tres")
+	
 	var center = Vector2i(WIDTH/2, HEIGHT/4)
 	var street = astar_grid.get_id_path(center, Vector2i(center.x, HEIGHT - 2))
 
@@ -205,17 +211,13 @@ func generate_linear_layout():
 		
 	var curve = Curve3D.new()
 	for cell in first_half:
-		var z = get_height_at(cell)
-		curve.add_point(Vector3(cell.x,cell.y,z))
+		var z = get_unscaled_height_at(cell)
+		curve.add_point(Vector3(cell.x, z, cell.y) * SCALE)
 		tm_set(cell,TRACK)
-	var path = Path3D.new()
-	path.name = "Tracks"
-	path.curve = curve
-	level.add_child(path)
+	level.get_node("Tracks").curve = curve
 	
-	tilemap.tile_set = load("res://TownGens/test_level_gens.tres")
 	for cell in street:
-		cell *= TILE_SIZE
+		cell *= SCALE.x
 		var sprite = Sprite3D.new()
 		sprite.texture = load("res://icon.svg")
 		# level.add_child(sprite)
@@ -225,10 +227,10 @@ func generate_linear_layout():
 			if impassable(neighbor):
 				continue
 			tm_set(neighbor,BUILDING)
-			neighbor *= TILE_SIZE
+			# neighbor *= TILE_SCALE
 			var building_mesh = load("res://suburb glbs/house.tscn").instantiate()
 			level.add_child(building_mesh)
-			building_mesh.position = Vector3(neighbor.x,1,neighbor.y) * TILE_SIZE
+			building_mesh.position = Vector3(neighbor.x, 1, neighbor.y) * SCALE
 	
 	minimap_sprite.texture = load("res://icon.svg")
 	update_minimap()
@@ -239,25 +241,25 @@ func place_building_meshes():
 								round((HEIGHT - TOWN_SIZE) / 2))
 	for cell in tilemap.get_used_cells_by_id(-1, Vector2i(BUILDING, 0)):
 		cell += displacement
-		var height = get_height_at(cell)
+		var z = get_unscaled_height_at(cell)
 		var building_mesh = load("res://suburb glbs/house.tscn").instantiate()
 		level.add_child(building_mesh)
-		building_mesh.position = Vector3(cell.x * TILE_SIZE, height, cell.y * TILE_SIZE)
+		building_mesh.position = Vector3(cell.x, z, cell.y) * SCALE
 
 func place_train_meshes():
 	# Get the highest altitude on the train's path
 	var highest = -10000
 	for y in HEIGHT:
 		var tile = Vector2(station.x, y)
-		var height = get_height_at(tile)
+		var height = get_unscaled_height_at(tile)
 		if height > highest:
 			highest = height
 	
 	var z = highest
 	var curve = Curve3D.new()
 	for y in HEIGHT:
-		var cell = Vector2(station.x, y) * TILE_SIZE
-		curve.add_point(Vector3(cell.x, z, cell.y))
+		var cell = Vector2(station.x, y)
+		curve.add_point(Vector3(cell.x, z, cell.y) * SCALE)
 		tm_set(cell,TRACK)
 		
 	level.path.curve = curve
@@ -275,11 +277,11 @@ func impassable(where) -> bool:
 var minimap_sprite = Sprite2D.new()
 func update_minimap() -> void:
 	var player_pos = level.get_node("Player").position
-	minimap_sprite.position = Vector2(player_pos.x, player_pos.z) * TILE_SIZE * 8
+	minimap_sprite.position = Vector2(player_pos.x, player_pos.z) * SCALE2D * 8
 	minimap_sprite.scale = Vector2(player_pos.y,player_pos.y) / 10
 	var timer = level.get_tree().create_timer(0.1)
 	timer.timeout.connect(update_minimap)
 
-func get_height_at(where:Vector2) -> float:
-	return (terrain_specs.altitude_map.get_noise_2dv(where) + ALTITUDE_BUFFER) * HEIGHT_SCALE
+func get_unscaled_height_at(where:Vector2) -> float:
+	return (terrain_specs.altitude_map.get_noise_2dv(where) + ALTITUDE_BUFFER)
 #endregion

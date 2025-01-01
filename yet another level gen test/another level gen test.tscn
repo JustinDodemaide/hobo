@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=8 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" path="res://yet another level gen test/level_test.gd" id="1_w5owu"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="3_jl7u0"]
@@ -15,8 +15,6 @@ sky_material = SubResource("PanoramaSkyMaterial_5vixs")
 background_mode = 2
 sky = SubResource("Sky_864ur")
 ambient_light_source = 3
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_q2w2h"]
 
 [node name="AnotherLevelGenTest" type="Node3D" node_paths=PackedStringArray("path")]
 script = ExtResource("1_w5owu")
@@ -41,4 +39,3 @@ texture = ExtResource("4_vfpup")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("PlaneMesh_q2w2h")

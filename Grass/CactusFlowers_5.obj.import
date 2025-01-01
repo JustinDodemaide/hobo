@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c3kjyqai3dnxv"
+path="res://.godot/imported/CactusFlowers_5.obj-bad5bbf3d6c5d99623fce30ed2b30747.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CactusFlowers_5.obj-bad5bbf3d6c5d99623fce30ed2b30747.mesh"]
+
+source_file="res://Grass/CactusFlowers_5.obj"
+dest_files=["res://.godot/imported/CactusFlowers_5.obj-bad5bbf3d6c5d99623fce30ed2b30747.mesh", "res://.godot/imported/CactusFlowers_5.obj-bad5bbf3d6c5d99623fce30ed2b30747.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

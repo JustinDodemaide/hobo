@@ -5,12 +5,20 @@ var wind_strength: float = 0.2
 var wind_speed: float = 1.0
 var grass_height_range := Vector2(0.3, 0.5)
 
+var grass_models: Array[Mesh] = [
+		#load("res://Grass/Grass.obj"),
+		#load("res://Grass/Grass_2.obj"),
+		load("res://Grass/Grass_Short.obj"),
+	]
+
 func create_grass_system(level_gen, density: float = 1.0, w_strength: float = 0.2, w_speed: float = 1.0) -> MultiMeshInstance3D:
 	grass_density = density
 	wind_strength = w_strength
 	wind_speed = w_speed
 	
-	var blade = create_grass_blade()
+	#var blade_height = randf_range(grass_height_range.x, grass_height_range.y)
+	#var blade = create_grass_blade(blade_height)
+	var blade = get_random_grass()
 	var num_blades = round(level_gen.WIDTH * level_gen.HEIGHT * grass_density)
 	
 	var grass_mesh = MultiMesh.new()
@@ -25,30 +33,24 @@ func create_grass_system(level_gen, density: float = 1.0, w_strength: float = 0.
 	for i in num_blades:
 		var transform = Transform3D()
 		
-		var x = randi_range(0, level_gen.WIDTH - 1)
-		var y = randi_range(0, level_gen.HEIGHT - 1)
-		# Need to 1. Account for the terrain mesh being scaled up (do that
-		# after we get the elevation, of course) and 2. Offset them a little
-		# or else they're going to be arranged in a grid, all the same
-		# distance from each other
-		# Ok ok so - we're getting the elevation at a point in the grid, then
-		# setting the blade's elevation, then offsetting the blade a bit. So it
-		# still has the old elevation despite being in a different place
-		# So we need to get the correct elevation for the new offset place
-		# If we were just offsetting x, we'd get the elevation of the initial pos,
-		# the elevation of the pos we're moving closer toward, make a linear function,
-		# then plug in the offset x to get the correct height
-		# Issue is we're moving the y too. Could just be the same thing
-		var initial_elevation = level_gen.get_height_at(Vector2(x,y))
-		var next_elevation = level_gen.get_height_at(Vector2(x + 1,y))
-		var slope = initial_elevation - next_elevation # The distance between them is always 1
-		x += randi_range(0,level_gen.TILE_SIZE) * level_gen.TILE_SIZE # Get the offset, scaled up x value
-		# y = mx + b
-		var z = slope * x + initial_elevation
+		var pos = Vector2(randi_range(0, level_gen.WIDTH - 2), randi_range(0, level_gen.HEIGHT - 2))
+		var displacement = Vector2(randf_range(0, 1), randf_range(0, 1))
+		
+		# Use bilinear interpolation to get the height at the displaced pos
+		# Get heights at the four corners of our grid cell
+		var y00 = level_gen.get_unscaled_height_at(Vector2(pos.x, pos.y))         # Bottom left
+		var y10 = level_gen.get_unscaled_height_at(Vector2(pos.x + 1, pos.y))     # Bottom right
+		var y01 = level_gen.get_unscaled_height_at(Vector2(pos.x, pos.y + 1))     # Top left
+		var y11 = level_gen.get_unscaled_height_at(Vector2(pos.x + 1, pos.y + 1)) # Top right
 
-		#y *= level_gen.TILE_SIZE
-		#y += randi_range(0,level_gen.TILE_SIZE)
+		var dx = displacement.x
+		var dy = displacement.y
+		# First interpolate in x direction along both rows
+		var y0 = y00 * (1 - dx) + y10 * dx  # Bottom row
+		var y1 = y01 * (1 - dx) + y11 * dx  # Top row
 
+		# Then interpolate between those results in y direction
+		var z = y0 * (1 - dy) + y1 * dy
 		
 		
 		#var noise_val = distribution_noise.get_noise_2d(grid_x, grid_y)
@@ -56,9 +58,9 @@ func create_grass_system(level_gen, density: float = 1.0, w_strength: float = 0.
 		#	continue
 		
 		# Set pos and rotation, scale kept messing up the elevation so forgoing that
-		var pos = Vector3(x,z,y)
-		transform.origin = pos
-		#transform.basis = transform.basis.rotated(Vector3.UP, randf() * PI * 2.0)
+		pos += displacement
+		transform.origin = Vector3(pos.x, z, pos.y) * level_gen.SCALE
+		transform.basis = transform.basis.rotated(Vector3.UP, randf() * PI * 2.0)
 		
 		grass_mesh.set_instance_transform(i, transform)
 	
@@ -69,15 +71,19 @@ func create_grass_system(level_gen, density: float = 1.0, w_strength: float = 0.
 	
 	return grass_instance
 
-func create_grass_blade() -> ArrayMesh:
+func get_random_grass() -> Mesh:
+	return grass_models[randi() % grass_models.size()]
+
+func create_grass_blade(height: float) -> ArrayMesh:
 	var vertices = PackedVector3Array()
 	var normals = PackedVector3Array()
 	var uvs = PackedVector2Array()
 	
-	vertices.append(Vector3(-0.05, 0, 0))
-	vertices.append(Vector3(0.05, 0, 0))
-	vertices.append(Vector3(0.05, 0.5, 0))
-	vertices.append(Vector3(-0.05, 0.5, 0))
+	# Keep width constant but use passed-in height
+	vertices.append(Vector3(-0.05, 0, 0))      # Bottom left
+	vertices.append(Vector3(0.05, 0, 0))       # Bottom right
+	vertices.append(Vector3(0.05, height, 0))  # Top right 
+	vertices.append(Vector3(-0.05, height, 0)) # Top left
 	
 	for i in range(4):
 		normals.append(Vector3(0, 0, 1))
