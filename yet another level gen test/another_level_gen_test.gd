@@ -59,11 +59,11 @@ func init_terrain_specs() -> void:
 				lowest = val
 			if val > highest:
 				highest = val
-	
+
 	lowest += ALTITUDE_BUFFER
 	highest += ALTITUDE_BUFFER
 	
-	terrain_specs.lowest_altitude = lowest + 1
+	terrain_specs.lowest_altitude = lowest
 	terrain_specs.median_altitude = (lowest + highest) / 2
 	terrain_specs.highest_altitude = highest
 
@@ -256,9 +256,11 @@ func place_building_meshes():
 	for cell in tilemap.get_used_cells_by_id(-1, Vector2i(BUILDING, 0)):
 		cell += displacement
 		var z = get_unscaled_height_at(cell)
-		var building_mesh = load("res://suburb glbs/house.tscn").instantiate()
-		level.add_child(building_mesh)
-		building_mesh.position = Vector3(cell.x, z, cell.y) * SCALE
+		# var building_mesh = load("res://suburb glbs/house.tscn").instantiate()
+		var foundation = load("res://Foundation/foundation.tscn").instantiate()
+		foundation.init(terrain_specs.highest_altitude, terrain_specs.lowest_altitude)
+		level.add_child(foundation)
+		foundation.position = Vector3(cell.x, z, cell.y) * SCALE
 
 func place_train_meshes():
 	# Get the highest altitude on the train's path

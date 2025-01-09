@@ -154,7 +154,7 @@ script = ExtResource("2_xyayd")
 script = ExtResource("4_f3jc2")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.0804433, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.059288, 0)
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_ka8xu")
@@ -162,7 +162,6 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135953, 0)
 shape = SubResource("CapsuleShape3D_f0owx")
 
 [node name="Label3D" type="Label3D" parent="."]
