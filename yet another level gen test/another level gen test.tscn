@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=10 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" path="res://yet another level gen test/level_test.gd" id="1_w5owu"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="3_jl7u0"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="4_gvgk8"]
+[ext_resource type="PackedScene" uid="uid://c7c8dvikiai4i" path="res://NPCs/Dog/Dog.tscn" id="4_rln27"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("3_jl7u0")
@@ -17,11 +18,12 @@ ambient_light_source = 3
 ssr_enabled = true
 ssao_enabled = true
 ssil_enabled = true
-glow_enabled = true
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o4etc"]
 auto_exposure_enabled = true
 dof_blur_far_distance = 20.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_eyoml"]
 
 [node name="AnotherLevelGenTest" type="Node3D" node_paths=PackedStringArray("path")]
 script = ExtResource("1_w5owu")
@@ -42,3 +44,7 @@ transform = Transform3D(85, 0, 0, 0, 1, 0, 0, 0, 85, 42.5, 3.5, 43)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_eyoml")
+
+[node name="Dog" parent="." instance=ExtResource("4_rln27")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.7347, 8.63544, 8.60169)

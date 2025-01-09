@@ -136,6 +136,20 @@ func generate_ground_mesh():
 	# Optional parameters after level_gen
 	var grass_instance = grass_system.create_grass_system(self, 1, 0.3, 1.0)
 	mesh.add_child(grass_instance)
+	
+	var nav_mesh = NavigationMesh.new()
+	nav_mesh.cell_size = 0.5  # Size of each navigation cell
+	nav_mesh.cell_height = 0.4  # Height of each cell
+	nav_mesh.agent_height = 1.5  # Height of agents that will navigate
+	nav_mesh.agent_radius = 0.4  # Radius of agents
+	nav_mesh.agent_max_climb = 0.9  # Maximum height agents can climb
+	nav_mesh.agent_max_slope = 45.0  # Maximum slope in degrees
+	nav_mesh.create_from_mesh(mesh.mesh)
+	var nav_region = NavigationRegion3D.new()
+	nav_region.navigation_mesh = nav_mesh
+	mesh.add_child(nav_region)
+	
+	Log.prn(mesh.get_children())
 
 #region Town Layouts Procedures
 const TOWN_SIZE := 10

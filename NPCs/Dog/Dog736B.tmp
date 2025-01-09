@@ -1,0 +1,155 @@
+[gd_scene load_steps=23 format=3 uid="uid://c7c8dvikiai4i"]
+
+[ext_resource type="Script" path="res://NPCs/Dog/dog.gd" id="1_e3m4t"]
+[ext_resource type="PackedScene" uid="uid://b32d3i07l2fej" path="res://AI/Sensor/sensor.tscn" id="2_peirs"]
+[ext_resource type="Script" path="res://AI/States/wandering.gd" id="2_xyayd"]
+[ext_resource type="Texture2D" uid="uid://ml6ps5fve0wu" path="res://NPCs/Dog/Image/Sprite-0002.png" id="4_uyrir"]
+[ext_resource type="Texture2D" uid="uid://be0bpgvdunlk8" path="res://NPCs/Dog/Image/Sprite-0001.png" id="5_kq40w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wk0j"]
+atlas = ExtResource("4_uyrir")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8gb7"]
+atlas = ExtResource("4_uyrir")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35yg1"]
+atlas = ExtResource("4_uyrir")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1kja"]
+atlas = ExtResource("4_uyrir")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq5t3"]
+atlas = ExtResource("4_uyrir")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mr2wu"]
+atlas = ExtResource("4_uyrir")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dibs"]
+atlas = ExtResource("4_uyrir")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8wqf"]
+atlas = ExtResource("4_uyrir")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7cnb2"]
+atlas = ExtResource("5_kq40w")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ybm3x"]
+atlas = ExtResource("5_kq40w")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb61a"]
+atlas = ExtResource("5_kq40w")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1d6fn"]
+atlas = ExtResource("5_kq40w")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jaeb1"]
+atlas = ExtResource("5_kq40w")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gypea"]
+atlas = ExtResource("5_kq40w")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkweh"]
+atlas = ExtResource("5_kq40w")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ehvk"]
+atlas = ExtResource("5_kq40w")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ka8xu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wk0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8gb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35yg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1kja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq5t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mr2wu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dibs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8wqf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7cnb2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ybm3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gb61a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1d6fn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jaeb1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gypea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkweh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ehvk")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Dog" type="Node3D" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("1_e3m4t")
+initial_state = NodePath("Wandering")
+
+[node name="Sensors" parent="." instance=ExtResource("2_peirs")]
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Wandering" type="Node" parent="."]
+script = ExtResource("2_xyayd")
+
+[node name="WanderTimer" type="Timer" parent="Wandering"]
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+billboard = 2
+sprite_frames = SubResource("SpriteFrames_ka8xu")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+
+[connection signal="timeout" from="Wandering/WanderTimer" to="Wandering" method="_on_wander_timer_timeout"]
