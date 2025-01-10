@@ -21,5 +21,9 @@ func _on_wander_timer_timeout() -> void:
 		lower_pos,
 		higher_pos
 		)
-	print(closest_point_on_navmesh)
-	parent.transition("Walking", {"pos":closest_point_on_navmesh})
+	parent.nav.set_target_position(closest_point_on_navmesh)
+	parent.moving = true
+
+func target_reached():
+	parent.moving = false
+	timer.start(randi_range(3,5))

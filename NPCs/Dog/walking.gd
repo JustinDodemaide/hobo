@@ -4,7 +4,12 @@ extends State
 var previous_state:String = ""
 var character_speed:float = 5.0
 
+var tracking_target:Variant = null
+
 func physics_update(_delta: float) -> void:
+	if tracking_target:
+		parent.nav.set_target_position(tracking_target.global_position)
+	
 	if not parent.is_on_floor():
 		parent.velocity += parent.get_gravity() * _delta
 		parent.move_and_slide()
@@ -17,12 +22,16 @@ func physics_update(_delta: float) -> void:
 
 func enter(previous_state: String, data := {}) -> void:
 	self.previous_state = previous_state
-	parent.nav.set_target_position(data.pos)
+	if data.has("track"):
+		tracking_target = data.track
+	else:
+		parent.nav.set_target_position(data.pos)
 	parent.sprite.play("walk")
 
 func exit() -> void:
 	parent.sprite.play("idle")
 
-func _on_navigation_agent_3d_target_reached() -> void:
-	if previous_state == "Wandering":
-		parent.transition(previous_state)
+func target_reached() -> void:
+	match previous_state:
+		"Wandering": parent.transition("Wandering")
+		_: transition("Wandering")

@@ -3,23 +3,21 @@ extends Node3D
 @export var debug:bool = false
 
 @export var sight_distance:float = 10.0
-var player_sightings:Array = []
+var player_sightings:Dictionary = {}
 
 signal updated
 
 class PlayerSighting:
-	var player:Player
 	var currently_seen:bool = false
 	var last_seen_at:Vector3
 	
-	func _init(_player, where) -> void:
-		player = _player
+	func _init(where) -> void:
 		last_seen_at = where
 
 func _ready() -> void:
 	for player in Global.players:
-		var sighting = PlayerSighting.new(player, player.global_position)
-		player_sightings.append(sighting)
+		var sighting = PlayerSighting.new(player.global_position)
+		player_sightings[player] = sighting
 
 func update() -> void:
 	sight_players()
@@ -27,9 +25,10 @@ func update() -> void:
 
 func get_seen_players() -> Array[Player]:
 	var players:Array[Player] = []
-	for sighting in player_sightings:
+	for player in player_sightings:
+		var sighting = player_sightings[player]
 		if sighting.currently_seen:
-			players.append(sighting.player)
+			players.append(player)
 	return players
 
 var last_seen_markers = []
@@ -37,13 +36,13 @@ func sight_players() -> void:
 	if Global.players.size() != player_sightings.size():
 		player_sightings.clear()
 		for player in Global.players:
-			var sighting = PlayerSighting.new(player, player.global_position)
-			player_sightings.append(sighting)
+			var sighting = PlayerSighting.new(player.global_position)
+			player_sightings[player] = sighting
 		
 	var raycast = $SightRayCast
-	for i in Global.players.size():
-		var player_sighting = player_sightings[i]
-		var player_pos = player_sighting.player.global_position
+	for player in Global.players:
+		var player_sighting = player_sightings[player]
+		var player_pos = player.global_position
 		if global_position.distance_to(player_pos) > sight_distance:
 			player_sighting.currently_seen = false
 			continue
@@ -55,7 +54,8 @@ func sight_players() -> void:
 		player_sighting.last_seen_at = player_pos
 	
 	if debug:
-		for sighting in player_sightings:
+		for player in player_sightings:
+			var sighting = player_sightings[player]
 			if sighting.currently_seen:
 				print(get_parent(), " sees ", sighting.player.name, " at ", sighting.last_seen_at)
 				sighting.player.get_node("CanvasLayer/seen?").text = "seen by " + get_parent().name

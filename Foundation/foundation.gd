@@ -9,8 +9,14 @@ func init(highest,lowest):
 	$MeshInstance3D.position.y -= difference / 2
 
 
-signal player_entered_restricted_area(player:Player)
+signal player_entered_restricted_area(area:Area3D,player:Player)
 func _on_restricted_area_area_entered(area: Area3D) -> void:
-	var parent = area.get_parent() 
+	var parent = area.get_parent()
 	if parent is Player:
-		emit_signal("player_entered_restricted_area", parent)
+		emit_signal("player_entered_restricted_area", area, parent)
+
+signal player_exited_restricted_area(area:Area3D,player:Player)
+func _on_restricted_area_area_exited(area: Area3D) -> void:
+	var parent = area.get_parent()
+	if parent is Player:
+		emit_signal("player_exited_restricted_area", area, parent)

@@ -1,11 +1,36 @@
-[gd_scene load_steps=25 format=3 uid="uid://c7c8dvikiai4i"]
+[gd_scene load_steps=32 format=3 uid="uid://c7c8dvikiai4i"]
 
 [ext_resource type="Script" path="res://NPCs/Dog/dog.gd" id="1_e3m4t"]
 [ext_resource type="PackedScene" uid="uid://b32d3i07l2fej" path="res://AI/Sensor/sensor.tscn" id="2_peirs"]
 [ext_resource type="Script" path="res://AI/States/wandering.gd" id="2_xyayd"]
-[ext_resource type="Script" path="res://NPCs/Dog/walking.gd" id="4_f3jc2"]
+[ext_resource type="Script" path="res://NPCs/Dog/alert.gd" id="4_0vece"]
 [ext_resource type="Texture2D" uid="uid://ml6ps5fve0wu" path="res://NPCs/Dog/Image/Sprite-0002.png" id="4_uyrir"]
+[ext_resource type="Texture2D" uid="uid://wnxrr1t1csuh" path="res://NPCs/Dog/Image/Sprite-0004.png" id="5_g75cm"]
 [ext_resource type="Texture2D" uid="uid://be0bpgvdunlk8" path="res://NPCs/Dog/Image/Sprite-0001.png" id="5_kq40w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_527sa"]
+atlas = ExtResource("5_g75cm")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_711ws"]
+atlas = ExtResource("5_g75cm")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h55ns"]
+atlas = ExtResource("5_g75cm")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymqqf"]
+atlas = ExtResource("5_g75cm")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wjfq"]
+atlas = ExtResource("5_g75cm")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w01mw"]
+atlas = ExtResource("5_g75cm")
+region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7wk0j"]
 atlas = ExtResource("4_uyrir")
@@ -73,6 +98,29 @@ region = Rect2(896, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ka8xu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_527sa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_711ws")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h55ns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymqqf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wjfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w01mw")
+}],
+"loop": false,
+"name": &"alert",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7wk0j")
@@ -150,15 +198,15 @@ script = ExtResource("2_xyayd")
 
 [node name="WanderTimer" type="Timer" parent="Wandering"]
 
-[node name="Walking" type="Node" parent="."]
-script = ExtResource("4_f3jc2")
+[node name="Alert" type="Node" parent="."]
+script = ExtResource("4_0vece")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.059288, 0)
 billboard = 2
 texture_filter = 0
 sprite_frames = SubResource("SpriteFrames_ka8xu")
-animation = &"idle"
+animation = &"alert"
 autoplay = "idle"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -170,5 +218,6 @@ billboard = 2
 text = "state"
 
 [connection signal="updated" from="Sensors" to="." method="_on_sensors_updated"]
-[connection signal="target_reached" from="NavigationAgent3D" to="Walking" method="_on_navigation_agent_3d_target_reached"]
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
 [connection signal="timeout" from="Wandering/WanderTimer" to="Wandering" method="_on_wander_timer_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite3D" to="Alert" method="_on_animated_sprite_3d_animation_finished"]

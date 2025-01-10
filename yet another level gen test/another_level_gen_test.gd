@@ -148,8 +148,6 @@ func generate_ground_mesh():
 	var nav_region = NavigationRegion3D.new()
 	nav_region.navigation_mesh = nav_mesh
 	mesh.add_child(nav_region)
-	
-	Log.prn(mesh.get_children())
 
 #region Town Layouts Procedures
 const TOWN_SIZE := 10
@@ -261,6 +259,8 @@ func place_building_meshes():
 		foundation.init(terrain_specs.highest_altitude, terrain_specs.lowest_altitude)
 		level.add_child(foundation)
 		foundation.position = Vector3(cell.x, z, cell.y) * SCALE
+		foundation.player_entered_restricted_area.connect(level.get_node("Dog").player_entered_restricted_area)
+		foundation.player_exited_restricted_area.connect(level.get_node("Dog").player_exited_restricted_area)
 
 func place_train_meshes():
 	# Get the highest altitude on the train's path
