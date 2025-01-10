@@ -16,7 +16,6 @@ func _ready() -> void:
 	
 	var player = load("res://Player/Player.tscn").instantiate()
 	player.name = "Player"
-	Global.players.append(player)
 	var timer = get_tree().create_timer(0.1)
 	await timer.timeout
 	add_child(player)

@@ -141,6 +141,7 @@ script = ExtResource("1_e3m4t")
 initial_state = NodePath("Wandering")
 
 [node name="Sensors" parent="." instance=ExtResource("2_peirs")]
+debug = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.0
