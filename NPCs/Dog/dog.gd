@@ -24,3 +24,6 @@ func transition(target_state_name: String, data: Dictionary = {}) -> void:
 	state.exit()
 	state = get_node(target_state_name)
 	state.enter(previous_state, data)
+
+func _on_sensors_updated() -> void:
+	pass

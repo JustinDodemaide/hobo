@@ -2,8 +2,10 @@ extends Node3D
 
 @export var debug:bool = false
 
-@export var sight_distance:float = 1.0
+@export var sight_distance:float = 10.0
 var player_sightings:Array = []
+
+signal updated
 
 class PlayerSighting:
 	var player:Player
@@ -21,6 +23,14 @@ func _ready() -> void:
 
 func update() -> void:
 	sight_players()
+	emit_signal("updated")
+
+func get_seen_players() -> Array[Player]:
+	var players:Array[Player] = []
+	for sighting in player_sightings:
+		if sighting.currently_seen:
+			players.append(sighting.player)
+	return players
 
 var last_seen_markers = []
 func sight_players() -> void:
@@ -34,10 +44,10 @@ func sight_players() -> void:
 	for i in Global.players.size():
 		var player_sighting = player_sightings[i]
 		var player_pos = player_sighting.player.global_position
-		if global_position.distance_to(player_pos) < sight_distance:
+		if global_position.distance_to(player_pos) > sight_distance:
 			player_sighting.currently_seen = false
 			continue
-		raycast.target_position = player_pos
+		raycast.target_position = to_local(player_pos)
 		if raycast.get_collider() is not Player:
 			player_sighting.currently_seen = false
 			continue
@@ -48,12 +58,6 @@ func sight_players() -> void:
 		for sighting in player_sightings:
 			if sighting.currently_seen:
 				print(get_parent(), " sees ", sighting.player.name, " at ", sighting.last_seen_at)
+				sighting.player.get_node("CanvasLayer/seen?").text = "seen by " + get_parent().name
 			else:
-				var sprite = Sprite3D.new()
-				sprite.texture = load("res://icon.svg")
-				sprite.position = sighting.last_seen_at
-				last_seen_markers.append(sprite)
-				Global.level.add_child(sprite)
-
-func _on_update_timeout() -> void:
-	update()
+				sighting.player.get_node("CanvasLayer/seen?").text = ""

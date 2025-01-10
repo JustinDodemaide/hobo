@@ -6,8 +6,10 @@
 script = ExtResource("1_mypeg")
 
 [node name="SightRayCast" type="RayCast3D" parent="."]
+collide_with_areas = true
 
 [node name="Update" type="Timer" parent="."]
+wait_time = 0.1
 autostart = true
 
-[connection signal="timeout" from="Update" to="." method="_on_update_timeout"]
+[connection signal="timeout" from="Update" to="." method="update"]

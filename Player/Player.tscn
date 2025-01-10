@@ -35,9 +35,14 @@ texture = ExtResource("4_883vw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="CanvasLayer"]
-offset_right = 40.0
+[node name="seen?" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -115.0
 offset_bottom = 23.0
+grow_horizontal = 0
+text = "seen"
 
 [node name="PlayerInventory" parent="CanvasLayer" instance=ExtResource("5_7xsuc")]
 

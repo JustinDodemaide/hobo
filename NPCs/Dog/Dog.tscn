@@ -141,7 +141,6 @@ script = ExtResource("1_e3m4t")
 initial_state = NodePath("Wandering")
 
 [node name="Sensors" parent="." instance=ExtResource("2_peirs")]
-debug = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 2.0
@@ -170,5 +169,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.516075, 0)
 billboard = 2
 text = "state"
 
+[connection signal="updated" from="Sensors" to="." method="_on_sensors_updated"]
 [connection signal="target_reached" from="NavigationAgent3D" to="Walking" method="_on_navigation_agent_3d_target_reached"]
 [connection signal="timeout" from="Wandering/WanderTimer" to="Wandering" method="_on_wander_timer_timeout"]
