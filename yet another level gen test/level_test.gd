@@ -6,7 +6,7 @@ var car
 
 func _ready() -> void:
 	Global.level = self
-	var level_gen = load("res://yet another level gen test/another_level_gen_test.gd").new(self)
+	var level_gen = load("res://yet another level gen test/level_gen.gd").new(self)
 	level_gen.level = self
 	level_gen.generate()
 	

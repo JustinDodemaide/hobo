@@ -9,8 +9,8 @@ extends Node3D
 var level
 const WIDTH:int = 20
 const HEIGHT:int = 20
-const WIDTH_SCALE:float = 4.5
-const LENGTH_SCALE:float = 4.5
+const WIDTH_SCALE:float = 12
+const LENGTH_SCALE:float = 12
 const HEIGHT_SCALE:float = 4.5
 const SCALE:Vector3 = Vector3(WIDTH_SCALE, HEIGHT_SCALE, LENGTH_SCALE)
 const SCALE2D:Vector2 = Vector2(WIDTH_SCALE,LENGTH_SCALE)
