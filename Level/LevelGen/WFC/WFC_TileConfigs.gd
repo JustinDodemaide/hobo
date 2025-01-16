@@ -9,6 +9,8 @@ func get_tiles(setup_name:String) -> Array:
 			setup_town_tiles()
 		"fishing village":
 			setup_fishing_village()
+		"road":
+			setup_road()
 	return tiles
 
 func setup_coastal_biome():
@@ -326,4 +328,111 @@ func setup_fishing_village():
 		"south": ["muddy_path", "grass"],
 		"east": ["muddy_path", "grass", "shack", "fish_market"],
 		"west": ["muddy_path", "grass", "shack", "fish_market"]
+	}
+
+enum {NORTH_EAST_SOUTH_WEST,NORTH_EAST_SOUTH,NORTH_WEST_SOUTH,EAST_NORTH_WEST,EAST_NORTH_SOUTH,SOUTH_EAST,NORTH_EAST,NORTH_WEST,SOUTH_WEST,NORTH_SOUTH,EAST_WEST,BUILDING}
+func setup_road():
+	# Example tile types for a coastal biome
+	tiles = [
+		Tile.new("NORTH_EAST_SOUTH_WEST",Vector2i(NORTH_EAST_SOUTH_WEST,0)),
+		Tile.new("NORTH_EAST_SOUTH",Vector2i(NORTH_EAST_SOUTH,0)),
+		Tile.new("NORTH_WEST_SOUTH",Vector2i(NORTH_WEST_SOUTH,0)),
+		Tile.new("EAST_NORTH_WEST",Vector2i(EAST_NORTH_WEST,0)),
+		Tile.new("EAST_NORTH_SOUTH",Vector2i(EAST_NORTH_SOUTH,0)),
+		Tile.new("SOUTH_EAST",Vector2i(SOUTH_EAST,0)),
+		Tile.new("NORTH_EAST",Vector2i(NORTH_EAST,0)),
+		Tile.new("NORTH_WEST",Vector2i(NORTH_WEST,0)),
+		Tile.new("SOUTH_WEST",Vector2i(SOUTH_WEST,0)),
+		Tile.new("NORTH_SOUTH",Vector2i(NORTH_SOUTH,0)),
+		Tile.new("EAST_WEST",Vector2i(EAST_WEST,0)),
+		Tile.new("BUILDING",Vector2i(BUILDING,0)),
+	]
+	
+	# Four-way intersection - Can connect to anything with matching directions
+	tiles[NORTH_EAST_SOUTH_WEST].options_for_direction = {
+		"north": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "NORTH_EAST", "NORTH_WEST", "NORTH_SOUTH"],
+		"east": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "SOUTH_EAST", "NORTH_EAST", "EAST_WEST"],
+		"south": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "SOUTH_EAST", "SOUTH_WEST", "NORTH_SOUTH"],
+		"west": ["NORTH_EAST_SOUTH_WEST", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "NORTH_WEST", "SOUTH_WEST", "EAST_WEST"]
+	}
+	
+	# Three-way intersections
+	tiles[NORTH_EAST_SOUTH].options_for_direction = {
+		"north": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "NORTH_EAST", "NORTH_WEST", "NORTH_SOUTH"],
+		"east": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "SOUTH_EAST", "NORTH_EAST", "EAST_WEST"],
+		"south": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "SOUTH_EAST", "SOUTH_WEST", "NORTH_SOUTH"],
+		"west": ["BUILDING"]
+	}
+	
+	tiles[NORTH_WEST_SOUTH].options_for_direction = {
+		"north": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "NORTH_EAST", "NORTH_WEST", "NORTH_SOUTH"],
+		"east": ["BUILDING"],
+		"south": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "SOUTH_EAST", "SOUTH_WEST", "NORTH_SOUTH"],
+		"west": ["NORTH_EAST_SOUTH_WEST", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "NORTH_WEST", "SOUTH_WEST", "EAST_WEST"]
+	}
+	
+	tiles[EAST_NORTH_WEST].options_for_direction = {
+		"north": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "NORTH_EAST", "NORTH_WEST", "NORTH_SOUTH"],
+		"east": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "SOUTH_EAST", "NORTH_EAST", "EAST_WEST"],
+		"south": ["BUILDING"],
+		"west": ["NORTH_EAST_SOUTH_WEST", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "NORTH_WEST", "SOUTH_WEST", "EAST_WEST"]
+	}
+	
+	tiles[EAST_NORTH_SOUTH].options_for_direction = {
+		"north": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "NORTH_EAST", "NORTH_WEST", "NORTH_SOUTH"],
+		"east": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "SOUTH_EAST", "NORTH_EAST", "EAST_WEST"],
+		"south": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "SOUTH_EAST", "SOUTH_WEST", "NORTH_SOUTH"],
+		"west": ["BUILDING"]
+	}
+	
+	# Corner pieces
+	tiles[SOUTH_EAST].options_for_direction = {
+		"north": ["BUILDING"],
+		"east": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "SOUTH_EAST", "NORTH_EAST", "EAST_WEST"],
+		"south": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "SOUTH_EAST", "SOUTH_WEST", "NORTH_SOUTH"],
+		"west": ["BUILDING"]
+	}
+	
+	tiles[NORTH_EAST].options_for_direction = {
+		"north": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "NORTH_EAST", "NORTH_WEST", "NORTH_SOUTH"],
+		"east": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "SOUTH_EAST", "NORTH_EAST", "EAST_WEST"],
+		"south": ["BUILDING"],
+		"west": ["BUILDING"]
+	}
+	
+	tiles[NORTH_WEST].options_for_direction = {
+		"north": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "NORTH_EAST", "NORTH_WEST", "NORTH_SOUTH"],
+		"east": ["BUILDING"],
+		"south": ["BUILDING"],
+		"west": ["NORTH_EAST_SOUTH_WEST", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "NORTH_WEST", "SOUTH_WEST", "EAST_WEST"]
+	}
+	
+	tiles[SOUTH_WEST].options_for_direction = {
+		"north": ["BUILDING"],
+		"east": ["BUILDING"],
+		"south": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "SOUTH_EAST", "SOUTH_WEST", "NORTH_SOUTH"],
+		"west": ["NORTH_EAST_SOUTH_WEST", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "NORTH_WEST", "SOUTH_WEST", "EAST_WEST"]
+	}
+	
+	# Straight pieces
+	tiles[NORTH_SOUTH].options_for_direction = {
+		"north": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "NORTH_EAST", "NORTH_WEST", "NORTH_SOUTH"],
+		"east": ["BUILDING"],
+		"south": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "NORTH_WEST_SOUTH", "SOUTH_EAST", "SOUTH_WEST", "NORTH_SOUTH"],
+		"west": ["BUILDING"]
+	}
+	
+	tiles[EAST_WEST].options_for_direction = {
+		"north": ["BUILDING"],
+		"east": ["NORTH_EAST_SOUTH_WEST", "NORTH_EAST_SOUTH", "EAST_NORTH_WEST", "EAST_NORTH_SOUTH", "SOUTH_EAST", "NORTH_EAST", "EAST_WEST"],
+		"south": ["BUILDING"],
+		"west": ["NORTH_EAST_SOUTH_WEST", "NORTH_WEST_SOUTH", "EAST_NORTH_WEST", "NORTH_WEST", "SOUTH_WEST", "EAST_WEST"]
+	}
+	
+	# Building - Can connect to any non-connecting side of road pieces
+	tiles[BUILDING].options_for_direction = {
+		"north": ["SOUTH_EAST", "SOUTH_WEST", "EAST_WEST", "BUILDING"],
+		"east": ["NORTH_WEST_SOUTH", "NORTH_WEST", "SOUTH_WEST", "NORTH_SOUTH", "BUILDING"],
+		"south": ["NORTH_EAST", "NORTH_WEST", "EAST_WEST", "BUILDING"],
+		"west": ["NORTH_EAST_SOUTH", "EAST_NORTH_SOUTH", "SOUTH_EAST", "NORTH_EAST", "NORTH_SOUTH", "BUILDING"]
 	}

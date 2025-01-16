@@ -2,18 +2,18 @@ extends TileMapLayer
 
 # Example usage in a Godot scene
 func _ready():
-	test()
-	return
+	#test()
+	#return
 
 	var generator = WFCGenerator.new(20, 20)
-	generator.generate("fishing village")
+	generator.generate("road")
 
 	for x in generator.width:
 		for y in generator.height:
 			set_cell(Vector2i(y,x),0,generator.grid[y][x].atlas)
 
 	
-	# generator.print_grid()
+	generator.print_grid()
 	
 func make_rectangle(bottom_left_tile:Vector2i):
 	pass
@@ -300,5 +300,5 @@ class WFCGenerator:
 		for row in grid:
 			var row_output = []
 			for cell in row:
-				row_output.append(cell.type if cell else "null")
+				row_output.append(cell.tile_name if cell else "null")
 			print(row_output)

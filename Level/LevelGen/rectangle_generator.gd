@@ -38,7 +38,7 @@ func populate(rectangle):
 		var possible_rectangle_spaces = get_tiles_that_are_valid_for_new_rectangle_placement(tile)
 		if possible_rectangle_spaces.is_empty():
 			continue
-		await $Button.pressed
+		# await $Button.pressed
 		var new_rectangle = await make_rectangle(possible_rectangle_spaces.pick_random())
 		populate(new_rectangle)
 	
