@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hobo"
-run/main_scene="res://yet another level gen test/another level gen test.tscn"
+run/main_scene="res://Level/Level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
