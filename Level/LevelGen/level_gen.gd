@@ -19,11 +19,16 @@ var terrain_specs = {
 
 var tilemap
 func generate():
-	# make the terrain
+	terrain()
+	town()
+	train()
+
+func terrain() -> void:
+		# make the terrain
 	var noise = FastNoiseLite.new()
 	noise.seed = randi()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	noise.frequency = 0.1
+	# noise.frequency = 0.1
 	terrain_specs.altitude_map = noise
 	
 	var lowest = 10000
@@ -125,7 +130,8 @@ func generate():
 			var tile = Vector2i(x,y)
 			tm_set(tile,GROUND)
 
-	var displacement:Vector2i = Vector2i(OUTSKIRT_SIZE,OUTSKIRT_SIZE)
+func town() -> void:
+	var displacement:Vector2i = Vector2i(OUTSKIRT_SIZE,OUTSKIRT_SIZE - 1)
 	for x in TOWN_WIDTH:
 		for y in TOWN_LENGTH:
 			tm_set(Vector2i(x,y) + displacement, BUILDING)
@@ -158,10 +164,17 @@ func generate():
 				place_foundation(level_x, level_y)
 			var next_tile = Vector2i(tile_x + 1, tile_y)
 
+func place_foundation(x, y):
+	var foundation = load("res://Foundation/foundation.tscn").instantiate()
+	foundation.init(terrain_specs.highest_altitude, terrain_specs.lowest_altitude)
+	level.add_child(foundation)
+	foundation.position = Vector3(x, get_unscaled_height_at(Vector2(x,y)), y)
+
+func train() -> void:
 	# Get the highest altitude on the train's path
 	var station_x = OUTSKIRT_SIZE
 	var station_y = round(LEVEL_LENGTH / 2)
-	highest = -10000
+	var highest = -10000
 	for y in LEVEL_LENGTH:
 		var tile = Vector2(station_x, y)
 		var height = get_unscaled_height_at(tile)
@@ -188,19 +201,15 @@ func generate():
 	#tm_set(Vector2i(cell.x,cell.y),TRACK)
 		
 	level.path.curve = curve
-	
 
+
+#region Helper Functions
 func tm_set(where,atlas:int):
 	tilemap.set_cell(where,0,Vector2i(atlas,0))
 
 func tm_get(where) -> int:
 	return tilemap.get_cell_atlas_coords(where).x
 
-func place_foundation(x, y):
-	var foundation = load("res://Foundation/foundation.tscn").instantiate()
-	foundation.init(terrain_specs.highest_altitude, terrain_specs.lowest_altitude)
-	level.add_child(foundation)
-	foundation.position = Vector3(x, get_unscaled_height_at(Vector2(x,y)), y)
-
 func get_unscaled_height_at(where:Vector2) -> float:
 	return (terrain_specs.altitude_map.get_noise_2dv(where))
+#endregion
