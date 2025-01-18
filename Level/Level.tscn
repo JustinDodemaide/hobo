@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=12 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" path="res://Level/Level.gd" id="1_cds50"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="2_fqq60"]
@@ -25,6 +25,12 @@ auto_exposure_enabled = true
 dof_blur_far_distance = 20.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_eyoml"]
+
+[sub_resource type="Curve2D" id="Curve2D_p8g6n"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 36, 0, -1, -43, 1, 43, 24, 84, 0, 0, 0, 0, 48, 168)
+}
+point_count = 3
 
 [node name="AnotherLevelGenTest" type="Node3D" node_paths=PackedStringArray("path")]
 script = ExtResource("1_cds50")
@@ -54,3 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.7347, 8.63544, 8.60169)
 
 [node name="store" parent="." instance=ExtResource("5_fexgl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2665, 5.3154, 26.8724)
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_p8g6n")

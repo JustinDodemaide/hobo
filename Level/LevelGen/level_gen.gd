@@ -160,6 +160,7 @@ func generate():
 
 	# Get the highest altitude on the train's path
 	var station_x = OUTSKIRT_SIZE
+	var station_y = round(LEVEL_LENGTH / 2)
 	highest = -10000
 	for y in LEVEL_LENGTH:
 		var tile = Vector2(station_x, y)
@@ -169,12 +170,25 @@ func generate():
 	
 	var z = highest
 	var curve = Curve3D.new()
-	for y in LEVEL_LENGTH:
-		var cell = Vector2(station_x, y)
-		curve.add_point(Vector3(cell.x, z, cell.y) * TILE_TO_METER_RATIO)
-		tm_set(cell,TRACK)
+	
+	var cell1 = Vector3(station_x + randi_range(-4,4), z, 0) * TILE_TO_METER_RATIO
+	var cell2 = Vector3(station_x, z, station_y) * TILE_TO_METER_RATIO
+	var cell3 = Vector3(station_x + randi_range(-4,4), z, LEVEL_WIDTH) * TILE_TO_METER_RATIO
+	Log.prn(cell1)
+	Log.prn(cell2)
+	Log.prn(cell3)
+	curve.add_point(cell1)
+	var curve_vector_y = (cell2.z - cell1.z) / 2
+	Log.prn(curve_vector_y)
+	curve.add_point(cell2, Vector3(0,0,-curve_vector_y), Vector3(0,0,curve_vector_y))
+	curve.add_point(cell3)
+	Global.sprite(cell1)
+	Global.sprite(cell2)
+	Global.sprite(cell3)
+	#tm_set(Vector2i(cell.x,cell.y),TRACK)
 		
 	level.path.curve = curve
+	
 
 func tm_set(where,atlas:int):
 	tilemap.set_cell(where,0,Vector2i(atlas,0))
