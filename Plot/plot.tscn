@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://wdks4l6d8h32"]
 
-[ext_resource type="Script" path="res://Foundation/foundation.gd" id="1_ouy8n"]
+[ext_resource type="Script" path="res://Plot/plot.gd" id="1_ouy8n"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8njjd"]
 
@@ -14,7 +14,7 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_a4m5a"]
 
-[node name="Foundation" type="Node3D"]
+[node name="Plot" type="Node3D"]
 script = ExtResource("1_ouy8n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
