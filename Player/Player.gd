@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name Player
 
-const SPEED = 5.0
-const JUMP_VELOCITY = 3.25
+const SPEED = 50.0
+const JUMP_VELOCITY = 5.25
 
 var the_object_last_underneath_us = null
 var previous_global_position: Vector3 = global_position

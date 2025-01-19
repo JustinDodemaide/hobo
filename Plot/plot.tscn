@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://wdks4l6d8h32"]
+[gd_scene load_steps=8 format=3 uid="uid://wdks4l6d8h32"]
 
-[ext_resource type="Script" path="res://Plot/plot.gd" id="1_ouy8n"]
+[ext_resource type="Script" path="res://Plot/plot.gd" id="1_tggb7"]
+[ext_resource type="PackedScene" uid="uid://c56ov2ikfnspf" path="res://store.glb" id="2_2mbcw"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_8njjd"]
 
@@ -15,7 +16,7 @@ data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0
 [sub_resource type="NavigationMesh" id="NavigationMesh_a4m5a"]
 
 [node name="Plot" type="Node3D"]
-script = ExtResource("1_ouy8n")
+script = ExtResource("1_tggb7")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(12, 0, 0, 0, 1, 0, 0, 0, 12, 0, 0, 0)
@@ -36,17 +37,8 @@ shape = SubResource("BoxShape3D_be1y3")
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="MeshInstance3D"]
 navigation_mesh = SubResource("NavigationMesh_a4m5a")
 
-[node name="Marker3D" type="Marker3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, 0.25)
-
-[node name="Marker3D2" type="Marker3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.5, 0.25)
-
-[node name="Marker3D3" type="Marker3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.5, -0.25)
-
-[node name="Marker3D4" type="Marker3D" parent="MeshInstance3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0.5, -0.25)
+[node name="store" parent="." instance=ExtResource("2_2mbcw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.5, -0.244)
 
 [connection signal="area_entered" from="MeshInstance3D/RestrictedArea" to="." method="_on_restricted_area_area_entered"]
 [connection signal="area_exited" from="MeshInstance3D/RestrictedArea" to="." method="_on_restricted_area_area_exited"]

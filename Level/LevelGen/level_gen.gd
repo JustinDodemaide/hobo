@@ -130,6 +130,7 @@ func terrain() -> void:
 			var tile = Vector2i(x,y)
 			tm_set(tile,GROUND)
 
+var corner_plots = {}
 func town() -> void:
 	var displacement:Vector2i = Vector2i(OUTSKIRT_SIZE,OUTSKIRT_SIZE - 1)
 	for x in TOWN_WIDTH:
@@ -154,21 +155,17 @@ func town() -> void:
 			for var_names_are_hard in MAX_BLOCK_HEIGHT:
 				side_street.y += var_names_are_hard
 				tm_set(side_street + displacement, STREET)
-
+	
+	var plot_scene = load("res://Plot/plot.tscn")
 	for tile_y in LEVEL_LENGTH:
 		var level_y = tile_y * TILE_TO_METER_RATIO
 		for tile_x in LEVEL_WIDTH:
 			var level_x = tile_x * TILE_TO_METER_RATIO
 			var tile = Vector2i(tile_x,tile_y)
 			if tm_get(tile) == BUILDING:
-				place_foundation(level_x, level_y)
-			var next_tile = Vector2i(tile_x + 1, tile_y)
-
-func place_foundation(x, y):
-	var foundation = load("res://Foundation/foundation.tscn").instantiate()
-	foundation.init(terrain_specs.highest_altitude, terrain_specs.lowest_altitude)
-	level.add_child(foundation)
-	foundation.position = Vector3(x, get_unscaled_height_at(Vector2(x,y)), y)
+				var plot = plot_scene.instantiate()
+				level.add_child(plot)
+				plot.position = Vector3(level_x, get_unscaled_height_at(Vector2(level_x,level_y)), level_y)
 
 func train() -> void:
 	# Get the highest altitude on the train's path
