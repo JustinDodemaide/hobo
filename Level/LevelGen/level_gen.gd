@@ -10,7 +10,8 @@ const ALLEY_SIZE:int = TILE_TO_METER_RATIO / 2
 const LEVEL_WIDTH:int = OUTSKIRT_SIZE + TOWN_WIDTH + OUTSKIRT_SIZE
 const LEVEL_LENGTH:int = OUTSKIRT_SIZE + TOWN_LENGTH + OUTSKIRT_SIZE
 
-const TILE_TO_METER_RATIO:int = 12
+const TILE_TO_METER_RATIO:int = 10 # Should match the size of the foundations, but I wanted everything to be closer together
+const HEIGHT_SCALE:float = 1.0
 
 var terrain_specs = {
 	"altitude_map":null,
@@ -24,11 +25,11 @@ func generate():
 	train()
 
 func terrain() -> void:
-		# make the terrain
+	# make the terrain
 	var noise = FastNoiseLite.new()
 	noise.seed = randi()
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN
-	# noise.frequency = 0.1
+	#noise.frequency = 0.1
 	terrain_specs.altitude_map = noise
 	
 	var lowest = 10000
@@ -36,7 +37,7 @@ func terrain() -> void:
 	for y in LEVEL_LENGTH:
 		for x in LEVEL_WIDTH:
 			var where = Vector2(x,y)
-			var val = get_unscaled_height_at(where)
+			var val = get_height_at(where)
 			if val < lowest:
 				lowest = val
 			if val > highest:
@@ -53,14 +54,14 @@ func terrain() -> void:
 	for y in LEVEL_LENGTH:
 		for x in LEVEL_WIDTH:
 			var cell = Vector2(x,y)
-			var z = get_unscaled_height_at(cell)
+			var z = get_height_at(cell)
 			var vertex = Vector3(
 				x,
 				z,
 				y
 			)
 			vertex.x *= TILE_TO_METER_RATIO
-			vertex.y *= TILE_TO_METER_RATIO / 2
+			vertex.y *= TILE_TO_METER_RATIO
 			vertex.z *= TILE_TO_METER_RATIO
 			
 			# Calculate UVs
@@ -121,7 +122,7 @@ func terrain() -> void:
 	nav_mesh.create_from_mesh(mesh.mesh)
 	var nav_region = NavigationRegion3D.new()
 	nav_region.navigation_mesh = nav_mesh
-	mesh.add_child(nav_region)	
+	mesh.add_child(nav_region)
 	# make the towns layout
 	tilemap = TileMapLayer.new()
 	tilemap.tile_set = load("res://TownGens/test_level_gens.tres")
@@ -156,16 +157,16 @@ func town() -> void:
 				side_street.y += var_names_are_hard
 				tm_set(side_street + displacement, STREET)
 	
-	var plot_scene = load("res://Plot/plot.tscn")
+	var plot_paths = ["res://Plots/grid town/store_plot.tscn"]
 	for tile_y in LEVEL_LENGTH:
 		var level_y = tile_y * TILE_TO_METER_RATIO
 		for tile_x in LEVEL_WIDTH:
 			var level_x = tile_x * TILE_TO_METER_RATIO
 			var tile = Vector2i(tile_x,tile_y)
 			if tm_get(tile) == BUILDING:
-				var plot = plot_scene.instantiate()
+				var plot = load(plot_paths.pick_random()).instantiate()
 				level.add_child(plot)
-				plot.position = Vector3(level_x, get_unscaled_height_at(Vector2(level_x,level_y)), level_y)
+				plot.position = Vector3(level_x, get_height_at(Vector2(tile_x,tile_y)), level_y)
 
 func train() -> void:
 	# Get the highest altitude on the train's path
@@ -174,7 +175,7 @@ func train() -> void:
 	var highest = -10000
 	for y in LEVEL_LENGTH:
 		var tile = Vector2(station_x, y)
-		var height = get_unscaled_height_at(tile)
+		var height = get_height_at(tile)
 		if height > highest:
 			highest = height
 	
@@ -207,6 +208,6 @@ func tm_set(where,atlas:int):
 func tm_get(where) -> int:
 	return tilemap.get_cell_atlas_coords(where).x
 
-func get_unscaled_height_at(where:Vector2) -> float:
-	return (terrain_specs.altitude_map.get_noise_2dv(where))
+func get_height_at(where:Vector2) -> float:
+	return (terrain_specs.altitude_map.get_noise_2dv(where)) * HEIGHT_SCALE
 #endregion

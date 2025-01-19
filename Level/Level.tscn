@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="2_fqq60"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="3_5d7xl"]
 [ext_resource type="PackedScene" uid="uid://c7c8dvikiai4i" path="res://NPCs/Dog/Dog.tscn" id="4_1tj5h"]
-[ext_resource type="PackedScene" uid="uid://c56ov2ikfnspf" path="res://store.glb" id="5_fexgl"]
+[ext_resource type="PackedScene" uid="uid://c56ov2ikfnspf" path="res://Plots/Buildings/store.glb" id="5_fexgl"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("2_fqq60")
@@ -60,6 +60,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.7347, 8.63544, 8.60169)
 
 [node name="store" parent="." instance=ExtResource("5_fexgl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2665, 5.3154, 26.8724)
+visible = false
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_p8g6n")

@@ -38,10 +38,10 @@ func create_grass_system(level_gen, density: float = 1.0, w_strength: float = 0.
 		
 		# Use bilinear interpolation to get the height at the displaced pos
 		# Get heights at the four corners of our grid cell
-		var y00 = level_gen.get_unscaled_height_at(Vector2(pos.x, pos.y)) /2        # Bottom left
-		var y10 = level_gen.get_unscaled_height_at(Vector2(pos.x + 1, pos.y))/2     # Bottom right
-		var y01 = level_gen.get_unscaled_height_at(Vector2(pos.x, pos.y + 1)) /2    # Top left
-		var y11 = level_gen.get_unscaled_height_at(Vector2(pos.x + 1, pos.y + 1))/2 # Top right
+		var y00 = level_gen.get_height_at(Vector2(pos.x, pos.y))        # Bottom left
+		var y10 = level_gen.get_height_at(Vector2(pos.x + 1, pos.y))     # Bottom right
+		var y01 = level_gen.get_height_at(Vector2(pos.x, pos.y + 1))   # Top left
+		var y11 = level_gen.get_height_at(Vector2(pos.x + 1, pos.y + 1)) # Top right
 
 		var dx = displacement.x
 		var dy = displacement.y

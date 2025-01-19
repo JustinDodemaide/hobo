@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1qu0fhfeweho"]
+
+[ext_resource type="Script" path="res://Plots/plot.gd" id="1_pmrfu"]
+[ext_resource type="PackedScene" uid="uid://c56ov2ikfnspf" path="res://Plots/Buildings/store.glb" id="2_g1s1j"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4d3yb"]
+size = Vector2(12, 12)
+
+[node name="StorePlot" type="Node3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+script = ExtResource("1_pmrfu")
+
+[node name="store" parent="." instance=ExtResource("2_g1s1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01, 0)
+
+[node name="store2" parent="." instance=ExtResource("2_g1s1j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01, 6)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_4d3yb")
