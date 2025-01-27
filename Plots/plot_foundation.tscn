@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbgn1jl1i2jhh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1e1ek"]
+size = Vector3(14, 3, 14)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w6k53"]
+albedo_color = Color(0.607843, 0.670588, 0.698039, 1)
+
+[node name="plot_foundation" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.4, 0)
+mesh = SubResource("BoxMesh_1e1ek")
+surface_material_override/0 = SubResource("StandardMaterial3D_w6k53")

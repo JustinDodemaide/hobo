@@ -11,7 +11,7 @@ varying vec3 world_pos;
 
 void vertex() {
     world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-    
+
     // Simple wind movement - stronger at higher y values (top of grass)
     if (VERTEX.y > 0.0) {
         float wind = sin(TIME * wind_speed + world_pos.x * 0.5 + world_pos.z * 0.5);
@@ -24,14 +24,14 @@ void fragment() {
     // Get noise value for ground variation
     vec2 noise_uv = world_pos.xz * 0.05;  // Scale UV for reasonable noise size
     float noise = texture(noise_texture, noise_uv + vec2(TIME * 0.01)).r;
-    
+
     // Mix colors based on height and noise
     float height_factor = clamp(world_pos.y / grass_height, 0.0, 1.0);
     vec3 final_color = mix(soil_color, grass_color, height_factor);
-    
+
     // Add subtle noise variation
     final_color += (noise - 0.5) * 0.1;
-    
+
     ALBEDO = final_color;
     ROUGHNESS = 0.9;  // Dry, rough look
     METALLIC = 0.0;

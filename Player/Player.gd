@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Player
 
-const SPEED = 50.0
+var SPEED = 50.0
 const JUMP_VELOCITY = 5.25
 
 var the_object_last_underneath_us = null
@@ -15,7 +15,11 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_pressed("Esc"):
 		get_tree().quit()
-		
+	if Input.is_action_pressed("equal"):
+		if SPEED == 5.0:
+			SPEED = 50.0
+		else:
+			SPEED = 5.0
 	handle_movement(delta)
 	# handle_moving_objects()
 	# handle_item_raycast()

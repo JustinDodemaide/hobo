@@ -19,7 +19,7 @@ func create_grass_system(level_gen, density: float = 1.0, w_strength: float = 0.
 	#var blade_height = randf_range(grass_height_range.x, grass_height_range.y)
 	#var blade = create_grass_blade(blade_height)
 	var blade = get_random_grass()
-	var num_blades = round(level_gen.LEVEL_WIDTH * level_gen.LEVEL_LENGTH * grass_density)
+	var num_blades = round(level_gen.WIDTH * level_gen.LENGTH * grass_density)
 	
 	var grass_mesh = MultiMesh.new()
 	grass_mesh.transform_format = MultiMesh.TRANSFORM_3D
@@ -33,15 +33,15 @@ func create_grass_system(level_gen, density: float = 1.0, w_strength: float = 0.
 	for i in num_blades:
 		var transform = Transform3D()
 		
-		var pos = Vector2(randi_range(0, level_gen.LEVEL_WIDTH - 2), randi_range(0, level_gen.LEVEL_LENGTH - 2))
+		var pos = Vector2(randi_range(0, level_gen.WIDTH - 2), randi_range(0, level_gen.LENGTH - 2))
 		var displacement = Vector2(randf_range(0, 1), randf_range(0, 1))
 		
 		# Use bilinear interpolation to get the height at the displaced pos
 		# Get heights at the four corners of our grid cell
-		var y00 = level_gen.get_height_at(Vector2(pos.x, pos.y))        # Bottom left
-		var y10 = level_gen.get_height_at(Vector2(pos.x + 1, pos.y))     # Bottom right
-		var y01 = level_gen.get_height_at(Vector2(pos.x, pos.y + 1))   # Top left
-		var y11 = level_gen.get_height_at(Vector2(pos.x + 1, pos.y + 1)) # Top right
+		var y00 = level_gen.get_height(Vector2(pos.x, pos.y))        # Bottom left
+		var y10 = level_gen.get_height(Vector2(pos.x + 1, pos.y))     # Bottom right
+		var y01 = level_gen.get_height(Vector2(pos.x, pos.y + 1))   # Top left
+		var y11 = level_gen.get_height(Vector2(pos.x + 1, pos.y + 1)) # Top right
 
 		var dx = displacement.x
 		var dy = displacement.y
