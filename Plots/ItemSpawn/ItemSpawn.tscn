@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://bwjvnhm6vbjos"]
+[gd_scene load_steps=2 format=3 uid="uid://bwjvnhm6vbjos"]
+
+[ext_resource type="Script" path="res://Plots/ItemSpawn/ItemSpawn.gd" id="1_rpdup"]
 
 [node name="ItemSpawn" type="Marker3D"]
+script = ExtResource("1_rpdup")
