@@ -8,3 +8,6 @@ func sprite(pos:Vector3) -> void:
 	sprite.texture = load("res://icon.svg")
 	sprite.position = pos
 	level.add_child(sprite)
+
+func item_from_string(item_name:String) -> Item:
+	return load("res://Item/" + item_name + "/" + item_name + ".gd").new()

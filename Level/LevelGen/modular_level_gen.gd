@@ -8,8 +8,8 @@ enum{STREET,PLOT,TRACKS,STATION}
 var height:Array = []
 
 var level:Level
-const LENGTH:int = 10#25
-const WIDTH:int = 10#25
+const LENGTH:int = 15#25
+const WIDTH:int = 15#25
 
 const TILE_TO_METER_RATIO:int = 10
 
@@ -140,8 +140,8 @@ func structures():
 	for tile in buildings.get_used_cells_by_id(0, Vector2i(PLOT, 0)):
 		var cell = tile * TILE_TO_METER_RATIO
 		var plot = load(plots.pick_random()).instantiate()
-		level.add_child(plot)
 		plot.position = Vector3(cell.x, get_height(tile), cell.y)
+		level.add_child(plot)
 
 func tset(which:TileMapLayer,where:Vector2i,what:int):
 	which.set_cell(where, 0, Vector2i(what, 0))

@@ -3,6 +3,7 @@ class_name LevelItem
 
 @export var item_name:String
 var item:Item = null
+@onready var sprite:Sprite3D = $Sprite3D
 
 func _ready() -> void:
 	if not item_name.is_empty():

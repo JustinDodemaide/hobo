@@ -4,7 +4,6 @@ extends Node3D
 enum DIRECTION {NORTH,SOUTH,EAST,WEST}
 
 func _ready() -> void:
-	pass
 	rotation = [Vector3(0,deg_to_rad(-90),0), Vector3(0,deg_to_rad(90),0)].pick_random()
 
 func face_direction(direction:DIRECTION):

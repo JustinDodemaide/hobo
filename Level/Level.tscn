@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=16 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" path="res://Level/Level.gd" id="1_cds50"]
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Level/LevelGen/LevelGen.tscn" id="2_ea7wf"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c56ov2ikfnspf" path="res://Plots/Buildings/store.glb" id="5_fexgl"]
 [ext_resource type="PackedScene" uid="uid://dxk87mc2eihs4" path="res://test.glb" id="6_vqnwk"]
 [ext_resource type="PackedScene" uid="uid://k4w0xja3m5ox" path="res://truck.glb" id="7_wm7c8"]
+[ext_resource type="PackedScene" uid="uid://cs0cgbsr1uy5b" path="res://Item/LevelItem.tscn" id="9_n2r0v"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("2_fqq60")
@@ -79,3 +80,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4888, 0.836859, 29.0976)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2665, 0.635811, 26.8724)
 
 [node name="LevelGen" parent="." instance=ExtResource("2_ea7wf")]
+
+[node name="LevelItem" parent="." instance=ExtResource("9_n2r0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9076, 2.25926, 25.1256)
+item_name = "Coffee"

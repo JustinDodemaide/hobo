@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1vposlr4pf2q" path="res://Plots/Buildings/building5_3 side.png" id="4_xadso"]
 [ext_resource type="Texture2D" uid="uid://bbecnlpcr1tqa" path="res://Plots/Buildings/alley1_alley1.png" id="6_pdaw6"]
 [ext_resource type="Texture2D" uid="uid://q58fpyjauk4c" path="res://Plots/Buildings/alley1_alley1 side.png" id="7_37fus"]
-[ext_resource type="PackedScene" uid="uid://cs0cgbsr1uy5b" path="res://Item/LevelItem.tscn" id="8_1igal"]
+[ext_resource type="PackedScene" uid="uid://bwjvnhm6vbjos" path="res://Plots/ItemSpawn/ItemSpawn.tscn" id="8_b2bia"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyk1q"]
 resource_name = "3 back"
@@ -282,10 +282,6 @@ transform = Transform3D(-0.5, 8.14603e-08, 8.14603e-08, -8.14603e-08, 0, -0.5, -
 transform = Transform3D(-2, -3.25841e-07, -3.25841e-07, 3.25841e-07, 0, -2, 3.25841e-07, -2, 5.30863e-14, 0, 0, -10)
 shape = SubResource("ConcavePolygonShape3D_63dw5")
 
-[node name="ItemSpawns" type="Node" parent="."]
-
-[node name="LevelItem" parent="ItemSpawns" instance=ExtResource("8_1igal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00823, 0.239558, 0)
-
-[node name="LevelItem2" parent="ItemSpawns" instance=ExtResource("8_1igal")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99177, 0.402079, 0)
+[node name="ItemSpawn" parent="alley1_001" instance=ExtResource("8_b2bia")]
+transform = Transform3D(-0.5, 8.14603e-08, 8.14604e-08, -8.14604e-08, 1.10114e-20, -0.5, -8.14603e-08, -0.5, 1.32716e-14, -0.38972, -2.5, 0.279905)
+item_name = "Bread"

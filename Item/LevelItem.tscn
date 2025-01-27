@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://cs0cgbsr1uy5b"]
+[gd_scene load_steps=9 format=3 uid="uid://cs0cgbsr1uy5b"]
 
 [ext_resource type="Script" path="res://Item/LevelItem.gd" id="1_g3yrc"]
+[ext_resource type="Texture2D" uid="uid://bee1tgroajdav" path="res://Item/Coffee/Coffee.png" id="2_1hw87"]
 [ext_resource type="PackedScene" uid="uid://dfcsb62rmmpgh" path="res://Item/MovingObjectHandler.tscn" id="2_ixckb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_08nu4"]
@@ -48,6 +49,7 @@ size = Vector3(0.5, 0.5, 0.5)
 [node name="LevelItem" type="RigidBody3D"]
 collision_layer = 2
 collision_mask = 2
+gravity_scale = 0.0
 script = ExtResource("1_g3yrc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -57,6 +59,7 @@ shape = SubResource("BoxShape3D_08nu4")
 [node name="Sprite3D" type="Sprite3D" parent="."]
 billboard = 2
 texture_filter = 0
+texture = ExtResource("2_1hw87")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
