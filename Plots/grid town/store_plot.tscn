@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://b1qu0fhfeweho"]
+[gd_scene load_steps=22 format=4 uid="uid://b1qu0fhfeweho"]
 
 [ext_resource type="Script" path="res://Plots/plot.gd" id="1_pmrfu"]
 [ext_resource type="PackedScene" uid="uid://dbgn1jl1i2jhh" path="res://Plots/plot_foundation.tscn" id="2_17bid"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://1vposlr4pf2q" path="res://Plots/Buildings/building5_3 side.png" id="4_xadso"]
 [ext_resource type="Texture2D" uid="uid://bbecnlpcr1tqa" path="res://Plots/Buildings/alley1_alley1.png" id="6_pdaw6"]
 [ext_resource type="Texture2D" uid="uid://q58fpyjauk4c" path="res://Plots/Buildings/alley1_alley1 side.png" id="7_37fus"]
+[ext_resource type="PackedScene" uid="uid://cs0cgbsr1uy5b" path="res://Item/LevelItem.tscn" id="8_1igal"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dyk1q"]
 resource_name = "3 back"
@@ -278,3 +279,11 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="alley1_001/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_12tk0")
+
+[node name="ItemSpawns" type="Node" parent="."]
+
+[node name="LevelItem" parent="ItemSpawns" instance=ExtResource("8_1igal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.00823, 0.239558, 0)
+
+[node name="LevelItem2" parent="ItemSpawns" instance=ExtResource("8_1igal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.99177, 0.402079, 0)
