@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://qlreefy5irxc"]
+[gd_scene load_steps=11 format=3 uid="uid://qlreefy5irxc"]
 
 [ext_resource type="Script" path="res://Train/train.gd" id="1_a1h44"]
 [ext_resource type="Script" path="res://Train/states/pulling_up.gd" id="2_30uft"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Train/states/stopped.gd" id="3_bkcdk"]
 [ext_resource type="Script" path="res://Train/states/leaving.gd" id="4_jp1ow"]
 [ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="6_tjjas"]
-[ext_resource type="PackedScene" uid="uid://cs0cgbsr1uy5b" path="res://Item/LevelItem.tscn" id="7_o2gr6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mianl"]
 albedo_color = Color(0.909855, 0.717311, 0.782062, 1)
@@ -68,8 +67,5 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.9183
 visible = false
 billboard = 1
 texture = ExtResource("6_tjjas")
-
-[node name="Item" parent="Car/SpawnPoint" instance=ExtResource("7_o2gr6")]
-item_name = "Coffee"
 
 [connection signal="timeout" from="Stopped/Timer" to="Stopped" method="_on_timer_timeout"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://b6yw50uo1ef0u"]
 
 [ext_resource type="Texture2D" uid="uid://dpe5k888ht8ut" path="res://Plots/Buildings/building4_2.png" id="1_17012"]
-[ext_resource type="PackedScene" uid="uid://dbgn1jl1i2jhh" path="res://Plots/plot_foundation.tscn" id="2_e20i7"]
+[ext_resource type="PackedScene" uid="uid://bnqnnlg02lwbk" path="res://Plots/grid town/plot_foundation.glb" id="1_mlxxh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjjj3"]
 resource_name = "2"
@@ -142,7 +142,8 @@ data = PackedVector3Array(5.5, 0, -5.2501, 5.5, 0.25, -5.5, 5.5, 0, -5.5, 5.5, 0
 
 [node name="misc_building4" type="Node3D"]
 
-[node name="plot_foundation" parent="." instance=ExtResource("2_e20i7")]
+[node name="plot_foundation" parent="." instance=ExtResource("1_mlxxh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 
 [node name="2" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 1, 0, 0, 0, -1, -1, 0, 0, 5, 4.5, 0.5)

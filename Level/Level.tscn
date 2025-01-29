@@ -1,14 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=13 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" path="res://Level/Level.gd" id="1_cds50"]
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Level/LevelGen/LevelGen.tscn" id="2_ea7wf"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="2_fqq60"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="3_5d7xl"]
 [ext_resource type="PackedScene" uid="uid://c7c8dvikiai4i" path="res://NPCs/Dog/Dog.tscn" id="4_1tj5h"]
-[ext_resource type="PackedScene" uid="uid://c56ov2ikfnspf" path="res://Plots/Buildings/store.glb" id="5_fexgl"]
 [ext_resource type="PackedScene" uid="uid://dxk87mc2eihs4" path="res://test.glb" id="6_vqnwk"]
 [ext_resource type="PackedScene" uid="uid://k4w0xja3m5ox" path="res://truck.glb" id="7_wm7c8"]
-[ext_resource type="PackedScene" uid="uid://cs0cgbsr1uy5b" path="res://Item/LevelItem.tscn" id="9_n2r0v"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("2_fqq60")
@@ -28,8 +26,6 @@ ssil_enabled = true
 auto_exposure_enabled = true
 dof_blur_far_distance = 20.0
 
-[sub_resource type="QuadMesh" id="QuadMesh_eyoml"]
-
 [sub_resource type="Curve2D" id="Curve2D_p8g6n"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -90, 171, 0, 0, 0, 0, -81, 162, 0, 0, 0, 0, -72, 144, 0, 0, 0, 0, -63, 135, 0, 0, 0, 0, -54, 126, 0, 0, 0, 0, -45, 117)
@@ -39,6 +35,8 @@ point_count = 6
 [node name="Level" type="Node3D" node_paths=PackedStringArray("path")]
 script = ExtResource("1_cds50")
 path = NodePath("Tracks")
+
+[node name="LevelGen" parent="." instance=ExtResource("2_ea7wf")]
 
 [node name="Tracks" type="Path3D" parent="."]
 
@@ -54,21 +52,8 @@ shadow_enabled = true
 transform = Transform3D(85, 0, 0, 0, 1, 0, 0, 0, 85, 42.5, 3.5, 43)
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-visible = false
-mesh = SubResource("QuadMesh_eyoml")
-
 [node name="Dog" parent="." instance=ExtResource("4_1tj5h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.7347, 8.63544, 8.60169)
-
-[node name="store" parent="." instance=ExtResource("5_fexgl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2665, 5.3154, 26.8724)
-visible = false
-
-[node name="Path2D" type="Path2D" parent="."]
-visible = false
-curve = SubResource("Curve2D_p8g6n")
 
 [node name="Path2D2" type="Path2D" parent="."]
 curve = SubResource("Curve2D_p8g6n")
@@ -78,9 +63,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4888, 0.836859, 29.0976)
 
 [node name="test2" parent="." instance=ExtResource("6_vqnwk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2665, 0.635811, 26.8724)
-
-[node name="LevelGen" parent="." instance=ExtResource("2_ea7wf")]
-
-[node name="LevelItem" parent="." instance=ExtResource("9_n2r0v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.9076, 2.25926, 25.1256)
-item_name = "Coffee"

@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 var SPEED = 50.0
-const JUMP_VELOCITY = 5.25
+var JUMP_VELOCITY = 3
 
 var the_object_last_underneath_us = null
 var previous_global_position: Vector3 = global_position
@@ -18,8 +18,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("equal"):
 		if SPEED == 5.0:
 			SPEED = 50.0
+			JUMP_VELOCITY = 7
 		else:
 			SPEED = 5.0
+			JUMP_VELOCITY = 3
 	handle_movement(delta)
 	# handle_moving_objects()
 	# handle_item_raycast()

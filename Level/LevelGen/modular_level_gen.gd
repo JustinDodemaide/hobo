@@ -137,11 +137,17 @@ func terrain_mesh() -> void:
 	mesh.add_child(nav_region)
 
 func structures():
+	#var offsets = [-0.03, -0.02, -0.01, 0.0, 0.01, 0.02, 0.03]
+	var offset = 0.001
+	# Need to offset the hieghts of adjacent plots to prevent foundation z-fighting
 	for tile in buildings.get_used_cells_by_id(0, Vector2i(PLOT, 0)):
 		var cell = tile * TILE_TO_METER_RATIO
 		var plot = load(plots.pick_random()).instantiate()
-		plot.position = Vector3(cell.x, get_height(tile), cell.y)
+		var height = get_height(tile) + offset# + offsets.pick_random()
+		plot.position = Vector3(cell.x, height, cell.y)
 		level.add_child(plot)
+		
+		offset += 0.001
 
 func tset(which:TileMapLayer,where:Vector2i,what:int):
 	which.set_cell(where, 0, Vector2i(what, 0))
@@ -157,6 +163,5 @@ func _process(delta: float) -> void:
 	if not player:
 		return
 	var pos = player.global_position / TILE_TO_METER_RATIO
-	# print(pos)
 	var tile = Vector2(pos.x,pos.z) * 8
 	$Sprite2D.position = tile
