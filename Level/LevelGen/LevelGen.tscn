@@ -154,11 +154,14 @@ sources/0 = SubResource("TileSetAtlasSource_fy4cb")
 script = ExtResource("1_kh7n0")
 
 [node name="Terrain" type="TileMapLayer" parent="."]
+visible = false
 tile_set = SubResource("TileSet_x53mo")
 
 [node name="Buildings" type="TileMapLayer" parent="."]
+visible = false
 tile_set = SubResource("TileSet_nwx8d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_gadwo")

@@ -8,8 +8,8 @@ enum{STREET,PLOT,TRACKS,STATION}
 var height:Array = []
 
 var level:Level
-const LENGTH:int = 15#25
-const WIDTH:int = 15#25
+const LENGTH:int = 35
+const WIDTH:int = 35
 
 const TILE_TO_METER_RATIO:int = 10
 

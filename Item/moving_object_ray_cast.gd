@@ -3,11 +3,13 @@ extends RayCast3D
 @export var raycast_length:float = 2
 var parent
 var the_object_last_underneath_us = null
-var previous_global_position: Vector3 = global_position
+var previous_global_position:Vector3
 
 func _ready() -> void:
 	parent = get_parent()
 	target_position *= raycast_length
+	
+	previous_global_position = global_position
 
 func _process(delta: float) -> void:
 	handle_moving_objects()
