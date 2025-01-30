@@ -28,7 +28,6 @@ func dropped(by:Player) -> void:
 	print(Global.level.car)
 	var deposit = Global.level.car.get_node("Deposit")
 	$DepositCheck.force_raycast_update()
-	Log.prn($DepositCheck.get_collider())
 	var area = $DepositCheck.get_collider()
 	if area == deposit:
 		#print(get_parent().name)

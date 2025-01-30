@@ -19,10 +19,6 @@ const plots = [
 "res://Plots/grid town/misc_building4.tscn",
 ]
 
-func _ready() -> void:
-	pass
-	#generate()
-
 func generate():
 	for x in LENGTH:
 		height.append([])

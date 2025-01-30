@@ -6,7 +6,7 @@ var car
 
 func _ready() -> void:
 	Global.level = self
-	var level_gen = $LevelGen#load("res://Level/LevelGen/level_gen.gd").new(self)
+	var level_gen = $LevelGen
 	level_gen.level = self
 	level_gen.generate()
 	

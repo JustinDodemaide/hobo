@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Level/LevelGen/LevelGen.tscn" id="2_ea7wf"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="2_fqq60"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="3_5d7xl"]
+[ext_resource type="Script" path="res://Level/LevelGen/GridTown/GridTown.gd" id="3_aqwlc"]
 [ext_resource type="PackedScene" uid="uid://c7c8dvikiai4i" path="res://NPCs/Dog/Dog.tscn" id="4_1tj5h"]
 [ext_resource type="PackedScene" uid="uid://dxk87mc2eihs4" path="res://test.glb" id="6_vqnwk"]
-[ext_resource type="PackedScene" uid="uid://k4w0xja3m5ox" path="res://truck.glb" id="7_wm7c8"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("2_fqq60")
@@ -34,6 +34,7 @@ script = ExtResource("1_cds50")
 path = NodePath("Tracks")
 
 [node name="LevelGen" parent="." instance=ExtResource("2_ea7wf")]
+script = ExtResource("3_aqwlc")
 
 [node name="Tracks" type="Path3D" parent="."]
 
@@ -54,9 +55,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.7347, 8.63544, 8.60169)
 
 [node name="Path2D2" type="Path2D" parent="."]
 curve = SubResource("Curve2D_p8g6n")
-
-[node name="truck" parent="." instance=ExtResource("7_wm7c8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25.4888, 0.836859, 29.0976)
 
 [node name="test2" parent="." instance=ExtResource("6_vqnwk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2665, 0.635811, 26.8724)
