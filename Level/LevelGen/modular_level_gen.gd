@@ -138,7 +138,7 @@ func terrain_mesh() -> void:
 
 func structures():
 	#var offsets = [-0.03, -0.02, -0.01, 0.0, 0.01, 0.02, 0.03]
-	var offset = 0.001
+	var offset = 0.0001
 	# Need to offset the hieghts of adjacent plots to prevent foundation z-fighting
 	for tile in buildings.get_used_cells_by_id(0, Vector2i(PLOT, 0)):
 		var cell = tile * TILE_TO_METER_RATIO
@@ -147,7 +147,7 @@ func structures():
 		plot.position = Vector3(cell.x, height, cell.y)
 		level.add_child(plot)
 		
-		offset += 0.001
+		offset += 0.0001
 
 func tset(which:TileMapLayer,where:Vector2i,what:int):
 	which.set_cell(where, 0, Vector2i(what, 0))

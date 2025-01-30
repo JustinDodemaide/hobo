@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d21cnop7bp0f0"]
-
-[ext_resource type="TileSet" uid="uid://b54pa4im02su7" path="res://TownGens/test_level_gens.tres" id="1_jvr8e"]
-[ext_resource type="Script" path="res://TownGens/general.gd" id="2_y61ot"]
-
-[node name="LevelGen" type="TileMapLayer"]
-tile_set = ExtResource("1_jvr8e")
-script = ExtResource("2_y61ot")

@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Player
 
 var SPEED = 50.0
-var JUMP_VELOCITY = 3
+var JUMP_VELOCITY = 7
 
 var the_object_last_underneath_us = null
 var previous_global_position: Vector3 = global_position

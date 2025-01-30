@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmsyd4n8k25wk"]
 
 [ext_resource type="Script" path="res://Level/LevelGen/modular_level_gen.gd" id="1_kh7n0"]
-[ext_resource type="Texture2D" uid="uid://dkglscdymd86k" path="res://Level/LevelGen/Debug/resurrect-64-8x.png" id="1_rybss"]
+[ext_resource type="Texture2D" uid="uid://dkglscdymd86k" path="res://Level/LevelGen/resurrect-64-8x.png" id="1_rybss"]
 [ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="3_gadwo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k5wex"]

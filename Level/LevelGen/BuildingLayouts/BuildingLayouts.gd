@@ -7,7 +7,8 @@ func set_buildings(gen:LevelGen, preset:int) -> void:
 			grid(gen)
 
 func grid(gen:LevelGen) -> void:
-	const SPACE_FROM_EDGES:int = 2
+	const SPACE_FROM_EDGES:int = 1
+	
 	const MAX_BLOCK_WIDTH:int = 6
 	for x in range(SPACE_FROM_EDGES, gen.WIDTH - SPACE_FROM_EDGES):
 		for y in range(SPACE_FROM_EDGES, gen.LENGTH - SPACE_FROM_EDGES):
