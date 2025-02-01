@@ -11,7 +11,7 @@ func _on_area_3d_area_entered(area: Area3D) -> void:
 func post_signs():
 	for marker in $signs.get_children():
 		var sprite = Sprite3D.new()
-		sprite.global_position = marker.global_position
+		# sprite.global_position = marker.global_position
 		sprite.texture = load("res://icon.svg")
 		Global.level.add_child(sprite)
 		marker.queue_free()

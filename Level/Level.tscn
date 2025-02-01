@@ -43,7 +43,7 @@ environment = SubResource("Environment_xp3qp")
 camera_attributes = SubResource("CameraAttributesPractical_o4etc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.86483, 0.382043, -0.325748, 0.0665658, 0.555838, 0.828621, 0.497632, -0.738301, 0.455274, -1.05107, 4.73361, -1.74183)
+transform = Transform3D(0.0796997, 0.503362, -0.860392, 0.111374, 0.853237, 0.509493, 0.990578, -0.136432, 0.0119417, -1.05107, 4.73361, -1.74183)
 shadow_enabled = true
 
 [node name="Water" parent="." instance=ExtResource("3_5d7xl")]

@@ -4,7 +4,12 @@ extends Node3D
 enum DIRECTION {NORTH,SOUTH,EAST,WEST}
 
 func _ready() -> void:
-	rotation = [Vector3(0,deg_to_rad(-90),0), Vector3(0,deg_to_rad(90),0)].pick_random()
+	#var rot = [Vector3(0,deg_to_rad(-90),0), Vector3(0,deg_to_rad(90),0)].pick_random()
+	#if randi_range(0,1) == 0:
+	#	rotate(Vector3(0,1,0),deg_to_rad(180))
+	# the items dont match the rotation because their global position is set
+	# before the rotation is (the items are children of the level not this)
+	pass
 
 func face_direction(direction:DIRECTION):
 	match direction:

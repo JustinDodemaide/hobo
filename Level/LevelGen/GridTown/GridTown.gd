@@ -14,8 +14,10 @@ const TILE_TO_METER_RATIO:int = 10
 
 const plots = [
 "res://Plots/grid town/store_plot.tscn",
+"res://Plots/grid town/alley_plot.tscn",
 "res://Plots/grid town/misc_building2.tscn",
 "res://Plots/grid town/misc_building4.tscn",
+"res://Plots/grid town/misc_building5.tscn",
 ]
 
 func generate():
