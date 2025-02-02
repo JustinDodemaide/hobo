@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://wc8dsrf684k4"]
 
-[ext_resource type="Script" path="res://Level/LevelGen/WFC/TileMaker/wfc_tile_maker_item.gd" id="1_yx51s"]
-[ext_resource type="Script" path="res://Level/LevelGen/WFC/TileMaker/options.gd" id="2_bfw23"]
+[ext_resource type="Script" path="res://Levels/WFC/TileMaker/wfc_tile_maker_item.gd" id="1_yx51s"]
+[ext_resource type="Script" path="res://Levels/WFC/TileMaker/options.gd" id="2_bfw23"]
 
 [node name="Item" type="PanelContainer" node_paths=PackedStringArray("name_edit")]
 anchors_preset = 15

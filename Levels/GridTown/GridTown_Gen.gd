@@ -70,18 +70,17 @@ func path() -> void:
 	level.path.curve = curve
 
 func terrain_mesh() -> void:
-	var terrain = load("res://Level/LevelGen/GridTown/Ground/GridTownGround.tscn").instantiate()
+	var terrain = load("res://Levels/GridTown/Ground/GridTownGround.tscn").instantiate()
 	terrain.init(self)
 	level.add_child(terrain)
 
 func structures():
-	#var offsets = [-0.03, -0.02, -0.01, 0.0, 0.01, 0.02, 0.03]
 	var offset = 0.0001
 	# Need to offset the hieghts of adjacent plots to prevent foundation z-fighting
 	for tile in buildings.get_used_cells_by_id(0, Vector2i(PLOT, 0)):
 		var cell = tile * TILE_TO_METER_RATIO
 		var plot = load(plots.pick_random()).instantiate()
-		var height = get_height(tile) + offset# + offsets.pick_random()
+		var height = get_height(tile) + offset
 		plot.position = Vector3(cell.x, height, cell.y)
 		level.add_child(plot)
 		

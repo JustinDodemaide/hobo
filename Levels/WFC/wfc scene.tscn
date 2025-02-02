@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cvuegf6e8l7p7"]
 
-[ext_resource type="Script" path="res://Level/LevelGen/WFC/WFC.gd" id="1_6tuym"]
-[ext_resource type="Texture2D" uid="uid://cp7ctgm4h5xva" path="res://Level/LevelGen/WFC/road.png" id="1_fd1k0"]
+[ext_resource type="Script" path="res://Levels/WFC/WFC.gd" id="1_6tuym"]
+[ext_resource type="Texture2D" uid="uid://cp7ctgm4h5xva" path="res://Levels/WFC/road.png" id="1_fd1k0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_e74c2"]
 texture = ExtResource("1_fd1k0")

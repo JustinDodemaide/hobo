@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dkglscdymd86k"
-path="res://.godot/imported/resurrect-64-8x.png-80d770e36bf2ff570e87d41356c64de5.ctex"
+uid="uid://cp7ctgm4h5xva"
+path="res://.godot/imported/road.png-0bebe4c10e77cc3fe72505cdf5c47447.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level/LevelGen/resurrect-64-8x.png"
-dest_files=["res://.godot/imported/resurrect-64-8x.png-80d770e36bf2ff570e87d41356c64de5.ctex"]
+source_file="res://Levels/WFC/road.png"
+dest_files=["res://.godot/imported/road.png-0bebe4c10e77cc3fe72505cdf5c47447.ctex"]
 
 [params]
 

@@ -20,7 +20,6 @@ func _ready() -> void:
 	await timer.timeout
 	add_child(player)
 	player.global_position = train.spawn_point.global_position
-	# train.add_players(self)
 
 func add_item(item:Item, where:Vector3, player:Player=null) -> void:
 	var level_item = load("res://Item/LevelItem.tscn").instantiate()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://m77mtkygmeb7"]
 
-[ext_resource type="Script" path="res://Level/LevelGen/GridTown/Ground/GridTownGround.gd" id="1_v01ur"]
+[ext_resource type="Script" path="res://Levels/GridTown/Ground/GridTownGround.gd" id="1_v01ur"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wv1ga"]
 size = Vector2(1, 1)
