@@ -42,6 +42,7 @@ texture = ExtResource("4_883vw")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="seen?" type="Label" parent="CanvasLayer"]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0

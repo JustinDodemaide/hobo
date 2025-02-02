@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://gw6asjq7kkry"]
+
+[ext_resource type="Script" path="res://NPCs/Bum/bum.gd" id="1_xp1qk"]
+[ext_resource type="PackedScene" uid="uid://b32d3i07l2fej" path="res://AI/Sensor/sensor.tscn" id="2_0tad8"]
+
+[node name="Bum" type="Node3D"]
+script = ExtResource("1_xp1qk")
+
+[node name="Sensors" parent="." instance=ExtResource("2_0tad8")]
+
+[connection signal="updated" from="Sensors" to="." method="_on_sensors_updated"]

@@ -1,4 +1,5 @@
 extends Node3D
+class_name Sensors
 
 @export var debug:bool = false
 
