@@ -11,7 +11,7 @@ func _ready() -> void:
 	
 	previous_global_position = global_position
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	handle_moving_objects()
 
 func handle_moving_objects() -> void:

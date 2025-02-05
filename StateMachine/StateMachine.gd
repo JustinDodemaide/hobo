@@ -4,7 +4,6 @@ class_name StateMachine extends Node
 
 var state: State
 
-
 func _ready() -> void:
 	await owner.ready
 	state = initial_state

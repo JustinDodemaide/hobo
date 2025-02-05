@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://1siuxm08aygj"]
+
+[ext_resource type="Script" path="res://NPCs/DebugVisuals/npc_debug_visuals.gd" id="1_qjn65"]
+
+[node name="NPCDebugVisuals" type="Node3D"]
+script = ExtResource("1_qjn65")
+
+[node name="State" type="Label3D" parent="."]
+billboard = 2

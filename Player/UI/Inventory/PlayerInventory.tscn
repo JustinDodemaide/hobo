@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://vq2es264bss8"]
+
+[ext_resource type="Script" path="res://Player/UI/Inventory/PlayerInventory.gd" id="1_ko0qn"]
+[ext_resource type="PackedScene" uid="uid://bdsao1btboyay" path="res://Player/UI/Inventory/inventory_slot.tscn" id="2_e0i8r"]
+
+[node name="PlayerInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ko0qn")
+
+[node name="SlotContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="InventorySlot" parent="SlotContainer" instance=ExtResource("2_e0i8r")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="SlotContainer" instance=ExtResource("2_e0i8r")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="SlotContainer" instance=ExtResource("2_e0i8r")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="SlotContainer" instance=ExtResource("2_e0i8r")]
+layout_mode = 2

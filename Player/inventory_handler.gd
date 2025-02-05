@@ -65,4 +65,4 @@ func handle_item_raycast() -> void:
 	$"../Camera3D/HandIcon".visible = false
 
 func update_ui() -> void:
-	$"../CanvasLayer/PlayerInventory".update(inventory)
+	player.ui.inventory.update(inventory)

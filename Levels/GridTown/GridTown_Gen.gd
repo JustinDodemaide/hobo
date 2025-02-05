@@ -4,7 +4,7 @@ enum{GROUND,WATER}
 @onready var terrain:TileMapLayer = $Terrain
 enum{STREET,PLOT,TRACKS,STATION}
 @onready var buildings:TileMapLayer = $Buildings
-var height:Array = []
+var heights:Array = []
 
 var level:Level
 const LENGTH:int = 35
@@ -55,7 +55,7 @@ func path() -> void:
 	const CURVE_DEPTH:int = 30
 	var station = Vector2i(WIDTH/2, LENGTH/3)
 	var curve = Curve3D.new()
-	var curve_vector_y = TILE_TO_METER_RATIO / 2
+	#var curve_vector_y = TILE_TO_METER_RATIO / 2
 	#var last_point = null
 	for x in range(-WIDTH,WIDTH):
 		var y = (x*x) / CURVE_DEPTH
@@ -70,9 +70,9 @@ func path() -> void:
 	level.path.curve = curve
 
 func terrain_mesh() -> void:
-	var terrain = load("res://Levels/GridTown/Ground/GridTownGround.tscn").instantiate()
-	terrain.init(self)
-	level.add_child(terrain)
+	var ground = load("res://Levels/GridTown/Ground/GridTownGround.tscn").instantiate()
+	ground.init(self)
+	level.add_child(ground)
 
 func structures():
 	var offset = 0.0001
@@ -95,7 +95,7 @@ func tget(which:TileMapLayer,where:Vector2i) -> int:
 func get_height(where:Vector2i):
 	return 0
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var player = level.get_node("Player")
 	if not player:
 		return

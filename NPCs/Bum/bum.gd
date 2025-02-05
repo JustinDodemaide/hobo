@@ -8,7 +8,13 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-
 func _on_sensors_updated() -> void:
 	for player in $Sensors.get_sighted_players:
-		for item in player.
+		var handler = player.get_node("InventoryHandler")
+		var inventory = handler.inventory
+		var index = 0
+		for item in inventory:
+			if item:
+				break
+			index += 1
+		handler.drop_item(index)

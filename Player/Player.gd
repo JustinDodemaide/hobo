@@ -1,8 +1,13 @@
 extends CharacterBody3D
 class_name Player
 
+@export var ui:Control
+
 var SPEED = 50.0
 var JUMP_VELOCITY = 7
+
+const MAX_HEALTH:int = 100
+var current_health:int = MAX_HEALTH
 
 func _ready() -> void:
 	Global.players.append(self)

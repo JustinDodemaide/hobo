@@ -1,12 +1,20 @@
 extends Node3D
 
+
+var bear = load("res://NPCs/Bear/Bear.tscn").instantiate()
+signal player_oob(player)
+
 func init(gen) -> void:
 	scale.x = gen.WIDTH * gen.TILE_TO_METER_RATIO
 	scale.z = gen.LENGTH * gen.TILE_TO_METER_RATIO
 	post_signs()
+	Global.level.add_child(bear)
 
 func _on_area_3d_area_entered(area: Area3D) -> void:
-	print("player OOB")
+	var parent = area.get_parent()
+	if parent is Player:
+		bear.pursue(parent)
+
 
 func post_signs():
 	for marker in $signs.get_children():

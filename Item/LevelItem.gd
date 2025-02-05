@@ -9,11 +9,11 @@ func _ready() -> void:
 	if not item_name.is_empty():
 		init_from_name(item_name)
 
-func init_from_name(item_name:String) -> void:
-	init(load("res://Item/" + item_name + "/" + item_name + ".gd").new())
+func init_from_name(_name:String) -> void:
+	init(load("res://Item/" + _name + "/" + _name + ".gd").new())
 
-func init(item:Item) -> void:
-	self.item = item
+func init(_item:Item) -> void:
+	item = _item
 	$Sprite3D.texture = load(item.image_path())
 
 func image_path() -> String:

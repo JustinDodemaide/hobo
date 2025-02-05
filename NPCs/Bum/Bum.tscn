@@ -7,5 +7,6 @@
 script = ExtResource("1_xp1qk")
 
 [node name="Sensors" parent="." instance=ExtResource("2_0tad8")]
+sight_distance = 2.0
 
 [connection signal="updated" from="Sensors" to="." method="_on_sensors_updated"]

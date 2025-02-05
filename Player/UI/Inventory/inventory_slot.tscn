@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdsao1btboyay"]
 
-[ext_resource type="Script" path="res://Player/Inventory/inventory_slot.gd" id="1_uuosl"]
+[ext_resource type="Script" path="res://Player/UI/Inventory/inventory_slot.gd" id="1_uuosl"]
 
 [node name="InventorySlot" type="PanelContainer"]
 anchors_preset = 15

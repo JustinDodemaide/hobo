@@ -12,11 +12,11 @@ func update(_delta: float) -> void:
 func physics_update(_delta: float) -> void:
 	pass
 
-func enter(previous_state: String, data := {}) -> void:
+func enter(_previous_state: String, _data := {}) -> void:
 	pass
 
 func exit() -> void:
 	pass
 
-func transition(path:String, msg={}) -> void:
+func transition(path:String, _msg={}) -> void:
 	get_parent().transition(path,{})
