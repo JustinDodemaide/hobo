@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmsyd4n8k25wk"]
 
-[ext_resource type="Script" path="res://Levels/LevelGen/modular_level_gen.gd" id="1_kh7n0"]
+[ext_resource type="Script" path="res://Levels/GridTown/GridTown_Gen.gd" id="1_kpbep"]
 [ext_resource type="Texture2D" uid="uid://dkglscdymd86k" path="res://Levels/LevelGen/resurrect-64-8x.png" id="1_rybss"]
 [ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="3_gadwo"]
 
@@ -151,17 +151,14 @@ tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_fy4cb")
 
 [node name="LevelGen" type="Node"]
-script = ExtResource("1_kh7n0")
+script = ExtResource("1_kpbep")
 
 [node name="Terrain" type="TileMapLayer" parent="."]
-visible = false
 tile_set = SubResource("TileSet_x53mo")
 
 [node name="Buildings" type="TileMapLayer" parent="."]
-visible = false
 tile_set = SubResource("TileSet_nwx8d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_gadwo")
