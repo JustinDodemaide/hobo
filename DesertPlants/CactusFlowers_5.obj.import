@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://b1hoa1uxgo1kc"
+path="res://.godot/imported/CactusFlowers_5.obj-b892861a1cfb95980482e2e0bb3fd540.mesh"
+
+[deps]
+
+files=["res://.godot/imported/CactusFlowers_5.obj-b892861a1cfb95980482e2e0bb3fd540.mesh"]
+
+source_file="res://DesertPlants/CactusFlowers_5.obj"
+dest_files=["res://.godot/imported/CactusFlowers_5.obj-b892861a1cfb95980482e2e0bb3fd540.mesh", "res://.godot/imported/CactusFlowers_5.obj-b892861a1cfb95980482e2e0bb3fd540.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false
