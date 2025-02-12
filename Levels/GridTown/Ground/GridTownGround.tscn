@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://m77mtkygmeb7"]
+[gd_scene load_steps=15 format=3 uid="uid://m77mtkygmeb7"]
 
 [ext_resource type="Script" path="res://Levels/GridTown/Ground/GridTownGround.gd" id="1_v01ur"]
+[ext_resource type="Texture2D" uid="uid://vat373nhtuxb" path="res://hills.png" id="2_1y1dd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wv1ga"]
 size = Vector2(1, 1)
@@ -139,6 +140,10 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.5, 0
 
 [node name="sign12" type="Marker3D" parent="signs"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.75, 0, 1)
+
+[node name="hill" type="Sprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -1)
+texture = ExtResource("2_1y1dd")
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="Area3D2" to="." method="_on_area_3d_area_entered"]
