@@ -54,6 +54,9 @@ func building_layout():
 			block += 1
 			
 		row += 1
+		
+	var citizen_handler = load("res://Levels/GridTown/CitizenHandler/CitizenHandler.tscn").instantiate()
+	level.add_child(citizen_handler)
 
 func place_structure(tile):
 	var offset = 0.0001 # Need to offset the hieghts of adjacent plots to prevent foundation z-fighting

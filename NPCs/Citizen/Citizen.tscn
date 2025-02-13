@@ -1,11 +1,30 @@
-[gd_scene load_steps=3 format=3 uid="uid://bnl14mw85dp0q"]
+[gd_scene load_steps=6 format=3 uid="uid://bnl14mw85dp0q"]
 
 [ext_resource type="Script" path="res://NPCs/Citizen/Citizen.gd" id="1_dq8bj"]
+[ext_resource type="Script" path="res://NPCs/Citizen/strolling.gd" id="2_6lrcw"]
+[ext_resource type="Script" path="res://NPCs/Citizen/idle.gd" id="2_kaw6w"]
+[ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="3_rov6k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_063mf"]
 
-[node name="Citizen" type="CharacterBody3D"]
+[node name="Citizen" type="CharacterBody3D" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_dq8bj")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_kaw6w")
+
+[node name="Strolling" type="Node" parent="."]
+script = ExtResource("2_6lrcw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_063mf")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 30, 0, 0, 0, 1, 0, 17, 0)
+billboard = 2
+texture = ExtResource("3_rov6k")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]

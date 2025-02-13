@@ -4,6 +4,8 @@ class_name Level
 @export var path:Path3D
 var car
 
+var citizen_nodes = []
+
 func _ready() -> void:
 	Global.level = self
 	var level_gen = $LevelGen

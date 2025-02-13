@@ -10,6 +10,8 @@ var speed:float = 5.0
 @onready var nav:NavigationAgent3D = $NavigationAgent3D
 
 func _ready() -> void:
+	if not initial_state:
+		push_error("No initial state selected")
 	state = initial_state
 	transition(state.name)
 
@@ -31,7 +33,7 @@ func transition(target_state_name: String, data: Dictionary = {}) -> void:
 	if not has_node(target_state_name):
 		printerr(owner.name + ": Trying to transition to state " + target_state_name + " but it does not exist.")
 		return
-
+	
 	var previous_state := state.name
 	state.exit()
 	state = get_node(target_state_name)

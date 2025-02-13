@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://cl0yh02ineuta"]
+
+[ext_resource type="Script" path="res://NPCs/Bear/Bear.gd" id="1_dddif"]
+[ext_resource type="Script" path="res://NPCs/Bear/pursue.gd" id="2_d5w5g"]
+[ext_resource type="Script" path="res://NPCs/Bear/idle.gd" id="2_v6msk"]
+[ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="4_qgh5n"]
+[ext_resource type="Script" path="res://NPCs/Bear/lunge.gd" id="4_xyd5k"]
+[ext_resource type="PackedScene" uid="uid://1siuxm08aygj" path="res://NPCs/DebugVisuals/NPCDebugVisuals.tscn" id="5_tpbku"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0c6p3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_m3yir"]
+points = PackedVector3Array(0, 0, -1, 0, 0, 1, 1, 0, 0)
+
+[node name="Bear" type="CharacterBody3D" node_paths=PackedStringArray("initial_state")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+script = ExtResource("1_dddif")
+initial_state = NodePath("Idle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0c6p3")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+target_desired_distance = 2.0
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_v6msk")
+
+[node name="Pursue" type="Node" parent="."]
+script = ExtResource("2_d5w5g")
+
+[node name="Slash" type="Node" parent="."]
+script = ExtResource("4_xyd5k")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+texture_filter = 0
+texture = ExtResource("4_qgh5n")
+
+[node name="NPCDebugVisuals" parent="." instance=ExtResource("5_tpbku")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_m3yir")
+
+[connection signal="target_reached" from="NavigationAgent3D" to="." method="_on_navigation_agent_3d_target_reached"]
