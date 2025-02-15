@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dc05hdn8jn5gx"]
-
-[ext_resource type="PackedScene" uid="uid://dj8o43dmodlbr" path="res://Plots/Buildings/building1.glb" id="1_d2xlg"]
-
-[node name="building_plot" type="Node3D"]
-
-[node name="building1" parent="." instance=ExtResource("1_d2xlg")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 6, 0)

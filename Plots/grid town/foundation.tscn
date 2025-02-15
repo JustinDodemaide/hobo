@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://5al04qnt4o0s"]
+
+[ext_resource type="PackedScene" uid="uid://bnqnnlg02lwbk" path="res://Plots/grid town/plot_foundation.glb" id="1_6ylf8"]
+
+[sub_resource type="GDScript" id="GDScript_3fbuf"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	return
+	var mesh = $plot/NavigationRegion3D.navigation_mesh
+	var level_navmesh = Global.level.get_node(\"GridTownGround\").get_node(\"NavigationRegion3D\").navigation_mesh
+	print(mesh.get_polygon_count())
+	pass
+	for i in mesh.get_polygon_count():
+		level_navmesh.add_polygon(mesh.get_polygon(i))
+"
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_ub66d"]
+vertices = PackedVector3Array(-0.5, 0, 0.5, -0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, 0.5, 0, -0.5, -0.5, -0.214286, 0.5, -0.5, -0.214286, 0.5, -0.5, -0.214286, 0.5, 0.5, -0.214286, 0.5, 0.5, -0.214286, 0.5, 0.5, -0.214286, 0.5, -0.5, -0.214286, -0.5, -0.5, -0.214286, -0.5, -0.5, -0.214286, -0.5, 0.5, -0.214286, -0.5, 0.5, -0.214286, -0.5, 0.5, -0.214286, -0.5)
+polygons = [PackedInt32Array(1, 10, 7), PackedInt32Array(1, 4, 10), PackedInt32Array(13, 22, 16), PackedInt32Array(13, 19, 22), PackedInt32Array(8, 14, 2), PackedInt32Array(8, 20, 14), PackedInt32Array(9, 18, 6), PackedInt32Array(9, 21, 18), PackedInt32Array(0, 15, 3), PackedInt32Array(0, 12, 15), PackedInt32Array(5, 23, 11), PackedInt32Array(5, 17, 23)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3bx6q"]
+size = Vector3(1, 0.2, 1)
+
+[node name="Foundation" instance=ExtResource("1_6ylf8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+script = SubResource("GDScript_3fbuf")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="plot" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+navigation_mesh = SubResource("NavigationMesh_ub66d")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(14, 0, 0, 0, 14, 0, 0, 0, 14, 0, -1.5, 0)
+shape = SubResource("BoxShape3D_3bx6q")
+disabled = true

@@ -1,20 +1,25 @@
-extends Node3D
+extends CharacterBodyStateMachine
 
 # make this guy like the pentagon thief. if the player has something of value
 # they chase them down and steal it
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
+func alerted_by(player:Player) -> void:
+	var desired_item = get_desired_item(player)
+	if desired_item == null:
+		return
+	transition("Pursue", {"target":player})
 
-func _on_sensors_updated() -> void:
-	for player in $Sensors.get_sighted_players:
-		var handler = player.get_node("InventoryHandler")
-		var inventory = handler.inventory
-		var index = 0
-		for item in inventory:
-			if item:
-				break
-			index += 1
-		handler.drop_item(index)
+func get_desired_item(player:Player) -> Dictionary:
+	var desired_item_info:Dictionary = {
+		"item":null,
+		"value":0
+	}
+	# check player inventory
+	var player_inventory = player.get_node("InventoryHandler").inventory
+	var index = 0
+	for item in player_inventory:
+		if item: # dont have a way of tracking item value right now
+			desired_item_info.item = item
+			
+	return desired_item_info

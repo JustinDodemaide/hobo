@@ -13,17 +13,17 @@ const WIDTH:int = 35
 const TILE_TO_METER_RATIO:int = 10
 
 var plots = [
+load("res://Plots/grid town/1.tscn"),
+load("res://Plots/grid town/2.tscn"),
+load("res://Plots/grid town/3.tscn"),
+load("res://Plots/grid town/alley.tscn"),
 load("res://Plots/grid town/store_plot.tscn"),
-load("res://Plots/grid town/alley_plot.tscn"),
-load("res://Plots/grid town/misc_building2.tscn"),
-load("res://Plots/grid town/misc_building4.tscn"),
-load("res://Plots/grid town/misc_building5.tscn"),
 ]
 
 func generate():
-	building_layout()
 	path()
 	terrain_mesh()
+	building_layout()
 
 func building_layout():
 	# first value is left right
@@ -36,6 +36,9 @@ func building_layout():
 	while row < LENGTH:
 		var street = SPACE_FROM_EDGES
 		while street < WIDTH:
+			if tget(buildings, Vector2i(street,row)) == TRACKS:
+				street += 1
+				continue
 			tset(buildings, Vector2i(street,row), STREET)
 			street += 1
 		
@@ -44,13 +47,17 @@ func building_layout():
 		var intersection = randi_range(MIN_BLOCK_WIDTH, MAX_BLOCK_WIDTH)
 		var block = SPACE_FROM_EDGES
 		while block < WIDTH:
-			tset(buildings, Vector2i(block,row), PLOT)
+			var tile = Vector2i(block,row)
+			if tget(buildings, tile) == TRACKS:
+				block += 1
+				continue
+			tset(buildings, tile, PLOT)
 			if block == intersection:
-				tset(buildings, Vector2i(block,row), STREET)
+				tset(buildings, tile, STREET)
 				intersection += randi_range(MIN_BLOCK_WIDTH, MAX_BLOCK_WIDTH)
 			else:
-				tset(buildings, Vector2i(block,row), PLOT)
-				place_structure(Vector2i(block,row))
+				tset(buildings, tile, PLOT)
+				place_structure(tile)
 			block += 1
 			
 		row += 1
@@ -58,14 +65,14 @@ func building_layout():
 	var citizen_handler = load("res://Levels/GridTown/CitizenHandler/CitizenHandler.tscn").instantiate()
 	level.add_child(citizen_handler)
 
+var offset = 0.0
 func place_structure(tile):
-	var offset = 0.0001 # Need to offset the hieghts of adjacent plots to prevent foundation z-fighting
+	offset += 0.0001 # Need to offset the hieghts of adjacent plots to prevent foundation z-fighting
 	var cell = tile * TILE_TO_METER_RATIO
 	var plot = plots.pick_random().instantiate()
 	var height = get_height(tile) + offset
 	plot.position = Vector3(cell.x, height, cell.y)
 	level.add_child(plot)
-	offset += 0.0001
 
 func path() -> void:
 	const CURVE_DEPTH:int = 30

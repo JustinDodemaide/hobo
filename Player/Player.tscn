@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccd2kgud4w32e"]
+[gd_scene load_steps=9 format=3 uid="uid://ccd2kgud4w32e"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_26bnj"]
 [ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="2_2nyjv"]
@@ -7,14 +7,17 @@
 [ext_resource type="Script" path="res://Player/inventory_handler.gd" id="6_olwwk"]
 [ext_resource type="PackedScene" uid="uid://dfcsb62rmmpgh" path="res://Item/MovingObjectHandler.tscn" id="6_xqo3e"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpqv4"]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fugl6"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("ui")]
+platform_floor_layers = 0
 script = ExtResource("1_26bnj")
 ui = NodePath("CanvasLayer/PlayerUI")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_fugl6")
+shape = SubResource("CapsuleShape3D_kpqv4")
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -25,7 +28,7 @@ shape = SubResource("CapsuleShape3D_fugl6")
 script = ExtResource("6_olwwk")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.5, 2)
 script = ExtResource("2_2nyjv")
 
 [node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]

@@ -1,17 +1,17 @@
 [gd_scene load_steps=16 format=4 uid="uid://b1qu0fhfeweho"]
 
-[ext_resource type="Script" path="res://Plots/plot.gd" id="1_pmrfu"]
-[ext_resource type="PackedScene" uid="uid://bnqnnlg02lwbk" path="res://Plots/grid town/plot_foundation.glb" id="2_p4wcj"]
-[ext_resource type="Texture2D" uid="uid://d3abepq4we214" path="res://Plots/Buildings/building7_5_front.png" id="5_6clhr"]
-[ext_resource type="PackedScene" uid="uid://cv26st5p6mcd1" path="res://Plots/grid town/scenes/alley_1.tscn" id="6_7ejom"]
-[ext_resource type="PackedScene" uid="uid://bwjvnhm6vbjos" path="res://Plots/ItemSpawn/ItemSpawn.tscn" id="6_i3owb"]
-[ext_resource type="PackedScene" uid="uid://v5pbubpjk8me" path="res://Plots/grid town/decor/trash1.glb" id="7_i2g7a"]
+[ext_resource type="Script" path="res://Plots/plot.gd" id="1_vh1ps"]
+[ext_resource type="PackedScene" uid="uid://5al04qnt4o0s" path="res://Plots/grid town/foundation.tscn" id="2_5ko2n"]
+[ext_resource type="PackedScene" uid="uid://cv26st5p6mcd1" path="res://Plots/grid town/scenes/alley_1.tscn" id="3_7oxjd"]
+[ext_resource type="PackedScene" uid="uid://v5pbubpjk8me" path="res://Plots/grid town/decor/trash1.glb" id="4_2f8fe"]
+[ext_resource type="Texture2D" uid="uid://d3abepq4we214" path="res://Plots/Buildings/building7_5_front.png" id="5_lbgkf"]
+[ext_resource type="PackedScene" uid="uid://bwjvnhm6vbjos" path="res://Plots/ItemSpawn/ItemSpawn.tscn" id="6_1y4mf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h5vo"]
 resource_name = "5_front"
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("5_6clhr")
+albedo_texture = ExtResource("5_lbgkf")
 roughness = 0.5
 texture_filter = 2
 texture_repeat = false
@@ -20,7 +20,7 @@ texture_repeat = false
 resource_name = "5_front.001"
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("5_6clhr")
+albedo_texture = ExtResource("5_lbgkf")
 roughness = 0.5
 texture_filter = 2
 texture_repeat = false
@@ -29,7 +29,7 @@ texture_repeat = false
 resource_name = "5_front.002"
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("5_6clhr")
+albedo_texture = ExtResource("5_lbgkf")
 roughness = 0.5
 texture_filter = 2
 texture_repeat = false
@@ -38,7 +38,7 @@ texture_repeat = false
 resource_name = "5_front.007"
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("5_6clhr")
+albedo_texture = ExtResource("5_lbgkf")
 roughness = 0.5
 texture_filter = 2
 texture_repeat = false
@@ -47,7 +47,7 @@ texture_repeat = false
 resource_name = "5_front.006"
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("5_6clhr")
+albedo_texture = ExtResource("5_lbgkf")
 roughness = 0.5
 texture_filter = 2
 texture_repeat = false
@@ -56,7 +56,7 @@ texture_repeat = false
 resource_name = "5_front.005"
 transparency = 4
 cull_mode = 2
-albedo_texture = ExtResource("5_6clhr")
+albedo_texture = ExtResource("5_lbgkf")
 roughness = 0.5
 texture_filter = 2
 texture_repeat = false
@@ -208,17 +208,16 @@ data = PackedVector3Array(0.2273, 0, -0.4875, 0.2273, 0.0182, -0.5, 0.2273, 0, -
 
 [node name="StorePlot" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-script = ExtResource("1_pmrfu")
+script = ExtResource("1_vh1ps")
 
-[node name="plot_foundation2" parent="." instance=ExtResource("2_p4wcj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+[node name="Foundation" parent="." instance=ExtResource("2_5ko2n")]
 
-[node name="alley1" parent="." instance=ExtResource("6_7ejom")]
+[node name="alley1" parent="." instance=ExtResource("3_7oxjd")]
 
-[node name="trash1" parent="." instance=ExtResource("7_i2g7a")]
+[node name="trash1" parent="." instance=ExtResource("4_2f8fe")]
 transform = Transform3D(0.298047, 0, -1.97078, 0, 1, 0, 1.72443, 0, 0.340625, 3.44712, -0.41524, -0.681398)
 
-[node name="trash2" parent="." instance=ExtResource("7_i2g7a")]
+[node name="trash2" parent="." instance=ExtResource("4_2f8fe")]
 transform = Transform3D(-4.37114e-08, 0, -3, 0, 2, 0, 1, 0, -1.31134e-07, -3.37465, -0.0506815, -4.49654)
 
 [node name="5_front" type="MeshInstance3D" parent="."]
@@ -231,14 +230,14 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="5_front/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_1mfk4")
 
-[node name="ItemSpawn" parent="." instance=ExtResource("6_i3owb")]
+[node name="ItemSpawn" parent="." instance=ExtResource("6_1y4mf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 4.50952, 0.723991, -1.74474)
 item_name = "Bread"
 
-[node name="ItemSpawn2" parent="." instance=ExtResource("6_i3owb")]
+[node name="ItemSpawn2" parent="." instance=ExtResource("6_1y4mf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.39532, 0.319884, -3.83334)
 item_name = "Bread"
 
-[node name="ItemSpawn3" parent="." instance=ExtResource("6_i3owb")]
+[node name="ItemSpawn3" parent="." instance=ExtResource("6_1y4mf")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2.70499, 1.06962, -4.04579)
 item_name = "Bread"

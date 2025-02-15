@@ -1,12 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://gw6asjq7kkry"]
+[gd_scene load_steps=6 format=3 uid="uid://gw6asjq7kkry"]
 
 [ext_resource type="Script" path="res://NPCs/Bum/bum.gd" id="1_xp1qk"]
-[ext_resource type="PackedScene" uid="uid://b32d3i07l2fej" path="res://AI/Sensor/sensor.tscn" id="2_0tad8"]
+[ext_resource type="Script" path="res://NPCs/Bum/idle.gd" id="2_fuqj5"]
+[ext_resource type="Texture2D" uid="uid://dt5cvoudum3mh" path="res://NPCs/Bum/charactericonimg1.png" id="3_e81gr"]
+[ext_resource type="Script" path="res://NPCs/Bum/pursue.gd" id="3_glsq2"]
 
-[node name="Bum" type="Node3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_afb8u"]
+
+[node name="Bum" type="CharacterBody3D" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("1_xp1qk")
+initial_state = NodePath("Idle")
 
-[node name="Sensors" parent="." instance=ExtResource("2_0tad8")]
-sight_distance = 2.0
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_afb8u")
 
-[connection signal="updated" from="Sensors" to="." method="_on_sensors_updated"]
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_fuqj5")
+
+[node name="Pursue" type="Node" parent="."]
+script = ExtResource("3_glsq2")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, 0)
+billboard = 2
+texture = ExtResource("3_e81gr")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]

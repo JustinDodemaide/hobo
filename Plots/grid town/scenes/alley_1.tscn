@@ -1,6 +1,7 @@
-[gd_scene load_steps=28 format=4 uid="uid://cv26st5p6mcd1"]
+[gd_scene load_steps=30 format=4 uid="uid://cv26st5p6mcd1"]
 
 [ext_resource type="Texture2D" uid="uid://bbecnlpcr1tqa" path="res://Plots/Buildings/alley1_alley1.png" id="1_4hurl"]
+[ext_resource type="Script" path="res://Plots/grid town/scenes/alley_1.gd" id="1_bhmt5"]
 [ext_resource type="Texture2D" uid="uid://q58fpyjauk4c" path="res://Plots/Buildings/alley1_alley1 side.png" id="2_a7w5n"]
 [ext_resource type="Texture2D" uid="uid://dd3m4redupfs5" path="res://Plots/grid town/decor/trashcan1_trashcan.png" id="3_ir6nt"]
 [ext_resource type="PackedScene" uid="uid://v5pbubpjk8me" path="res://Plots/grid town/decor/trash1.glb" id="5_q04vx"]
@@ -353,7 +354,11 @@ shadow_mesh = SubResource("ArrayMesh_vksdw")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o1wya"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_pxtge"]
+size = Vector3(2.5, 2.5, 2.5)
+
 [node name="alley1" type="Node3D"]
+script = ExtResource("1_bhmt5")
 
 [node name="alley1_001" type="MeshInstance3D" parent="."]
 transform = Transform3D(-2.38419e-07, 2, -3.88433e-14, 3.25841e-07, 0, -2, -2, -2.38419e-07, -3.25841e-07, 5, 1, -2.50561)
@@ -453,3 +458,13 @@ transform = Transform3D(0.219539, 0, -0.334369, 0, 0.4, 0, 0.334369, 0, 0.219539
 
 [node name="box4" parent="." instance=ExtResource("5_ryih7")]
 transform = Transform3D(0.199063, 0, 0.0193324, 0, 0.2, 0, -0.0193324, 0, 0.199063, -2.13242, 0.162048, -3.61996)
+
+[node name="MimicSensor" type="Area3D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MimicSensor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.18042, 1.07726, -1.87487)
+shape = SubResource("BoxShape3D_pxtge")
+
+[connection signal="area_entered" from="MimicSensor" to="." method="_on_mimic_sensor_area_entered"]
