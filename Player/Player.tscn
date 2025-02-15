@@ -12,6 +12,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fugl6"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("ui")]
+collision_layer = 2
 platform_floor_layers = 0
 script = ExtResource("1_26bnj")
 ui = NodePath("CanvasLayer/PlayerUI")

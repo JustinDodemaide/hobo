@@ -8,6 +8,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_afb8u"]
 
 [node name="Bum" type="CharacterBody3D" node_paths=PackedStringArray("initial_state")]
+collision_layer = 8
 script = ExtResource("1_xp1qk")
 initial_state = NodePath("Idle")
 

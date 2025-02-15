@@ -68,9 +68,11 @@ equal={
 
 [layer_names]
 
-3d_physics/layer_1="player collision"
-3d_physics/layer_2="item collision"
-3d_physics/layer_3="moving objects"
+3d_physics/layer_1="physical"
+3d_physics/layer_2="player"
+3d_physics/layer_3="item"
+3d_physics/layer_4="npc"
+3d_physics/layer_8="moving platform"
 
 [rendering]
 
