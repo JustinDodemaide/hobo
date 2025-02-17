@@ -8,17 +8,19 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_063mf"]
 
 [node name="Citizen" type="CharacterBody3D" node_paths=PackedStringArray("initial_state")]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_dq8bj")
 initial_state = NodePath("Idle")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_063mf")
 
 [node name="Idle" type="Node" parent="."]
 script = ExtResource("2_kaw6w")
 
 [node name="Strolling" type="Node" parent="."]
 script = ExtResource("2_6lrcw")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CapsuleShape3D_063mf")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 

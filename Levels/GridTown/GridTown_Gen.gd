@@ -21,7 +21,7 @@ load("res://Plots/grid town/store_plot.tscn"),
 ]
 
 func generate():
-	path()
+	tracks()
 	terrain_mesh()
 	building_layout()
 
@@ -73,6 +73,11 @@ func place_structure(tile):
 	var height = get_height(tile) + offset
 	plot.position = Vector3(cell.x, height, cell.y)
 	level.add_child(plot)
+
+func tracks():
+	var tracks = level.get_node("Tracks")
+	tracks.global_position.x = WIDTH/2 * TILE_TO_METER_RATIO
+	tracks.global_position.z = LENGTH * TILE_TO_METER_RATIO
 
 func path() -> void:
 	const CURVE_DEPTH:int = 30

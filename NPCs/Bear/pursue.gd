@@ -2,6 +2,7 @@ extends State
 
 func enter(_previous_state: String, _data := {}) -> void:
 	var parent = get_parent()
+	return
 	parent.track(_data.target)
 
 func exit() -> void:

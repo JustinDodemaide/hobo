@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=12 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" path="res://Levels/Level.gd" id="1_cds50"]
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Levels/LevelGen/LevelGen.tscn" id="2_ea7wf"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="2_fqq60"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="3_5d7xl"]
+[ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Tracks/tracks.tscn" id="3_nehyb"]
 [ext_resource type="PackedScene" uid="uid://dxk87mc2eihs4" path="res://test.glb" id="6_vqnwk"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
@@ -29,11 +30,12 @@ point_count = 6
 
 [node name="Level" type="Node3D" node_paths=PackedStringArray("path")]
 script = ExtResource("1_cds50")
-path = NodePath("Tracks")
+path = NodePath("")
 
 [node name="LevelGen" parent="." instance=ExtResource("2_ea7wf")]
 
-[node name="Tracks" type="Path3D" parent="."]
+[node name="Tracks" parent="." instance=ExtResource("3_nehyb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xp3qp")

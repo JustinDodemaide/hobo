@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dj8o43dmodlbr"
-path="res://.godot/imported/building1.glb-d33adb0406ce4caee638249efa70eb94.scn"
+uid="uid://cs7huranb42aw"
+path="res://.godot/imported/tracks.glb-781d20b3db881164ca5b32e293de76ea.scn"
 
 [deps]
 
-source_file="res://Plots/Buildings/building1.glb"
-dest_files=["res://.godot/imported/building1.glb-d33adb0406ce4caee638249efa70eb94.scn"]
+source_file="res://Tracks/tracks.glb"
+dest_files=["res://.godot/imported/tracks.glb-781d20b3db881164ca5b32e293de76ea.scn"]
 
 [params]
 
