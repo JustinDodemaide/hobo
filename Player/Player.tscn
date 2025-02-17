@@ -55,3 +55,4 @@ offset_bottom = 23.0
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("5_7gpfq")]
 
 [node name="MovingObjectHandler" parent="." instance=ExtResource("6_xqo3e")]
+enabled = false

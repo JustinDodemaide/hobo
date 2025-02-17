@@ -28,9 +28,8 @@ _data = {
 }
 point_count = 6
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("path")]
+[node name="Level" type="Node3D"]
 script = ExtResource("1_cds50")
-path = NodePath("")
 
 [node name="LevelGen" parent="." instance=ExtResource("2_ea7wf")]
 

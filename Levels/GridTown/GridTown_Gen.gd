@@ -107,7 +107,7 @@ func get_height(where:Vector2i):
 	return 0
 
 func _process(_delta: float) -> void:
-	var player = level.get_node("Player")
+	var player = Global.players.front()
 	if not player:
 		return
 	var pos = player.global_position / TILE_TO_METER_RATIO

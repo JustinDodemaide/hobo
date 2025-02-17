@@ -21,7 +21,7 @@ func _ready() -> void:
 	Global.players.append(player)
 	var timer = get_tree().create_timer(0.1)
 	await timer.timeout
-	add_child(player)
+	train.add_child(player)
 	player.global_position = train.spawn_point.global_position
 
 func add_item(item:Item, where:Vector3, player:Player=null) -> void:

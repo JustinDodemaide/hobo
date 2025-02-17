@@ -1,27 +1,14 @@
-[gd_scene load_steps=11 format=3 uid="uid://qlreefy5irxc"]
+[gd_scene load_steps=6 format=3 uid="uid://qlreefy5irxc"]
 
 [ext_resource type="Script" path="res://Train/train.gd" id="1_a1h44"]
 [ext_resource type="Script" path="res://Train/states/pulling_up.gd" id="2_30uft"]
-[ext_resource type="PackedScene" uid="uid://bjhtggbkuk415" path="res://Train/Engine/train_locomotive_a_2.tscn" id="2_jsshw"]
 [ext_resource type="Script" path="res://Train/states/stopped.gd" id="3_bkcdk"]
 [ext_resource type="Script" path="res://Train/states/leaving.gd" id="4_jp1ow"]
-[ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="6_tjjas"]
+[ext_resource type="PackedScene" uid="uid://bs2bixsdhm6c7" path="res://Train/TrainCar/TrainCar.tscn" id="5_aqlrk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mianl"]
-albedo_color = Color(0.909855, 0.717311, 0.782062, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_thfnf"]
-material = SubResource("StandardMaterial3D_mianl")
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_anqhn"]
-data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_nksfc"]
-
-[node name="Train" type="PathFollow3D" node_paths=PackedStringArray("spawn_point")]
+[node name="Train" type="PathFollow3D"]
 progress = 0.1
 script = ExtResource("1_a1h44")
-spawn_point = NodePath("Car/SpawnPoint")
 
 [node name="PullingUp" type="Node" parent="."]
 script = ExtResource("2_30uft")
@@ -35,37 +22,7 @@ one_shot = true
 [node name="Leaving" type="Node" parent="."]
 script = ExtResource("4_jp1ow")
 
-[node name="train-locomotive-a2" parent="." instance=ExtResource("2_jsshw")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="Car" type="Node3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33804, -2.28539)
-mesh = SubResource("PlaneMesh_thfnf")
-skeleton = NodePath("../..")
-
-[node name="StaticBody3D" type="StaticBody3D" parent="Car"]
-collision_layer = 7
-collision_mask = 7
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33804, -2.28539)
-shape = SubResource("ConcavePolygonShape3D_anqhn")
-
-[node name="Deposit" type="Area3D" parent="Car"]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.33605, -2.28539)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car/Deposit"]
-shape = SubResource("BoxShape3D_nksfc")
-
-[node name="SpawnPoint" type="Marker3D" parent="Car"]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 1.91835e-07, 1.4594, -2.19434)
-
-[node name="Sprite3D" type="Sprite3D" parent="Car/SpawnPoint"]
-visible = false
-billboard = 1
-texture = ExtResource("6_tjjas")
+[node name="TrainCar" parent="." instance=ExtResource("5_aqlrk")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
 
 [connection signal="timeout" from="Stopped/Timer" to="Stopped" method="_on_timer_timeout"]

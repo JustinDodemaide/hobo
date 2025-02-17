@@ -1,20 +1,11 @@
 extends StateMachine
 class_name Train
 
-@export var spawn_point:Marker3D
+@onready var spawn_point:Marker3D = $TrainCar/Spawn
 
 func _ready() -> void:
 	state = $PullingUp
 	transition("PullingUp")
-
-func _unhandled_input(event: InputEvent) -> void:
-	state.handle_input(event)
-
-func _process(delta: float) -> void:
-	state.update(delta)
-
-func _physics_process(delta: float) -> void:
-	state.physics_update(delta)
 
 func transition(target_state_path: String, data: Dictionary = {}) -> void:
 	if not has_node(target_state_path):
