@@ -1,6 +1,8 @@
 # https://github.com/tavurth/godot-simple-fps-camera/blob/master/player/Camera.gd
 extends Camera3D
 
+var enabled:bool = true
+
 @onready var player = get_parent()
 
 ## Increase this value to give a slower turn speed
@@ -37,6 +39,9 @@ func _input(event):
 	"""
 	First person camera controls
 	"""
+	if not enabled:
+		return
+	
 	##
 	## We'll only process mouse motion events
 	if not event is InputEventMouseMotion:
