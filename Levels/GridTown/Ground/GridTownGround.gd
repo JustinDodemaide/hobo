@@ -30,7 +30,7 @@ func foliage() -> void:
 	foliage_layer.ground = $left
 	foliage_layer.model = load("res://Grass/Grass_Short.obj")
 	foliage_layer.material_override = create_grass_material()
-	print($left.global_position)
+	#print($left.global_position)
 	foliage_layer.global_position = Vector3(-350, -1, -350)
 	Global.level.add_child(foliage_layer)
 
@@ -38,7 +38,7 @@ func foliage() -> void:
 	foliage_layer.ground = $right
 	foliage_layer.model = load("res://Grass/Grass_Short.obj")
 	foliage_layer.material_override = create_grass_material()
-	print($left.global_position)
+	#print($left.global_position)
 	foliage_layer.global_position = Vector3(350, -1, -350)
 	Global.level.add_child(foliage_layer)
 	
@@ -46,7 +46,7 @@ func foliage() -> void:
 	foliage_layer.ground = $down
 	foliage_layer.model = load("res://Grass/Grass_Short.obj")
 	foliage_layer.material_override = create_grass_material()
-	print($left.global_position)
+	#print($left.global_position)
 	foliage_layer.global_position = Vector3(1, -1, 350)
 	Global.level.add_child(foliage_layer)
 	
@@ -54,7 +54,7 @@ func foliage() -> void:
 	foliage_layer.ground = $down
 	foliage_layer.model = load("res://Grass/Grass_Short.obj")
 	foliage_layer.material_override = create_grass_material()
-	print($left.global_position)
+	#print($left.global_position)
 	foliage_layer.global_position = Vector3(1, -1, -350)
 	Global.level.add_child(foliage_layer)
 

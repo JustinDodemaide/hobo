@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cs0cgbsr1uy5b"]
+[gd_scene load_steps=8 format=3 uid="uid://cs0cgbsr1uy5b"]
 
 [ext_resource type="Script" path="res://Item/LevelItem.gd" id="1_g3yrc"]
 [ext_resource type="Texture2D" uid="uid://bee1tgroajdav" path="res://Item/Coffee/Coffee.png" id="2_1hw87"]
-[ext_resource type="PackedScene" uid="uid://dfcsb62rmmpgh" path="res://Item/MovingObjectHandler.tscn" id="2_ixckb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_08nu4"]
 
@@ -78,6 +77,3 @@ target_position = Vector3(0, 0.1, 0)
 hit_from_inside = true
 collide_with_areas = true
 collide_with_bodies = false
-
-[node name="MovingObjectHandler" parent="." instance=ExtResource("2_ixckb")]
-raycast_length = 1.5

@@ -24,6 +24,8 @@ func picked_up(by:Player) -> void:
 	queue_free()
 
 func dropped(by:Player) -> void:
+	item.dropped(by)
+	return
 	# var car = Global.level.car
 	print(Global.level.car)
 	var deposit = Global.level.car.get_node("Deposit")
@@ -35,4 +37,6 @@ func dropped(by:Player) -> void:
 		freeze = true
 		$MovingObjectHandler.enabled = false
 		reparent(Global.level.car)
-	item.dropped(by)
+
+func _process(delta: float) -> void:
+	print(get_parent().name)

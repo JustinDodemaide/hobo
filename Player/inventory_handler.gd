@@ -46,16 +46,13 @@ func drop_item(index:int = -1):
 	if inventory[i] == null:
 		return
 	
-	Global.level.add_item(inventory[i], player.position, player)
+	Global.level.add_item(inventory[i], player.global_position, player)
 	inventory[i] = null
 	$"../Camera3D/HeldItem".texture = null
 	update_ui()
 
 func handle_item_raycast() -> void:
 	var collider = $"../Camera3D/ItemRayCast".get_collider()
-	if collider:
-		# print(collider.name)
-		collider = collider.get_parent()
 	if collider is LevelItem:
 		$"../Camera3D/HandIcon".visible = true
 		hovered_item = collider

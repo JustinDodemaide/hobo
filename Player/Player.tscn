@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://ccd2kgud4w32e"]
+[gd_scene load_steps=8 format=3 uid="uid://ccd2kgud4w32e"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_26bnj"]
 [ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="2_2nyjv"]
 [ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/hand.png" id="4_883vw"]
 [ext_resource type="PackedScene" uid="uid://1xtl1qp8yajl" path="res://Player/UI/PlayerUI.tscn" id="5_7gpfq"]
 [ext_resource type="Script" path="res://Player/inventory_handler.gd" id="6_olwwk"]
-[ext_resource type="PackedScene" uid="uid://dfcsb62rmmpgh" path="res://Item/MovingObjectHandler.tscn" id="6_xqo3e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpqv4"]
 
@@ -35,6 +34,7 @@ script = ExtResource("2_2nyjv")
 [node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]
 target_position = Vector3(0, 0, -1.5)
 collision_mask = 4
+collide_with_areas = true
 
 [node name="HeldItem" type="Sprite3D" parent="Camera3D"]
 transform = Transform3D(0.283831, 0, -0.958874, 0, 1, 0, 0.958874, 0, 0.283831, 0.313791, -0.146981, -0.336494)
@@ -59,6 +59,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="MovingObjectHandler" parent="." instance=ExtResource("6_xqo3e")]
-enabled = false
