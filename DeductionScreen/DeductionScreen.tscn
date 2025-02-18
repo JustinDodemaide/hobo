@@ -27,7 +27,7 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Total Resource Value:
+text = "Total Sustenance:
 "
 
 [node name="Button" type="Button" parent="PanelContainer/VBoxContainer"]
