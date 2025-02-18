@@ -1,28 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://qlreefy5irxc"]
+[gd_scene load_steps=3 format=3 uid="uid://qlreefy5irxc"]
 
 [ext_resource type="Script" path="res://Train/train.gd" id="1_a1h44"]
-[ext_resource type="Script" path="res://Train/states/pulling_up.gd" id="2_30uft"]
-[ext_resource type="Script" path="res://Train/states/stopped.gd" id="3_bkcdk"]
-[ext_resource type="Script" path="res://Train/states/leaving.gd" id="4_jp1ow"]
-[ext_resource type="PackedScene" uid="uid://bs2bixsdhm6c7" path="res://Train/TrainCar/TrainCar.tscn" id="5_aqlrk"]
+[ext_resource type="PackedScene" uid="uid://caipru48ph5lp" path="res://Train/Box/TrainBox.tscn" id="5_dc3af"]
 
-[node name="Train" type="PathFollow3D"]
-progress = 0.1
+[node name="Train" type="Node3D"]
 script = ExtResource("1_a1h44")
 
-[node name="PullingUp" type="Node" parent="."]
-script = ExtResource("2_30uft")
+[node name="TrainBox" parent="." instance=ExtResource("5_dc3af")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="Stopped" type="Node" parent="."]
-script = ExtResource("3_bkcdk")
+[node name="CarMarker" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 1, 0)
 
-[node name="Timer" type="Timer" parent="Stopped"]
-one_shot = true
-
-[node name="Leaving" type="Node" parent="."]
-script = ExtResource("4_jp1ow")
-
-[node name="TrainCar" parent="." instance=ExtResource("5_aqlrk")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
-
-[connection signal="timeout" from="Stopped/Timer" to="Stopped" method="_on_timer_timeout"]
+[node name="TrainBox2" parent="." instance=ExtResource("5_dc3af")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17, 3, 0)

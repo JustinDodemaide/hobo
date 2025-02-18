@@ -29,14 +29,12 @@ shape = SubResource("CapsuleShape3D_fugl6")
 script = ExtResource("6_olwwk")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1.5, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_2nyjv")
 
 [node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]
-visible = false
 target_position = Vector3(0, 0, -1.5)
-collide_with_areas = true
-collide_with_bodies = false
+collision_mask = 4
 
 [node name="HeldItem" type="Sprite3D" parent="Camera3D"]
 transform = Transform3D(0.283831, 0, -0.958874, 0, 1, 0, 0.958874, 0, 0.283831, 0.313791, -0.146981, -0.336494)
@@ -53,6 +51,14 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="PlayerUI" parent="CanvasLayer" instance=ExtResource("5_7gpfq")]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MovingObjectHandler" parent="." instance=ExtResource("6_xqo3e")]
 enabled = false

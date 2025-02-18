@@ -3,16 +3,16 @@
 [ext_resource type="Script" path="res://Train/TrainCar/TrainCar.gd" id="1_my22d"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4bypq"]
-size = Vector2(4, 8)
+size = Vector2(8, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gep15"]
-size = Vector3(4, 0.01, 8)
+size = Vector3(8, 0.01, 4)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_g7wej"]
 size = Vector2(4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gnct0"]
-size = Vector3(4, 2, 8)
+size = Vector3(8, 2, 4)
 
 [node name="TrainCar" type="Node3D"]
 script = ExtResource("1_my22d")
@@ -28,7 +28,7 @@ collision_mask = 0
 shape = SubResource("BoxShape3D_gep15")
 
 [node name="Door" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 2, 2, 2)
+transform = Transform3D(-1, 8.74228e-08, -3.82138e-15, 0, -4.37114e-08, -1, -8.74228e-08, -1, 4.37114e-08, 2, 2, -2)
 mesh = SubResource("PlaneMesh_g7wej")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Door"]
@@ -37,7 +37,18 @@ mesh = SubResource("PlaneMesh_g7wej")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+collision_layer = 6
+collision_mask = 6
+monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_gnct0")
+
+[node name="DebounceTimer" type="Timer" parent="Area3D"]
+wait_time = 0.1
+autostart = true
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
+[connection signal="timeout" from="Area3D/DebounceTimer" to="." method="_on_debounce_timer_timeout"]

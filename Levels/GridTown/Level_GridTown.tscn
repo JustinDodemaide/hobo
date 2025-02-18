@@ -1,0 +1,46 @@
+[gd_scene load_steps=11 format=3 uid="uid://7ryuaso11stc"]
+
+[ext_resource type="Script" path="res://Levels/GridTown/Level_GridTown.gd" id="1_v3144"]
+[ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Levels/LevelGen/LevelGen.tscn" id="2_gvxhc"]
+[ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Tracks/Tracks.tscn" id="3_w8n7n"]
+[ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="4_5drde"]
+[ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="5_kfcjh"]
+[ext_resource type="PackedScene" uid="uid://dxk87mc2eihs4" path="res://test.glb" id="6_kjnjm"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
+panorama = ExtResource("4_5drde")
+
+[sub_resource type="Sky" id="Sky_864ur"]
+sky_material = SubResource("PanoramaSkyMaterial_5vixs")
+
+[sub_resource type="Environment" id="Environment_xp3qp"]
+background_mode = 2
+sky = SubResource("Sky_864ur")
+ambient_light_source = 3
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o4etc"]
+auto_exposure_enabled = true
+dof_blur_far_distance = 20.0
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_v3144")
+
+[node name="LevelGen" parent="." instance=ExtResource("2_gvxhc")]
+
+[node name="Tracks" parent="." instance=ExtResource("3_w8n7n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xp3qp")
+camera_attributes = SubResource("CameraAttributesPractical_o4etc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0796997, 0.503362, -0.860392, 0.111374, 0.853237, 0.509493, 0.990578, -0.136432, 0.0119417, -1.05107, 4.73361, -1.74183)
+shadow_enabled = true
+
+[node name="Water" parent="." instance=ExtResource("5_kfcjh")]
+transform = Transform3D(85, 0, 0, 0, 1, 0, 0, 0, 85, 42.5, 3.5, 43)
+visible = false
+
+[node name="test2" parent="." instance=ExtResource("6_kjnjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2665, 0.635811, 26.8724)

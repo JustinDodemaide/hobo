@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="Hobo"
-run/main_scene="res://Levels/Level.tscn"
+run/main_scene="res://SceneHandler/SceneHandler.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://test_test.png"
 
 [autoload]
 

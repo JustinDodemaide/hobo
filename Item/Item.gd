@@ -13,3 +13,6 @@ func picked_up(_by:Player) -> void:
 
 func dropped(_by:Player) -> void:
 	pass
+
+func nutritional_value() -> int:
+	return 0
