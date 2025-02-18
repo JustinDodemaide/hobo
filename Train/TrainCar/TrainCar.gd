@@ -14,11 +14,12 @@ func close_door() -> void:
 func get_info():
 	var players:Array[Player] = []
 	var items:Dictionary = {}
-	for body in $Area3D.get_overlapping_bodies():
-		if body is Player:
-			players.append(body)
-		if body is LevelItem:
-			var item = body.item
+	#for body in $Area3D.get_overlapping_bodies():
+	for child in get_children():
+		if child is Player:
+			players.append(child)
+		if child is LevelItem:
+			var item = child.item
 			if items.has(item):
 				items[item] += 1
 			items[item] = 1
@@ -26,6 +27,9 @@ func get_info():
 		"players":players,
 		"items":items
 	}
+	print("\n")
+	for i in get_children():
+		print(i.name)
 	return info
 
 var debounce_delay = []

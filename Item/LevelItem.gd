@@ -27,7 +27,7 @@ func dropped(by:Player) -> void:
 	item.dropped(by)
 	return
 	# var car = Global.level.car
-	print(Global.level.car)
+	# print(Global.level.car)
 	var deposit = Global.level.car.get_node("Deposit")
 	$DepositCheck.force_raycast_update()
 	var area = $DepositCheck.get_collider()
@@ -39,4 +39,5 @@ func dropped(by:Player) -> void:
 		reparent(Global.level.car)
 
 func _process(delta: float) -> void:
-	print(get_parent().name)
+	pass
+	#print(get_parent().name)

@@ -7,13 +7,13 @@ func start():
 	Global.scene_handler.train_car.reparent($Train)
 	var tween = create_tween()
 	tween.finished.connect(stopped_at_station)
-	tween.tween_property($Train,"position",$Middle.position,1).set_trans(Tween.TRANS_QUAD)
+	tween.tween_property($Train,"position",$Middle.position,10).set_trans(Tween.TRANS_QUAD)
 
 func stopped_at_station():
 	Global.scene_handler.train_car.open_door()
 	var tween = create_tween()
 	tween.finished.connect(leaving)
-	tween.tween_interval(50)
+	tween.tween_interval(25)
 
 func leaving():
 	var tween = create_tween()
