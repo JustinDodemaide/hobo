@@ -14,3 +14,6 @@ func dropped(_by:Player) -> void:
 
 func nutritional_value() -> int:
 	return 1
+
+func is_consumable() -> bool:
+	return true

@@ -16,7 +16,7 @@ func get_desired_item(player:Player) -> Dictionary:
 		"value":0
 	}
 	# check player inventory
-	var player_inventory = player.get_node("InventoryHandler").inventory
+	var player_inventory = player.get_node("Camera3D").get_node("PlayerInventoryHandler").inventory
 	var index = 0
 	for item in player_inventory:
 		if item: # dont have a way of tracking item value right now

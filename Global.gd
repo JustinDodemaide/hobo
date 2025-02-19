@@ -4,6 +4,8 @@ var scene_handler:StateMachine
 var level:Level
 var players:Array[Player]
 
+var sustenance_deduction:int = 4
+
 func sprite(pos:Vector3) -> void:
 	var sprite = Sprite3D.new()
 	sprite.texture = load("res://icon.svg")

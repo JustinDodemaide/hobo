@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="2_2nyjv"]
 [ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/hand.png" id="4_883vw"]
 [ext_resource type="PackedScene" uid="uid://1xtl1qp8yajl" path="res://Player/UI/PlayerUI.tscn" id="5_7gpfq"]
-[ext_resource type="Script" path="res://Player/inventory_handler.gd" id="6_olwwk"]
+[ext_resource type="PackedScene" uid="uid://cvolxapmuthf5" path="res://Player/InventoryHandler/PlayerInventoryHandler.tscn" id="5_c2etf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpqv4"]
 
@@ -24,17 +24,15 @@ shape = SubResource("CapsuleShape3D_kpqv4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CapsuleShape3D_fugl6")
 
-[node name="InventoryHandler" type="Node" parent="."]
-script = ExtResource("6_olwwk")
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_2nyjv")
 
-[node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -1.5)
-collision_mask = 4
-collide_with_areas = true
+[node name="PlayerInventoryHandler" parent="Camera3D" node_paths=PackedStringArray("player", "hand_icon", "held_item") instance=ExtResource("5_c2etf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+player = NodePath("../..")
+hand_icon = NodePath("../HandIcon")
+held_item = NodePath("../HeldItem")
 
 [node name="HeldItem" type="Sprite3D" parent="Camera3D"]
 transform = Transform3D(0.283831, 0, -0.958874, 0, 1, 0, 0.958874, 0, 0.283831, 0.313791, -0.146981, -0.336494)

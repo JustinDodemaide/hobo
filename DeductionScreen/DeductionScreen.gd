@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 
 func _ready() -> void:
@@ -7,6 +7,7 @@ func _ready() -> void:
 	for item in info.items:
 		total_food += item.nutritional_value() * info.items[item]
 	$PanelContainer/VBoxContainer/Label.text += str(total_food)
+	
 
 func _on_button_pressed() -> void:
 	Global.scene_handler.transition("Level")

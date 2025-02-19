@@ -21,4 +21,4 @@ func leaving():
 	tween.tween_property($Train,"position",$End.position,10).set_trans(Tween.TRANS_QUAD)
 	
 func complete():
-	Global.scene_handler.transition("Deduction")
+	Global.scene_handler.transition("BetweenStops")

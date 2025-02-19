@@ -1,19 +1,20 @@
-extends Node
+extends RayCast3D
 
-var player:Player
+@export var player:Player
+@export var hand_icon:Sprite3D
+@export var held_item:Sprite3D
 
 var inventory = [null, null, null, null]
 var inventory_index = 0
 
 var hovered_item:LevelItem = null
 
-func _ready() -> void:
-	# $"../Camera3D/ItemRaycast".add_exception($"../Camera3D/ItemRaycast")
-	player = get_parent()
+const PICKUP_INPUT = "LeftClick"
+const CONSUME_INPUT = "RightClick"
 
 func _process(delta: float) -> void:
 	handle_item_raycast()
-	if Input.is_action_just_pressed("LeftClick"):
+	if Input.is_action_just_pressed(PICKUP_INPUT):
 		if hovered_item:
 			var item = hovered_item.item
 			hovered_item.picked_up(player)
@@ -30,13 +31,13 @@ func scroll(right:bool) -> void:
 		inventory_index -= 1
 	var item = inventory[inventory_index]
 	if item:
-		$"../Camera3D/HeldItem".texture = load(item.image_path())
+		held_item.texture = load(item.image_path())
 
 func hold_item(item:Item) -> void:
 	drop_item()
 	inventory[inventory_index] = item
-	$"../Camera3D/HeldItem".texture = load(item.image_path())
-	update_ui()
+	held_item.texture = load(item.image_path())
+	player.ui.inventory.update(inventory)
 
 func drop_item(index:int = -1):
 	var i = index
@@ -48,18 +49,16 @@ func drop_item(index:int = -1):
 	
 	Global.level.add_item(inventory[i], player.global_position, player)
 	inventory[i] = null
-	$"../Camera3D/HeldItem".texture = null
-	update_ui()
+	held_item.texture = null
+	player.ui.inventory.update(inventory)
 
 func handle_item_raycast() -> void:
-	var collider = $"../Camera3D/ItemRayCast".get_collider()
+	var collider = get_collider()
 	if collider is LevelItem:
-		$"../Camera3D/HandIcon".visible = true
+		hand_icon.visible = true
 		hovered_item = collider
 		# print("looking at ", collider.name)
-		return
-	hovered_item = null
-	$"../Camera3D/HandIcon".visible = false
-
-func update_ui() -> void:
-	player.ui.inventory.update(inventory)
+	else:
+		hovered_item = null
+		hand_icon.visible = false
+	player.ui.inventory.update_prompts(self)

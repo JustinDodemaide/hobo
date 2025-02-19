@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://d0qa4nkyty6s5" path="res://Player/UI/Health/PlayerHealth.tscn" id="1_1j6n8"]
 [ext_resource type="Script" path="res://Player/UI/PlayerUI.gd" id="1_n1e2r"]
-[ext_resource type="PackedScene" uid="uid://vq2es264bss8" path="res://Player/UI/Inventory/PlayerInventory.tscn" id="2_ppkwt"]
+[ext_resource type="PackedScene" uid="uid://vq2es264bss8" path="res://Player/InventoryHandler/Inventory/PlayerInventory.tscn" id="2_ppkwt"]
 
 [node name="PlayerUI" type="Control" node_paths=PackedStringArray("health", "inventory")]
 layout_mode = 3
@@ -36,8 +36,13 @@ theme_override_constants/separation = 40
 [node name="PlayerHealth" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_1j6n8")]
 layout_mode = 2
 
-[node name="PlayerInventory" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_ppkwt")]
+[node name="PlayerInventory" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("item_prompts") instance=ExtResource("2_ppkwt")]
 layout_mode = 2
+item_prompts = NodePath("../../ItemPrompts")
+
+[node name="ItemPrompts" type="Label" parent="MarginContainer"]
+layout_mode = 2
+horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 0)

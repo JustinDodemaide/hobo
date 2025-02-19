@@ -19,5 +19,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735818, 0)
 [node name="Level" type="Node" parent="."]
 script = ExtResource("2_ql0vq")
 
-[node name="Deduction" type="Node" parent="."]
+[node name="BetweenStops" type="Node" parent="."]
 script = ExtResource("3_qi780")
