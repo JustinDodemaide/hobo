@@ -1,20 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://ccd2kgud4w32e"]
+[gd_scene load_steps=6 format=3 uid="uid://ccd2kgud4w32e"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_26bnj"]
 [ext_resource type="Script" path="res://Player/PlayerCamera.gd" id="2_2nyjv"]
-[ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/hand.png" id="4_883vw"]
 [ext_resource type="PackedScene" uid="uid://1xtl1qp8yajl" path="res://Player/UI/PlayerUI.tscn" id="5_7gpfq"]
-[ext_resource type="PackedScene" uid="uid://cvolxapmuthf5" path="res://Player/InventoryHandler/PlayerInventoryHandler.tscn" id="5_c2etf"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpqv4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fugl6"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("ui")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("ui", "item_cast", "held_item_display")]
 collision_layer = 2
 platform_floor_layers = 0
 script = ExtResource("1_26bnj")
 ui = NodePath("CanvasLayer/PlayerUI")
+item_cast = NodePath("Camera3D/ItemRayCast")
+held_item_display = NodePath("Camera3D/HeldItem")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_kpqv4")
@@ -28,19 +28,13 @@ shape = SubResource("CapsuleShape3D_fugl6")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 script = ExtResource("2_2nyjv")
 
-[node name="PlayerInventoryHandler" parent="Camera3D" node_paths=PackedStringArray("player", "hand_icon", "held_item") instance=ExtResource("5_c2etf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-player = NodePath("../..")
-hand_icon = NodePath("../HandIcon")
-held_item = NodePath("../HeldItem")
+[node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -2, 0)
+collision_mask = 4
+collide_with_areas = true
 
 [node name="HeldItem" type="Sprite3D" parent="Camera3D"]
-transform = Transform3D(0.283831, 0, -0.958874, 0, 1, 0, 0.958874, 0, 0.283831, 0.313791, -0.146981, -0.336494)
-texture_filter = 0
-
-[node name="HandIcon" type="Sprite3D" parent="Camera3D"]
-transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, -0.345098)
-texture = ExtResource("4_883vw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -57,3 +51,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[connection signal="active_inventory_slot_changed" from="." to="CanvasLayer/PlayerUI" method="_on_player_active_inventory_slot_changed"]
+[connection signal="inventory_updated" from="." to="CanvasLayer/PlayerUI" method="_on_inventory_updated"]
+[connection signal="item_hovered" from="." to="CanvasLayer/PlayerUI" method="_on_item_hovered"]
+[connection signal="item_unhovered" from="." to="CanvasLayer/PlayerUI" method="_on_item_unhovered"]

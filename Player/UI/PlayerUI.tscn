@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://1xtl1qp8yajl"]
+[gd_scene load_steps=5 format=3 uid="uid://1xtl1qp8yajl"]
 
 [ext_resource type="PackedScene" uid="uid://d0qa4nkyty6s5" path="res://Player/UI/Health/PlayerHealth.tscn" id="1_1j6n8"]
 [ext_resource type="Script" path="res://Player/UI/PlayerUI.gd" id="1_n1e2r"]
-[ext_resource type="PackedScene" uid="uid://vq2es264bss8" path="res://Player/InventoryHandler/Inventory/PlayerInventory.tscn" id="2_ppkwt"]
+[ext_resource type="PackedScene" uid="uid://bdsao1btboyay" path="res://Player/InventoryHandler/Inventory/inventory_slot.tscn" id="3_yosim"]
+[ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/hand.png" id="4_1rftq"]
 
-[node name="PlayerUI" type="Control" node_paths=PackedStringArray("health", "inventory")]
+[node name="PlayerUI" type="Control" node_paths=PackedStringArray("health", "item_hover")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +14,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n1e2r")
 health = NodePath("MarginContainer/VBoxContainer/PlayerHealth")
-inventory = NodePath("MarginContainer/VBoxContainer/PlayerInventory")
+item_hover = NodePath("MarginContainer/ItemHover")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -31,16 +32,47 @@ theme_override_constants/margin_bottom = 54
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_constants/separation = 40
+theme_override_constants/separation = 20
 
 [node name="PlayerHealth" parent="MarginContainer/VBoxContainer" instance=ExtResource("1_1j6n8")]
 layout_mode = 2
 
-[node name="PlayerInventory" parent="MarginContainer/VBoxContainer" node_paths=PackedStringArray("item_prompts") instance=ExtResource("2_ppkwt")]
+[node name="ActiveItem" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-item_prompts = NodePath("../../ItemPrompts")
+horizontal_alignment = 1
 
-[node name="ItemPrompts" type="Label" parent="MarginContainer"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/VBoxContainer/ActiveItem"]
+
+[node name="SlotContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(240, 24)
+layout_mode = 2
+alignment = 1
+
+[node name="InventorySlot" parent="MarginContainer/VBoxContainer/SlotContainer" instance=ExtResource("3_yosim")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="MarginContainer/VBoxContainer/SlotContainer" instance=ExtResource("3_yosim")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="MarginContainer/VBoxContainer/SlotContainer" instance=ExtResource("3_yosim")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="MarginContainer/VBoxContainer/SlotContainer" instance=ExtResource("3_yosim")]
+layout_mode = 2
+
+[node name="ItemHover" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HandIcon" type="TextureRect" parent="MarginContainer/ItemHover"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_1rftq")
+expand_mode = 1
+
+[node name="ItemPrompts" type="Label" parent="MarginContainer/ItemHover"]
 layout_mode = 2
 horizontal_alignment = 1
 
