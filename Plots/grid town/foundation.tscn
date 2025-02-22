@@ -27,7 +27,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 script = SubResource("GDScript_3fbuf")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="plot" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
 navigation_mesh = SubResource("NavigationMesh_ub66d")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]

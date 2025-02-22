@@ -1,7 +1,9 @@
 extends CanvasLayer
 
+@onready var label = $PanelContainer/VBoxContainer/Label
 
 func _ready() -> void:
+	return
 	var total_food:int
 	var info = Global.scene_handler.train_car.get_info()
 	for item in info.items:

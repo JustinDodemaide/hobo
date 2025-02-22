@@ -85,7 +85,7 @@ func _input(event: InputEvent) -> void:
 
 func handle_inventory():
 	var collider = item_cast.get_collider()
-	if collider == null:
+	if collider is not LevelItem:
 		if hovered_item:
 			hovered_item = null
 			emit_signal("item_unhovered")

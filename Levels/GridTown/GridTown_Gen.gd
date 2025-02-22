@@ -48,16 +48,16 @@ func building_layout():
 		var block = SPACE_FROM_EDGES
 		while block < WIDTH:
 			var tile = Vector2i(block,row)
-			if tget(buildings, tile) == TRACKS:
-				block += 1
-				continue
 			tset(buildings, tile, PLOT)
 			if block == intersection:
 				tset(buildings, tile, STREET)
 				intersection += randi_range(MIN_BLOCK_WIDTH, MAX_BLOCK_WIDTH)
 			else:
 				tset(buildings, tile, PLOT)
-				place_structure(tile)
+				if tile == station_tile or tile == station_tile - Vector2i(1,0) or tile == station_tile + Vector2i(1,0):
+					place_station()
+				else:
+					place_structure(tile)
 			block += 1
 			
 		row += 1
@@ -74,10 +74,23 @@ func place_structure(tile):
 	plot.position = Vector3(cell.x, height, cell.y)
 	level.add_child(plot)
 
+func place_station():
+	var cell = station_tile * TILE_TO_METER_RATIO
+	var station = load("res://Plots/grid town/station.tscn").instantiate()
+	station.position = Vector3(cell.x, get_height(station_tile), cell.y)
+	level.add_child(station)
+
+var station_tile
 func tracks():
 	var tracks = level.get_node("Tracks")
 	tracks.global_position.x = WIDTH/2 * TILE_TO_METER_RATIO
 	tracks.global_position.z = LENGTH * TILE_TO_METER_RATIO
+	station_tile = Vector2i(round(WIDTH/2) + 1, LENGTH - 1)
+	
+	var sprite = Sprite3D.new()
+	sprite.texture = load("res://icon.svg")
+	sprite.position = Vector3(station_tile.x * TILE_TO_METER_RATIO, 30, station_tile.y * TILE_TO_METER_RATIO)
+	level.add_child(sprite)
 
 func path() -> void:
 	const CURVE_DEPTH:int = 30

@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4usrv0ycaf2k"]
+
+[ext_resource type="PackedScene" uid="uid://5al04qnt4o0s" path="res://Plots/grid town/foundation.tscn" id="1_k67w4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_04yew"]
+size = Vector3(14, 3, 14)
+
+[node name="Station" type="Node3D"]
+
+[node name="Foundation" parent="." instance=ExtResource("1_k67w4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.59, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Foundation"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Foundation/StaticBody3D2"]
+shape = SubResource("BoxShape3D_04yew")
+
+[node name="Foundation2" parent="." instance=ExtResource("1_k67w4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1.57, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Foundation2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Foundation2/StaticBody3D2"]
+shape = SubResource("BoxShape3D_04yew")
+
+[node name="Foundation3" parent="." instance=ExtResource("1_k67w4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 1.57, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="Foundation3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Foundation3/StaticBody3D2"]
+shape = SubResource("BoxShape3D_04yew")
