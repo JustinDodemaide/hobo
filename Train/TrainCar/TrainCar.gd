@@ -47,7 +47,8 @@ func _on_area_3d_body_exited(body: Node3D) -> void:
 	debounce_delay.append(body)
 	
 	print(body.name + " exited")
-	body.reparent(Global.level)
+	if Global.level:
+		body.reparent(Global.level)
 
 func _on_debounce_timer_timeout() -> void:
 	debounce_delay.clear()

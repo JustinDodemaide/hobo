@@ -23,9 +23,9 @@ func _on_item_hovered() -> void:
 	item_hover.get_node("HandIcon").visible = true
 	
 	var item = player.hovered_item.item
-	var text:String = "LeftClick: Pickup " + item.item_name()
-	if item.is_consumable():
-		text += "\nRightClick: Consume"
+	var text:String = "E: Pickup " + item.item_name()
+	#if item.is_consumable():
+	#	text += "\nRightClick: Consume"
 	item_hover.get_node("ItemPrompts").text = text
 
 func _on_item_unhovered() -> void:

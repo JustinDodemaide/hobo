@@ -4,7 +4,7 @@ func item_name() -> String:
 	return "Item"
 
 func image_path() -> String:
-	return "res://Item/Coffee/Coffee.png"
+	return "res://test_test.png"
 
 func picked_up(_by:Player) -> void:
 	# In case we want the item to do something upon being picked up
@@ -14,11 +14,23 @@ func picked_up(_by:Player) -> void:
 func dropped(_by:Player) -> void:
 	pass
 
-func nutritional_value() -> int:
-	return 0
+func use(_user:Player) -> void:
+	if is_consumable():
+		consumed(_user)
 
+func use_alternate(_user:Player) -> void:
+	pass
+
+#region Consumption
 func is_consumable() -> bool:
 	return false
 
+func sustenance_value() -> int:
+	return 0
+
 func consumed(_by:Player) -> void:
-	pass
+	if Global.scene_handler.state.name == "BetweenStops":
+		Global.scene_handler.state.item_consumed(self)
+		_by.remove_item()
+
+#endregion

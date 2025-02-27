@@ -18,5 +18,6 @@ func enter(_previous_state: String, _data := {}) -> void:
 func exit() -> void:
 	if !level:
 		return
+	Global.level = null
 	Global.scene_handler.train_car.reparent(Global.scene_handler)
 	level.queue_free()

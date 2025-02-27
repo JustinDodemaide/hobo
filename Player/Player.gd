@@ -60,16 +60,23 @@ signal inventory_updated
 signal active_inventory_slot_changed(to:int)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("LeftClick"):
+	if event.is_action_pressed("E"):
 		if hovered_item:
 			var item = hovered_item.item
 			hovered_item.picked_up(self)
 			hovered_item = null
 			hold_item(item)
 		return
-
 	if event.is_action_pressed("F"):
 		drop_item()
+		return
+	
+	if event.is_action_pressed("LeftClick"):
+		if inventory[inventory_index]:
+			inventory[inventory_index].use(self)
+	if event.is_action_pressed("RightClick"):
+		if inventory[inventory_index]:
+			inventory[inventory_index].use_alternate(self)
 		return
 
 	if event.is_action_pressed("1"):
@@ -81,7 +88,6 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("4"):
 		inventory_index = 3
 	emit_signal("active_inventory_slot_changed",inventory_index)
-
 
 func handle_inventory():
 	var collider = item_cast.get_collider()
@@ -99,13 +105,17 @@ func hold_item(item:Item) -> void:
 	held_item_display.texture = load(item.image_path())
 	emit_signal("inventory_updated")
 
-func drop_item(index:int = -1):
+func drop_item(index:int = -1) -> void:
 	if index == -1:
 		index = inventory_index
 	if inventory[index] == null:
 		return
-	Global.level.add_item(inventory[index], global_position, self)
+	if Global.level:
+		Global.level.add_item(inventory[index], global_position, self)
 	inventory[index] = null
 	held_item_display.texture = null
 	emit_signal("inventory_updated")
+
+func remove_item() -> void:
+	inventory[inventory_index] = null
 #endregion

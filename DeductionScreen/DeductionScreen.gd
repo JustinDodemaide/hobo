@@ -1,15 +1,13 @@
 extends CanvasLayer
 
 @onready var label = $PanelContainer/VBoxContainer/Label
+const PREFIX = "Required Sustenance: "
 
-func _ready() -> void:
-	return
-	var total_food:int
-	var info = Global.scene_handler.train_car.get_info()
-	for item in info.items:
-		total_food += item.nutritional_value() * info.items[item]
-	$PanelContainer/VBoxContainer/Label.text += str(total_food)
-	
+func set_text(required_sustenance):
+	$PanelContainer/VBoxContainer/Label.text = PREFIX + str(required_sustenance)
 
 func _on_button_pressed() -> void:
 	Global.scene_handler.transition("Level")
+
+func lose():
+	pass
