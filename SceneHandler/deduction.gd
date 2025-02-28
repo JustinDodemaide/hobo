@@ -7,6 +7,8 @@ func enter(_previous_state: String, _data := {}) -> void:
 	var total_food:int
 	var info = Global.scene_handler.train_car.get_info()
 	# Also need to check player's inventories
+	if info.players.is_empty():
+		get_parent().lose()
 	for item in info.items:
 		total_food += item.sustenance_value() * info.items[item]
 	if total_food < required_sustenance:

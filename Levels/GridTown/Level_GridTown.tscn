@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Tracks/Tracks.tscn" id="3_w8n7n"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="4_5drde"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="5_kfcjh"]
-[ext_resource type="PackedScene" uid="uid://dxk87mc2eihs4" path="res://test.glb" id="6_kjnjm"]
+[ext_resource type="PackedScene" uid="uid://b1foujsfrbjtx" path="res://salmon.glb" id="7_1bswe"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("4_5drde")
@@ -30,6 +30,9 @@ script = ExtResource("1_v3144")
 [node name="Tracks" parent="." instance=ExtResource("3_w8n7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
+[node name="salmon2" parent="Tracks" instance=ExtResource("7_1bswe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_xp3qp")
 camera_attributes = SubResource("CameraAttributesPractical_o4etc")
@@ -41,6 +44,3 @@ shadow_enabled = true
 [node name="Water" parent="." instance=ExtResource("5_kfcjh")]
 transform = Transform3D(85, 0, 0, 0, 1, 0, 0, 0, 85, 42.5, 3.5, 43)
 visible = false
-
-[node name="test2" parent="." instance=ExtResource("6_kjnjm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.2665, 0.635811, 26.8724)
