@@ -14,9 +14,8 @@ func start():
 
 func stopped_at_station():
 	Global.scene_handler.train_car.open_door()
-	var tween = create_tween()
-	tween.finished.connect(leaving)
-	tween.tween_interval(STOP_TIME)
+	Global.level.timer.timeout.connect(leaving)
+	Global.level.timer.start(STOP_TIME)
 
 func leaving():
 	var tween = create_tween()

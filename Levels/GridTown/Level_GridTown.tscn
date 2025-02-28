@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=14 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" path="res://Levels/GridTown/Level_GridTown.gd" id="1_v3144"]
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Levels/LevelGen/LevelGen.tscn" id="2_gvxhc"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="4_5drde"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="5_kfcjh"]
 [ext_resource type="PackedScene" uid="uid://b1foujsfrbjtx" path="res://salmon.glb" id="7_1bswe"]
+[ext_resource type="Texture2D" uid="uid://cgoo0guwakivh" path="res://Watch/under.png" id="7_exxes"]
+[ext_resource type="Texture2D" uid="uid://c5lu8iolanyd5" path="res://Watch/over.png" id="8_lcklc"]
+[ext_resource type="Texture2D" uid="uid://xv2gy40fprs7" path="res://Watch/progress.png" id="9_x4w7q"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("4_5drde")
@@ -22,9 +25,10 @@ ambient_light_source = 3
 auto_exposure_enabled = true
 dof_blur_far_distance = 20.0
 
-[node name="Level" type="Node3D" node_paths=PackedStringArray("ui")]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("ui", "timer")]
 script = ExtResource("1_v3144")
 ui = NodePath("CanvasLayer")
+timer = NodePath("Timer")
 
 [node name="LevelGen" parent="." instance=ExtResource("2_gvxhc")]
 
@@ -49,6 +53,15 @@ visible = false
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+texture_filter = 1
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(10, 10)
 fill_mode = 4
+radial_center_offset = Vector2(0, 2.5)
+texture_under = ExtResource("7_exxes")
+texture_over = ExtResource("8_lcklc")
+texture_progress = ExtResource("9_x4w7q")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

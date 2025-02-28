@@ -2,6 +2,7 @@ extends Node3D
 class_name Level
 
 @export var ui:CanvasLayer
+@export var timer:Timer
 var car:TrainCar
 
 func _ready() -> void:
@@ -34,3 +35,8 @@ func add_item(item:Item, where:Vector3, player:Player=null) -> void:
 
 func level_complete() -> void:
 	pass
+
+func _process(_delta: float) -> void:
+	if $Timer.is_stopped():
+		return
+	$CanvasLayer/TextureProgressBar.value = 100 - $Timer.time_left
