@@ -22,8 +22,9 @@ ambient_light_source = 3
 auto_exposure_enabled = true
 dof_blur_far_distance = 20.0
 
-[node name="Level" type="Node3D"]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("ui")]
 script = ExtResource("1_v3144")
+ui = NodePath("CanvasLayer")
 
 [node name="LevelGen" parent="." instance=ExtResource("2_gvxhc")]
 
@@ -44,3 +45,10 @@ shadow_enabled = true
 [node name="Water" parent="." instance=ExtResource("5_kfcjh")]
 transform = Transform3D(85, 0, 0, 0, 1, 0, 0, 0, 85, 42.5, 3.5, 43)
 visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+fill_mode = 4

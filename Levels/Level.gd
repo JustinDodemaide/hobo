@@ -1,7 +1,7 @@
 extends Node3D
 class_name Level
 
-@export var path:Path3D
+@export var ui:CanvasLayer
 var car:TrainCar
 
 func _ready() -> void:

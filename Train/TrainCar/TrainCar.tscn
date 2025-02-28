@@ -12,7 +12,7 @@ size = Vector3(8, 0.01, 4)
 size = Vector2(4, 4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gnct0"]
-size = Vector3(8, 2, 4)
+size = Vector3(8, 4, 4)
 
 [node name="TrainCar" type="Node3D"]
 script = ExtResource("1_my22d")
@@ -37,7 +37,7 @@ mesh = SubResource("PlaneMesh_g7wej")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 6
 collision_mask = 6
 monitorable = false
