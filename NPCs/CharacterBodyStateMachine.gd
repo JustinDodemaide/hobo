@@ -10,6 +10,7 @@ var speed:float = 5.0
 @onready var nav:NavigationAgent3D = $NavigationAgent3D
 
 func _ready() -> void:
+	nav.target_reached.connect(_on_navigation_agent_3d_target_reached)
 	if not initial_state:
 		push_error("No initial state selected")
 	state = initial_state

@@ -116,6 +116,11 @@ func drop_item(index:int = -1) -> void:
 	held_item_display.texture = null
 	emit_signal("inventory_updated")
 
-func remove_item() -> void:
+func remove_item(item:Item = null) -> void:
+	if item:
+		var index = inventory.find(item)
+		if index != -1:
+			inventory[index] = null
+			return
 	inventory[inventory_index] = null
 #endregion

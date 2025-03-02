@@ -13,7 +13,7 @@ func _on_mimic_sensor_area_entered(area: Area3D) -> void:
 	var parent = area.get_parent()
 	if parent is Player:
 		var bum = load("res://NPCs/Bum/Bum.tscn").instantiate()
-		bum.position = $trashcan.global_position
+		bum.global_position = $trashcan.global_position
 		$trashcan.queue_free()
 		Global.level.add_child(bum)
 		print(bum.global_position)
