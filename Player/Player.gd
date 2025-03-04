@@ -3,9 +3,6 @@ class_name Player
 
 @export var ui:Control
 
-var SPEED = 50.0
-var JUMP_VELOCITY = 7
-
 const MAX_HEALTH:int = 100
 var current_health:int = MAX_HEALTH
 
@@ -30,23 +27,56 @@ func _physics_process(delta: float) -> void:
 	handle_inventory()
 	$CanvasLayer/FPS.text = str(Engine.get_frames_per_second())
 
+#region Movement
+var SPEED = 50.0
+var JUMP_VELOCITY = 7
 func handle_movement(delta) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
+		
 	if Input.is_action_just_pressed("ui_accept"):# and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+	
+	# Calculate effect of player input
 	var input_dir := Input.get_vector("A", "D", "W", "S")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	
+	# Determine how much control the player has (less when under external force)
+	var control_factor = 1.0
+	if external_velocity.length() > 0.01:
+		control_factor = control_reduction
+	
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * SPEED * control_factor
+		velocity.z = direction.z * SPEED * control_factor
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPEED * control_factor)
+		velocity.z = move_toward(velocity.z, 0, SPEED * control_factor)
+#endregion
+
+#region Apply Force
+	if external_velocity != Vector3.ZERO:
+		velocity += external_velocity
+		
+		# Decay external forces
+		external_velocity *= force_decay
+		if external_velocity.length() < 0.01:
+			external_velocity = Vector3.ZERO
 	
 	move_and_slide()
+
+var external_velocity = Vector3.ZERO
+var force_decay = 0.9  # How quickly forces diminish each frame
+var control_reduction = 0.3  # Player retains 30% control when under external force
+func apply_force(force_vector):
+	external_velocity += force_vector
+
+func apply_force_from_position(source_position, force_strength):
+	var direction = global_position - source_position
+	direction.y = clamp(direction.y, -0.5, 1.0)
+	
+	apply_force(direction.normalized() * force_strength)
+#endregion
 
 #region Inventory
 var inventory = [null,null,null,null]
@@ -78,7 +108,6 @@ func _input(event: InputEvent) -> void:
 		if inventory[inventory_index]:
 			inventory[inventory_index].use_alternate(self)
 		return
-
 	if event.is_action_pressed("1"):
 		inventory_index = 0
 	if event.is_action_pressed("2"):
@@ -124,3 +153,6 @@ func remove_item(item:Item = null) -> void:
 			return
 	inventory[inventory_index] = null
 #endregion
+
+func _on_timer_timeout() -> void:
+	apply_force_from_position(global_position + Vector3(0,-10,0), 2)

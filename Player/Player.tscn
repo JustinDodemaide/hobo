@@ -52,7 +52,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
 [connection signal="active_inventory_slot_changed" from="." to="CanvasLayer/PlayerUI" method="_on_player_active_inventory_slot_changed"]
 [connection signal="inventory_updated" from="." to="CanvasLayer/PlayerUI" method="_on_inventory_updated"]
 [connection signal="item_hovered" from="." to="CanvasLayer/PlayerUI" method="_on_item_hovered"]
 [connection signal="item_unhovered" from="." to="CanvasLayer/PlayerUI" method="_on_item_unhovered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
