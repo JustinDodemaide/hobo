@@ -155,4 +155,5 @@ func remove_item(item:Item = null) -> void:
 #endregion
 
 func _on_timer_timeout() -> void:
+	return
 	apply_force_from_position(global_position + Vector3(0,-10,0), 2)

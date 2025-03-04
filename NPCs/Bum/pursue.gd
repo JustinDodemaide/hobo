@@ -14,6 +14,7 @@ func target_reached():
 		pass
 	get_parent().hold_item(desired_item)
 	target.remove_item(desired_item)
+	target.apply_force_from_position(get_parent().global_position,1)
 	transition("Idle")
 
 func exit() -> void:
