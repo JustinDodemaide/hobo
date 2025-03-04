@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://nrvav14ujjed"]
 
-[ext_resource type="Script" path="res://Levels/WFC/TileMaker/wfc_tile_maker.gd" id="1_a6r1f"]
+[ext_resource type="Script" uid="uid://dditu35ces73x" path="res://Levels/WFC/TileMaker/wfc_tile_maker.gd" id="1_a6r1f"]
 
 [node name="WfcTileMaker" type="PanelContainer" node_paths=PackedStringArray("items")]
 anchors_preset = 8

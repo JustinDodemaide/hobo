@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://cl0yh02ineuta"]
 
-[ext_resource type="Script" path="res://NPCs/Bear/Bear.gd" id="1_dddif"]
-[ext_resource type="Script" path="res://NPCs/Bear/pursue.gd" id="2_d5w5g"]
-[ext_resource type="Script" path="res://NPCs/Bear/idle.gd" id="2_v6msk"]
+[ext_resource type="Script" uid="uid://c6hswbaioge8w" path="res://NPCs/Bear/Bear.gd" id="1_dddif"]
+[ext_resource type="Script" uid="uid://bc2oivpiv1e4u" path="res://NPCs/Bear/pursue.gd" id="2_d5w5g"]
+[ext_resource type="Script" uid="uid://cj7vei8rn0om0" path="res://NPCs/Bear/idle.gd" id="2_v6msk"]
 [ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="4_qgh5n"]
-[ext_resource type="Script" path="res://NPCs/Bear/lunge.gd" id="4_xyd5k"]
+[ext_resource type="Script" uid="uid://cffwbse4ykaow" path="res://NPCs/Bear/lunge.gd" id="4_xyd5k"]
 [ext_resource type="PackedScene" uid="uid://1siuxm08aygj" path="res://NPCs/DebugVisuals/NPCDebugVisuals.tscn" id="5_tpbku"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0c6p3"]

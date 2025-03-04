@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://ccl5oq8c65iw1"]
 
 [ext_resource type="Texture2D" uid="uid://cibv3oaxfb00m" path="res://Tracks/tracks_long_gravel.png" id="1_6isb4"]
-[ext_resource type="Script" path="res://Tracks/Tracks.gd" id="1_jth02"]
+[ext_resource type="Script" uid="uid://c7bodu8qta1e2" path="res://Tracks/Tracks.gd" id="1_jth02"]
 [ext_resource type="Texture2D" uid="uid://b58f4kucw1bx4" path="res://Tracks/tracks_long_track.png" id="2_hy1wl"]
 [ext_resource type="Texture2D" uid="uid://yybjftljm7lv" path="res://Tracks/tracks_long_gravel_sides.png" id="3_lmeqv"]
 [ext_resource type="PackedScene" uid="uid://qlreefy5irxc" path="res://Train/Train.tscn" id="4_atx1w"]

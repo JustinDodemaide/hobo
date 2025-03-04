@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bnl14mw85dp0q"]
 
-[ext_resource type="Script" path="res://NPCs/Citizen/Citizen.gd" id="1_dq8bj"]
-[ext_resource type="Script" path="res://NPCs/Citizen/strolling.gd" id="2_6lrcw"]
-[ext_resource type="Script" path="res://NPCs/Citizen/idle.gd" id="2_kaw6w"]
+[ext_resource type="Script" uid="uid://cmw3phbyrvfx4" path="res://NPCs/Citizen/Citizen.gd" id="1_dq8bj"]
+[ext_resource type="Script" uid="uid://b1by7t0d47qp4" path="res://NPCs/Citizen/strolling.gd" id="2_6lrcw"]
+[ext_resource type="Script" uid="uid://df4qgouienevc" path="res://NPCs/Citizen/idle.gd" id="2_kaw6w"]
 [ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="3_rov6k"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_063mf"]

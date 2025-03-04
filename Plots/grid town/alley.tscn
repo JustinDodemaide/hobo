@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://b1qu0fhfeweho"]
 
-[ext_resource type="Script" path="res://Plots/plot.gd" id="1_vh1ps"]
+[ext_resource type="Script" uid="uid://bva6y6omrpb7w" path="res://Plots/plot.gd" id="1_vh1ps"]
 [ext_resource type="PackedScene" uid="uid://5al04qnt4o0s" path="res://Plots/grid town/foundation.tscn" id="2_5ko2n"]
 [ext_resource type="PackedScene" uid="uid://cv26st5p6mcd1" path="res://Plots/grid town/scenes/alley_1.tscn" id="3_7oxjd"]
 [ext_resource type="PackedScene" uid="uid://v5pbubpjk8me" path="res://Plots/grid town/decor/trash1.glb" id="4_2f8fe"]

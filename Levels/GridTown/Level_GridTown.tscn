@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://7ryuaso11stc"]
 
-[ext_resource type="Script" path="res://Levels/GridTown/Level_GridTown.gd" id="1_v3144"]
+[ext_resource type="Script" uid="uid://bhsf2p6rmbbww" path="res://Levels/GridTown/Level_GridTown.gd" id="1_v3144"]
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Levels/LevelGen/LevelGen.tscn" id="2_gvxhc"]
 [ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Tracks/Tracks.tscn" id="3_w8n7n"]
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="4_5drde"]

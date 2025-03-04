@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://d237okerrpwmg"]
 
-[ext_resource type="Script" path="res://Godrays/god_rays.gd" id="1_2wsbw"]
-[ext_resource type="Shader" path="res://Godrays/LightRays.gdshader" id="2_3ppt4"]
-[ext_resource type="Script" path="res://Godrays/color_rect_light_rays.gd" id="3_xqx02"]
+[ext_resource type="Script" uid="uid://ksscxsgd7xhj" path="res://Godrays/god_rays.gd" id="1_2wsbw"]
+[ext_resource type="Shader" uid="uid://dal35p0w1g2tc" path="res://Godrays/LightRays.gdshader" id="2_3ppt4"]
+[ext_resource type="Script" uid="uid://cpo8ueq0prgyw" path="res://Godrays/color_rect_light_rays.gd" id="3_xqx02"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_loqrf"]
 viewport_path = NodePath("GodRayStuff/SubViewportContainer/SubViewport")
@@ -10,6 +10,7 @@ viewport_path = NodePath("GodRayStuff/SubViewportContainer/SubViewport")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_obxc4"]
 resource_local_to_scene = true
 shader = ExtResource("2_3ppt4")
+shader_parameter/subviewport_tex = SubResource("ViewportTexture_loqrf")
 shader_parameter/ray_length = 1.0
 shader_parameter/ray_intensity = 1.0
 shader_parameter/light_source_scale = 1.0
@@ -18,7 +19,6 @@ shader_parameter/noise_strength = 0.2
 shader_parameter/light_source_pos = Vector2(0, 0)
 shader_parameter/light_source_dir = Vector3(0.5, -1, 0.25)
 shader_parameter/camera_dir = Vector3(-0.5, 1, -0.25)
-shader_parameter/subviewport_tex = SubResource("ViewportTexture_loqrf")
 
 [node name="GodRays" type="Node"]
 script = ExtResource("1_2wsbw")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d0qa4nkyty6s5"]
 
-[ext_resource type="Script" path="res://Player/UI/Health/player_health.gd" id="1_5fpeg"]
+[ext_resource type="Script" uid="uid://bauy3hf83q43c" path="res://Player/UI/Health/player_health.gd" id="1_5fpeg"]
 
 [node name="PlayerHealth" type="Control"]
 layout_mode = 3

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://cv07uo0ufw6wk"]
 
 [ext_resource type="PackedScene" uid="uid://5al04qnt4o0s" path="res://Plots/grid town/foundation.tscn" id="1_mc5s3"]
-[ext_resource type="Texture2D" uid="uid://e4h28n4iwfwo" path="res://Plots/Buildings/building6_4.png" id="2_eiwag"]
+[ext_resource type="Texture2D" uid="uid://mdjn4eio52tq" path="res://Plots/Buildings/building6_4.png" id="2_eiwag"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_15ht5"]
 resource_name = "4.006"

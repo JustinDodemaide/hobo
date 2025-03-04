@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qlreefy5irxc"]
 
-[ext_resource type="Script" path="res://Train/train.gd" id="1_a1h44"]
+[ext_resource type="Script" uid="uid://cvrsftpjgl25x" path="res://Train/train.gd" id="1_a1h44"]
 [ext_resource type="PackedScene" uid="uid://caipru48ph5lp" path="res://Train/Box/TrainBox.tscn" id="5_dc3af"]
 
 [node name="Train" type="Node3D"]

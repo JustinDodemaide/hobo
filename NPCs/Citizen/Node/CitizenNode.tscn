@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkvyhp1y6b43r"]
 
-[ext_resource type="Script" path="res://NPCs/Citizen/Node/CitizenNode.gd" id="1_vrjsl"]
+[ext_resource type="Script" uid="uid://bc7lgfvs1knna" path="res://NPCs/Citizen/Node/CitizenNode.gd" id="1_vrjsl"]
 
 [node name="CitizenNode" type="Marker3D"]
 script = ExtResource("1_vrjsl")

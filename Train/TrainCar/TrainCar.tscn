@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://bs2bixsdhm6c7"]
 
-[ext_resource type="Script" path="res://Train/TrainCar/TrainCar.gd" id="1_my22d"]
+[ext_resource type="Script" uid="uid://ls1clvyprrgc" path="res://Train/TrainCar/TrainCar.gd" id="1_my22d"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4bypq"]
 size = Vector2(8, 4)

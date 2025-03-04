@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cvolxapmuthf5"]
 
-[ext_resource type="Script" path="res://Player/InventoryHandler/PlayerInventoryHandler.gd" id="1_okmyq"]
+[ext_resource type="Script" uid="uid://dnl8arethb5uu" path="res://Player/InventoryHandler/PlayerInventoryHandler.gd" id="1_okmyq"]
 
 [node name="PlayerInventoryHandler" type="RayCast3D"]
 target_position = Vector3(0, 0, -1.5)

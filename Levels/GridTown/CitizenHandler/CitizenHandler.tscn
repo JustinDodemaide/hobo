@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://2l67u81wyvn6"]
 
-[ext_resource type="Script" path="res://Levels/GridTown/CitizenHandler/CitizenHandler.gd" id="1_duv4q"]
+[ext_resource type="Script" uid="uid://2a1anuijlg8v" path="res://Levels/GridTown/CitizenHandler/CitizenHandler.gd" id="1_duv4q"]
 
 [node name="CitizenHandler" type="Node"]
 script = ExtResource("1_duv4q")

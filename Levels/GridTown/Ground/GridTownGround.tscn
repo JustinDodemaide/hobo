@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://m77mtkygmeb7"]
 
-[ext_resource type="Script" path="res://Levels/GridTown/Ground/GridTownGround.gd" id="1_v01ur"]
+[ext_resource type="Script" uid="uid://bvc3qsbik6klw" path="res://Levels/GridTown/Ground/GridTownGround.gd" id="1_v01ur"]
 [ext_resource type="Texture2D" uid="uid://vat373nhtuxb" path="res://hills.png" id="2_1y1dd"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_wv1ga"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://c8d0cfiwtqvl0"]
 
-[ext_resource type="Script" path="res://SceneHandler/SceneHandler.gd" id="1_quput"]
+[ext_resource type="Script" uid="uid://bqhcjjyo5cpc8" path="res://SceneHandler/SceneHandler.gd" id="1_quput"]
 [ext_resource type="PackedScene" uid="uid://bs2bixsdhm6c7" path="res://Train/TrainCar/TrainCar.tscn" id="2_4jf80"]
-[ext_resource type="Script" path="res://SceneHandler/Level.gd" id="2_ql0vq"]
+[ext_resource type="Script" uid="uid://dqvgb6tgq5sq2" path="res://SceneHandler/Level.gd" id="2_ql0vq"]
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="3_8xope"]
-[ext_resource type="Script" path="res://SceneHandler/deduction.gd" id="3_qi780"]
+[ext_resource type="Script" uid="uid://dn6ae3rscxgfd" path="res://SceneHandler/deduction.gd" id="3_qi780"]
 
 [node name="SceneHandler" type="Node" node_paths=PackedStringArray("train_car", "initial_state")]
 script = ExtResource("1_quput")
