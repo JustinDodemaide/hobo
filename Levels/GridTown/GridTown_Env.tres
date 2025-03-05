@@ -1,0 +1,14 @@
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://sgni8chhd38k"]
+
+[ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="1_vk1t2"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
+panorama = ExtResource("1_vk1t2")
+
+[sub_resource type="Sky" id="Sky_864ur"]
+sky_material = SubResource("PanoramaSkyMaterial_5vixs")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_864ur")
+ambient_light_source = 3

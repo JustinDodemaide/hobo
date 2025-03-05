@@ -1,25 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=11 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" uid="uid://bhsf2p6rmbbww" path="res://Levels/GridTown/Level_GridTown.gd" id="1_v3144"]
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Levels/LevelGen/LevelGen.tscn" id="2_gvxhc"]
 [ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Tracks/Tracks.tscn" id="3_w8n7n"]
-[ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="4_5drde"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="5_kfcjh"]
+[ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Levels/GridTown/GridTown_Env.tres" id="5_w7l7n"]
 [ext_resource type="PackedScene" uid="uid://b1foujsfrbjtx" path="res://salmon.glb" id="7_1bswe"]
 [ext_resource type="Texture2D" uid="uid://cgoo0guwakivh" path="res://Watch/under.png" id="7_exxes"]
 [ext_resource type="Texture2D" uid="uid://c5lu8iolanyd5" path="res://Watch/over.png" id="8_lcklc"]
 [ext_resource type="Texture2D" uid="uid://xv2gy40fprs7" path="res://Watch/progress.png" id="9_x4w7q"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
-panorama = ExtResource("4_5drde")
-
-[sub_resource type="Sky" id="Sky_864ur"]
-sky_material = SubResource("PanoramaSkyMaterial_5vixs")
-
-[sub_resource type="Environment" id="Environment_xp3qp"]
-background_mode = 2
-sky = SubResource("Sky_864ur")
-ambient_light_source = 3
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o4etc"]
 auto_exposure_enabled = true
@@ -39,7 +28,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xp3qp")
+environment = ExtResource("5_w7l7n")
 camera_attributes = SubResource("CameraAttributesPractical_o4etc")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
