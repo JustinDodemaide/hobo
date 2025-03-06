@@ -167,5 +167,7 @@ func handle_interactable():
 		if hovered_interactable:
 			hovered_interactable = null
 			emit_signal("interactable_unhovered")
-	hovered_interactable = collider
-	emit_signal("interactable_hovered")
+			return
+	if collider is InteractableArea:
+		hovered_interactable = collider
+		emit_signal("interactable_hovered")
