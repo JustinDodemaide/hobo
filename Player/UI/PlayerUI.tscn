@@ -78,6 +78,7 @@ layout_mode = 2
 horizontal_alignment = 1
 
 [node name="InteractablePrompts" type="Label" parent="MarginContainer/ItemHover"]
+visible = false
 layout_mode = 2
 text = "Interact"
 

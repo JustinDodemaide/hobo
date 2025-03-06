@@ -10,4 +10,6 @@ monitoring = false
 script = ExtResource("1_1iu04")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture_filter = 0
 texture = ExtResource("2_hyg32")
