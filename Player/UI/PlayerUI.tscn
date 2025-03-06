@@ -77,6 +77,10 @@ expand_mode = 1
 layout_mode = 2
 horizontal_alignment = 1
 
+[node name="InteractablePrompts" type="Label" parent="MarginContainer/ItemHover"]
+visible = false
+layout_mode = 2
+
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(0, 0, 0, 0)
 layout_mode = 1

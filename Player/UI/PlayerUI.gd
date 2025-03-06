@@ -1,11 +1,10 @@
 extends Control
 
-var player:Player
+@export var player:Player
 @export var health:Control
 @export var item_hover:VBoxContainer
 
 func _ready() -> void:
-	player = get_parent().get_parent()
 	$MarginContainer/VBoxContainer/PlayerHealth.init(player)
 
 func fade_in():
@@ -49,3 +48,11 @@ func _on_player_active_inventory_slot_changed(to:int) -> void:
 		label.text = player.inventory[to].item_name()
 	else:
 		label.text = ""
+
+func _on_player_interactable_hovered() -> void:
+	$MarginContainer/ItemHover/HandIcon.visible = true
+	$MarginContainer/ItemHover/InteractablePrompts.visible = true
+
+func _on_player_interactable_unhovered() -> void:
+	$MarginContainer/ItemHover/HandIcon.visible = false
+	$MarginContainer/ItemHover/InteractablePrompts.visible = false

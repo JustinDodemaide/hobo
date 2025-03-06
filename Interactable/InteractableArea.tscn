@@ -1,9 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfifyb2giwurr"]
+[gd_scene load_steps=3 format=3 uid="uid://dfifyb2giwurr"]
 
 [ext_resource type="Script" uid="uid://hkweregmd7tr" path="res://Interactable/Interactable.gd" id="1_1iu04"]
+[ext_resource type="Texture2D" uid="uid://cuyx85j5dnog2" path="res://salmon_salmon.png" id="2_hyg32"]
 
 [node name="InteractableArea" type="Area3D"]
 collision_layer = 16
 collision_mask = 16
 monitoring = false
 script = ExtResource("1_1iu04")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = ExtResource("2_hyg32")

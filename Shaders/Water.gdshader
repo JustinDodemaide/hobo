@@ -39,7 +39,7 @@ void fragment() {
     float depth_texture = texture(DEPTH_TEXTURE, SCREEN_UV).r * 2.0 - 1.0;
     float depth = PROJECTION_MATRIX[3][2] / (depth_texture + PROJECTION_MATRIX[2][2]);
     float depth_blend = exp((depth+VERTEX.z + depth_offset) * -beers_law);
-    depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);    
+    depth_blend = clamp(1.0 - depth_blend, 0.0, 1.0);
     float depth_blend_power = clamp(pow(depth_blend, 2.5), 0.0, 1.0);
 
     // Color mixing
@@ -50,7 +50,7 @@ void fragment() {
     // Wave normals
     vec2 time = (TIME * wave_direction) * time_scale;
     vec2 time2 = (TIME * wave_direction2) * time_scale;
-    vec3 normal_blend = mix(texture(texture_normal,world_pos.xz + time).rgb, 
+    vec3 normal_blend = mix(texture(texture_normal,world_pos.xz + time).rgb,
                            texture(texture_normal2,world_pos.xz + time2).rgb, 0.5);
 
     // Fresnel

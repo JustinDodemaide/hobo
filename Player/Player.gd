@@ -25,6 +25,7 @@ func _physics_process(delta: float) -> void:
 			JUMP_VELOCITY = 3
 	handle_movement(delta)
 	handle_inventory()
+	handle_interactable()
 	$CanvasLayer/FPS.text = str(Engine.get_frames_per_second())
 
 #region Movement
@@ -96,7 +97,10 @@ func _input(event: InputEvent) -> void:
 			hovered_item.picked_up(self)
 			hovered_item = null
 			hold_item(item)
-		return
+			return
+		if hovered_interactable:
+			hovered_interactable.interact_with(self)
+			return
 	if event.is_action_pressed("F"):
 		drop_item()
 		return
@@ -124,9 +128,9 @@ func handle_inventory():
 		if hovered_item:
 			hovered_item = null
 			emit_signal("item_unhovered")
-		return
-	hovered_item = collider
-	emit_signal("item_hovered")
+	if collider:
+		hovered_item = collider
+		emit_signal("item_hovered")
 
 func hold_item(item:Item) -> void:
 	drop_item()
@@ -154,6 +158,14 @@ func remove_item(item:Item = null) -> void:
 	inventory[inventory_index] = null
 #endregion
 
-func _on_timer_timeout() -> void:
-	return
-	apply_force_from_position(global_position + Vector3(0,-10,0), 2)
+var hovered_interactable:InteractableArea
+signal interactable_hovered
+signal interactable_unhovered
+func handle_interactable():
+	var collider = $Camera3D/InteractableRayCast.get_collider()
+	if collider is not InteractableArea:
+		if hovered_interactable:
+			hovered_interactable = null
+			emit_signal("interactable_unhovered")
+	hovered_interactable = collider
+	emit_signal("interactable_hovered")
