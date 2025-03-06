@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dmsyd4n8k25wk"]
 
-[ext_resource type="Script" uid="uid://b5u2e1rdtyqg2" path="res://Levels/GridTown/GridTown_Gen.gd" id="1_kpbep"]
+[ext_resource type="Script" uid="uid://b5u2e1rdtyqg2" path="res://Levels/GridTown/Gen/GridTown_Gen.gd" id="1_kpbep"]
 [ext_resource type="Texture2D" uid="uid://dkglscdymd86k" path="res://Levels/LevelGen/resurrect-64-8x.png" id="1_rybss"]
 [ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="3_gadwo"]
 
