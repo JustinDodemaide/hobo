@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://c7eq64ya3j7ei"]
+[gd_scene load_steps=9 format=3 uid="uid://c7eq64ya3j7ei"]
 
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="1_2g6we"]
 [ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Levels/GridTown/Environment/GridTown_Env.tres" id="2_0xtca"]
 [ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="3_5qwqp"]
+[ext_resource type="PackedScene" uid="uid://bsakxqip0go25" path="res://Levels/GridTown/Interiors/TestInterior.tscn" id="4_rf4oh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xtca"]
 size = Vector3(100, 1, 100)
@@ -43,3 +44,7 @@ shape = SubResource("BoxShape3D_rf4oh")
 
 [node name="Player" parent="." instance=ExtResource("1_2g6we")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="TestInterior" parent="." instance=ExtResource("4_rf4oh")]
+
+[connection signal="interacted" from="InteractableArea" to="TestInterior" method="_on_interactable_area_interacted"]

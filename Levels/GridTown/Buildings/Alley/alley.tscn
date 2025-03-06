@@ -1,10 +1,9 @@
-[gd_scene load_steps=16 format=4 uid="uid://b1qu0fhfeweho"]
+[gd_scene load_steps=15 format=4 uid="uid://b1qu0fhfeweho"]
 
-[ext_resource type="Script" uid="uid://bva6y6omrpb7w" path="res://Plots/plot.gd" id="1_vh1ps"]
 [ext_resource type="PackedScene" uid="uid://5al04qnt4o0s" path="res://Levels/GridTown/Buildings/Foundation/foundation.tscn" id="2_5ko2n"]
 [ext_resource type="PackedScene" uid="uid://cv26st5p6mcd1" path="res://Levels/GridTown/Buildings/Alley/alley_1.tscn" id="3_7oxjd"]
 [ext_resource type="PackedScene" uid="uid://v5pbubpjk8me" path="res://Levels/GridTown/Buildings/Decor/trash1.glb" id="4_2f8fe"]
-[ext_resource type="Texture2D" path="res://Plots/Buildings/building7_5_front.png" id="5_lbgkf"]
+[ext_resource type="Texture2D" uid="uid://c2skatd2csnyf" path="res://Levels/GridTown/Buildings/Building4/building4_5_front.png" id="5_lbgkf"]
 [ext_resource type="PackedScene" uid="uid://bwjvnhm6vbjos" path="res://ItemSpawn/ItemSpawn.tscn" id="6_1y4mf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1h5vo"]
@@ -208,7 +207,6 @@ size = Vector3(0.4, 0.9, 1)
 
 [node name="StorePlot" type="Node3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-script = ExtResource("1_vh1ps")
 
 [node name="Foundation" parent="." instance=ExtResource("2_5ko2n")]
 

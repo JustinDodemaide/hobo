@@ -13,11 +13,10 @@ const WIDTH:int = 35
 const TILE_TO_METER_RATIO:int = 10
 
 var plots = [
-load("res://Plots/grid town/1.tscn"),
-load("res://Plots/grid town/2.tscn"),
-load("res://Plots/grid town/3.tscn"),
-load("res://Plots/grid town/alley.tscn"),
-load("res://Plots/grid town/store_plot.tscn"),
+load("res://Levels/GridTown/Buildings/Building1/1.tscn"),
+load("res://Levels/GridTown/Buildings/Building2/2.tscn"),
+load("res://Levels/GridTown/Buildings/Building3/3.tscn"),
+load("res://Levels/GridTown/Buildings/Alley/alley.tscn"),
 ]
 
 func generate():

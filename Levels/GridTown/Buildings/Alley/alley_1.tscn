@@ -1,8 +1,8 @@
 [gd_scene load_steps=31 format=4 uid="uid://cv26st5p6mcd1"]
 
-[ext_resource type="Texture2D" path="res://Plots/Buildings/alley1_alley1.png" id="1_4hurl"]
+[ext_resource type="Texture2D" uid="uid://dxpaw4iv81qae" path="res://Levels/GridTown/Buildings/Alley/alley1_alley1.png" id="1_4hurl"]
 [ext_resource type="Script" uid="uid://4an52wp07le2" path="res://Levels/GridTown/Buildings/Alley/alley_1.gd" id="1_bhmt5"]
-[ext_resource type="Texture2D" path="res://Plots/Buildings/alley1_alley1 side.png" id="2_a7w5n"]
+[ext_resource type="Texture2D" uid="uid://0jbjyvaq4xup" path="res://Levels/GridTown/Buildings/Alley/alley1_alley1 side.png" id="2_a7w5n"]
 [ext_resource type="Texture2D" uid="uid://dd3m4redupfs5" path="res://Levels/GridTown/Buildings/Decor/trashcan1_trashcan.png" id="3_ir6nt"]
 [ext_resource type="PackedScene" uid="uid://v5pbubpjk8me" path="res://Levels/GridTown/Buildings/Decor/trash1.glb" id="5_q04vx"]
 [ext_resource type="PackedScene" uid="uid://djldagavwgwws" path="res://Levels/GridTown/Buildings/Decor/box.glb" id="5_ryih7"]
