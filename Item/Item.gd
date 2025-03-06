@@ -33,4 +33,7 @@ func consumed(_by:Player) -> void:
 		Global.scene_handler.state.item_consumed(self)
 		_by.remove_item()
 
+# How many levels until the food spoils
+func lifetime() -> int:
+	return 0
 #endregion
