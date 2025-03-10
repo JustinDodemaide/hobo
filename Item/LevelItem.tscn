@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cs0cgbsr1uy5b"]
 
 [ext_resource type="Script" uid="uid://cd6lwbvi5l5hr" path="res://Item/LevelItem.gd" id="1_g3yrc"]
-[ext_resource type="Texture2D" uid="uid://bee1tgroajdav" path="res://Item/Coffee/Coffee.png" id="2_1hw87"]
+[ext_resource type="Texture2D" uid="uid://bee1tgroajdav" path="res://Item/ResourceCategories/a/Coffee/Coffee.png" id="2_1hw87"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_08nu4"]
 

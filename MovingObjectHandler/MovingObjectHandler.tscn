@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfcsb62rmmpgh"]
 
-[ext_resource type="Script" uid="uid://cq4dsa8svd448" path="res://Item/moving_object_ray_cast.gd" id="1_4cqfm"]
+[ext_resource type="Script" uid="uid://cq4dsa8svd448" path="res://MovingObjectHandler/moving_object_ray_cast.gd" id="1_4cqfm"]
 
 [node name="MovingObjectHandler" type="RayCast3D"]
 collision_mask = 4
