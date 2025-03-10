@@ -14,8 +14,8 @@ func sprite(pos:Vector3) -> void:
 	sprite.position = pos
 	level.add_child(sprite)
 
-func item_from_string(item_name:String) -> Item:
-	return load("res://Item/" + item_name + "/" + item_name + ".gd").new()
+func item_from_path(path:String) -> Item:
+	return load(path).new()
 
 func get_opposite_direction(from:DIRECTION) -> DIRECTION:
 	match from:

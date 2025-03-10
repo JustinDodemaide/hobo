@@ -1,7 +1,7 @@
 extends Item
 
 func item_name() -> String:
-	return "b1"
+	return "d1"
 
 func image_path() -> String:
-	return "res://Item/ResourceCategories/b/1/b1.png"
+	return "res://Item/ResourceCategories/d/1/d1.gd"
