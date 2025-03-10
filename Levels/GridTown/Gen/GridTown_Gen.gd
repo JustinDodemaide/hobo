@@ -75,15 +75,15 @@ func place_structure(tile):
 
 func place_station():
 	var cell = station_tile * TILE_TO_METER_RATIO
-	var station = load("res://Plots/grid town/station.tscn").instantiate()
+	var station = load("res://Levels/GridTown/Buildings/Station/station.tscn").instantiate()
 	station.position = Vector3(cell.x, get_height(station_tile), cell.y)
 	level.add_child(station)
 
 var station_tile
 func tracks():
-	var tracks = level.get_node("Tracks")
-	tracks.global_position.x = WIDTH/2 * TILE_TO_METER_RATIO
-	tracks.global_position.z = LENGTH * TILE_TO_METER_RATIO
+	var track = level.get_node("Tracks")
+	track.global_position.x = WIDTH/2 * TILE_TO_METER_RATIO
+	track.global_position.z = LENGTH * TILE_TO_METER_RATIO
 	station_tile = Vector2i(round(WIDTH/2) + 1, LENGTH - 1)
 	
 	var sprite = Sprite3D.new()
@@ -115,7 +115,7 @@ func tset(which:TileMapLayer,where:Vector2i,what:int):
 func tget(which:TileMapLayer,where:Vector2i) -> int:
 	return which.get_cell_atlas_coords(where).x
 
-func get_height(where:Vector2i):
+func get_height(_where:Vector2i):
 	return 0
 
 func _process(_delta: float) -> void:

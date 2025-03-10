@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://d2ws8rx11hqms"]
 
 [ext_resource type="PackedScene" uid="uid://5al04qnt4o0s" path="res://Levels/GridTown/Buildings/Foundation/foundation.tscn" id="1_6siyg"]
-[ext_resource type="Texture2D" path="res://Levels/GridTown/Buildings/Building1/building3_1.png" id="2_v6kpi"]
+[ext_resource type="Texture2D" uid="uid://cp5iu3fkyew3t" path="res://Levels/GridTown/Buildings/Building1/building1_1.png" id="2_v6kpi"]
 [ext_resource type="PackedScene" uid="uid://bkvyhp1y6b43r" path="res://NPCs/Citizen/Node/CitizenNode.tscn" id="3_i6syy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4pbtp"]
