@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=4 uid="uid://0i2cbdgo1513"]
+
+[ext_resource type="Script" uid="uid://d1trpgjl0gx6s" path="res://Levels/GridTown/Sewer/Sewer.gd" id="1_22p6n"]
+[ext_resource type="Texture2D" uid="uid://fv8ofjv1g36" path="res://Levels/GridTown/Sewer/paths1.png" id="1_ge28y"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mx243"]
+texture = ExtResource("1_ge28y")
+texture_region_size = Vector2i(3, 3)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_moubu"]
+tile_size = Vector2i(3, 3)
+sources/1 = SubResource("TileSetAtlasSource_mx243")
+
+[node name="TileMapLayer" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAACAAMAAQAAAAAAAAADAAQAAQAAAAAAAAAEAAUAAQAAAAAAAAAFAAYAAQAAAAAAAAAGAAcAAQAAAAAAAAAHAAcAAQAAAAAAAAAIAAgAAQAAAAAAAAAJAAgAAQAAAAAAAAAJAAkAAQAAAAAAAAAKAAkAAQAAAAAAAAALAAoAAQAAAAAAAAAMAAsAAQAAAAAAAAANAAwAAQAAAAAAAAAOAA0AAQAAAAAAAAAPAA0AAQAAAAAAAAAQAA4AAQAAAAAAAAARAA4AAQAAAAAAAAARAA8AAQAAAAAAAAASAA8AAQAAAAAAAAASABAAAQAAAAAAAAATABEAAQAAAAAAAAAUABEAAQAAAAAAAAAUABIAAQAAAAAAAAAVABIAAQAAAAAAAAAVABMAAQAAAAAAAAA=")
+tile_set = SubResource("TileSet_moubu")
+script = ExtResource("1_22p6n")
+maze_width = null
+maze_height = null
+wall_tile = null
+floor_tiles = null
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(337, 191)
+zoom = Vector2(1.705, 1.705)
