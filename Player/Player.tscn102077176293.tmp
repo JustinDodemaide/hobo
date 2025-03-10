@@ -9,33 +9,20 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpqv4"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("ui", "inventory_component")]
+[node name="Player" type="CharacterBody3D"]
 collision_layer = 2
 platform_floor_layers = 0
 script = ExtResource("1_26bnj")
-ui = NodePath("CanvasLayer/PlayerUI")
-inventory_component = NodePath("Inventory")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_kpqv4")
 
-[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("player", "crouch_ceiling_detection", "HEAD", "CAMERA", "HEADBOB_ANIMATION", "JUMP_ANIMATION", "CROUCH_ANIMATION", "COLLISION_MESH")]
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("player")]
 script = ExtResource("2_6ysni")
 player = NodePath("..")
-crouch_ceiling_detection = NodePath("../CrouchCeilingDetection")
-base_speed = 5.0
-sprint_speed = 10.0
-mouse_sensitivity = 0.5
-HEAD = NodePath("..")
-CAMERA = NodePath("../Camera3D")
-HEADBOB_ANIMATION = NodePath("../Animations/AnimationPlayer")
-JUMP_ANIMATION = NodePath("../Animations/AnimationPlayer")
-CROUCH_ANIMATION = NodePath("../Animations/AnimationPlayer")
-COLLISION_MESH = NodePath("../CollisionShape3D")
 
-[node name="Health" type="Node" parent="." node_paths=PackedStringArray("player")]
+[node name="Health" type="Node" parent="."]
 script = ExtResource("2_tok1r")
-player = NodePath("..")
 
 [node name="Inventory" type="Node" parent="." node_paths=PackedStringArray("player", "item_cast", "held_item_display")]
 script = ExtResource("2_ddoul")
@@ -84,10 +71,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="CrouchCeilingDetection" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.375192, 0)
-
-[node name="Animations" type="Node" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations"]

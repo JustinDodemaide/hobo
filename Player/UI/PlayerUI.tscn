@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://1xtl1qp8yajl"]
 
-[ext_resource type="PackedScene" uid="uid://d0qa4nkyty6s5" path="res://Player/UI/Health/PlayerHealth.tscn" id="1_1j6n8"]
+[ext_resource type="PackedScene" uid="uid://d0qa4nkyty6s5" path="res://Player/Components/Health/UI/PlayerHealth.tscn" id="1_1j6n8"]
 [ext_resource type="Script" uid="uid://dvuyc2el7gova" path="res://Player/UI/PlayerUI.gd" id="1_n1e2r"]
-[ext_resource type="PackedScene" uid="uid://bdsao1btboyay" path="res://Player/InventoryHandler/Inventory/inventory_slot.tscn" id="3_yosim"]
-[ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/hand.png" id="4_1rftq"]
+[ext_resource type="PackedScene" uid="uid://bdsao1btboyay" path="res://Player/Components/Inventory/UI/inventory_slot.tscn" id="3_yosim"]
+[ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/Components/Inventory/UI/hand.png" id="4_1rftq"]
 
-[node name="PlayerUI" type="Control" node_paths=PackedStringArray("health", "item_hover")]
+[node name="PlayerUI" type="Control" node_paths=PackedStringArray("item_hover", "health")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,8 +13,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n1e2r")
-health = NodePath("MarginContainer/VBoxContainer/PlayerHealth")
 item_hover = NodePath("MarginContainer/ItemHover")
+health = NodePath("MarginContainer/VBoxContainer/PlayerHealth")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

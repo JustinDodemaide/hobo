@@ -1,8 +1,13 @@
 extends Control
 
 @export var player:Player
-@export var health:Control
+@export var health_ui:Control
 @export var item_hover:VBoxContainer
+
+@export_category("Player Components")
+@export var health:Node
+@export var inventory:Node
+@export var interacting:Node
 
 func _ready() -> void:
 	$MarginContainer/VBoxContainer/PlayerHealth.init(player)
@@ -18,41 +23,38 @@ func fade_out(time:float = 10.0):
 	var tween = create_tween()
 	tween.tween_property($ColorRect, "modulate", final_color, time)
 
-func _on_item_hovered() -> void:
+func item_hovered() -> void:
 	item_hover.get_node("HandIcon").visible = true
-	
-	var item = player.hovered_item.item
+	var item = player.inventory_component.hovered_item.item
 	var text:String = "E: Pickup " + item.item_name()
-	#if item.is_consumable():
-	#	text += "\nRightClick: Consume"
 	item_hover.get_node("ItemPrompts").text = text
 
-func _on_item_unhovered() -> void:
+func item_unhovered() -> void:
 	item_hover.get_node("HandIcon").visible = false
 	item_hover.get_node("ItemPrompts").text = ""
 
-func _on_inventory_updated() -> void:
+func inventory_updated() -> void:
 	var ui_slots = $MarginContainer/VBoxContainer/SlotContainer.get_children()
-	for index in player.inventory.size():
-		ui_slots[index].init(player.inventory[index])
+	for index in player.inventory_component.inventory_size:
+		ui_slots[index].init(player.inventory_component.inventory[index])
 
 var previously_active:int
-func _on_player_active_inventory_slot_changed(to:int) -> void:
+func active_inventory_slot_changed(to:int) -> void:
 	var ui_slots = $MarginContainer/VBoxContainer/SlotContainer.get_children()
 	ui_slots[previously_active].deactivate()
 	ui_slots[to].activate()
 	previously_active = to
 	
 	var label = $MarginContainer/VBoxContainer/ActiveItem
-	if player.inventory[to]:
-		label.text = player.inventory[to].item_name()
+	if player.inventory_component.inventory[to]:
+		label.text = player.inventory_component.inventory[to].item_name()
 	else:
 		label.text = ""
 
-func _on_player_interactable_hovered() -> void:
+func interactable_hovered() -> void:
 	$MarginContainer/ItemHover/HandIcon.visible = true
 	$MarginContainer/ItemHover/InteractablePrompts.visible = true
 
-func _on_player_interactable_unhovered() -> void:
+func interactable_unhovered() -> void:
 	$MarginContainer/ItemHover/HandIcon.visible = false
 	$MarginContainer/ItemHover/InteractablePrompts.visible = false
