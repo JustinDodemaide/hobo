@@ -16,6 +16,7 @@ func _input(event: InputEvent) -> void:
 			hovered_item.picked_up(player)
 			hovered_item = null
 			hold_item(item)
+			player.ui.item_unhovered()
 			return
 	if event.is_action_pressed("F"):
 		drop_item()
