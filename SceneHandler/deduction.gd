@@ -1,30 +1,32 @@
 extends State
 
+@export var parent:Node
 var required_sustenance = 1
-var screen
 
 func enter(_previous_state: String, _data := {}) -> void:
-	var total_food:int
-	var info = Global.scene_handler.train_car.get_info()
-	# Also need to check player's inventories
-	if info.players.is_empty():
-		get_parent().lose()
-	for item in info.items:
-		total_food += item.sustenance_value() * info.items[item]
-	if total_food < required_sustenance:
-		get_parent().lose()
-
-	screen = load("res://DeductionScreen/DeductionScreen.tscn").instantiate()
-	add_child(screen)
-	screen.set_text(required_sustenance)
-
-func item_consumed(item:Item) -> void:
-	required_sustenance -= item.sustenance_value()
-	if required_sustenance <= 0:
-		screen.queue_free()
-		transition("Level")
+	parent.distance_to_checkpoint -= 1
+	if parent.distance_to_checkpoint <= 0:
+		checkpoint_reached()
 	else:
-		screen.set_text(required_sustenance)
+		transition("Level")
+
+func new_checkpoint():
+	parent.upcoming_checkpoint = parent.checkpoints.pick_random()
+	parent.distance_to_checkpoint = 3
+	print(parent.upcoming_checkpoint.description)
+
+func checkpoint_reached():
+	var car_manifest = $"../TrainCar".get_manifest()
+	for item in car_manifest.level_items:
+		var category = item.item.category()
+		if category == parent.upcoming_checkpoint.required_resource_category:
+			parent.upcoming_checkpoint.required_resource_category -= item.item.resource_value()
+			item.queue_free()
+			if parent.upcoming_checkpoint.required_resource_category <= 0:
+				new_checkpoint()
+				transition("Level")
+				break
+	parent.lose()
 
 # take resources or give consequences from last sub-challenge, give new sub-challenge
 # decrease checkpoint distance

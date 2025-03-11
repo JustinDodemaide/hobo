@@ -12,3 +12,4 @@ sky_material = SubResource("PanoramaSkyMaterial_5vixs")
 background_mode = 2
 sky = SubResource("Sky_864ur")
 ambient_light_source = 3
+sdfgi_enabled = true

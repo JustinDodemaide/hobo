@@ -11,21 +11,21 @@ func close_door() -> void:
 	var new_pos = Vector3(2,2,2)
 	tween.tween_property($Door, "position", new_pos, 3.0).set_ease(Tween.EASE_OUT)
 
-func get_info():
+func get_manifest():
 	var players:Array[Player] = []
-	var items:Dictionary = {}
+	var level_items:Dictionary = {}
 	#for body in $Area3D.get_overlapping_bodies():
 	for child in get_children():
 		if child is Player:
 			players.append(child)
 		if child is LevelItem:
-			var item = child.item
-			if items.has(item):
-				items[item] += 1
-			items[item] = 1
+			if level_items.has(child):
+				level_items[child] += 1
+				continue
+			level_items[child] = 1
 	var info = {
 		"players":players,
-		"items":items
+		"level_items":level_items
 	}
 	print("\n")
 	for i in get_children():

@@ -11,6 +11,9 @@ func image_path() -> String:
 func category() -> RESOURCE_CATEGORIES:
 	return RESOURCE_CATEGORIES.A
 
+func resource_value() -> int:
+	return 1
+
 func picked_up(_by:Player) -> void:
 	# In case we want the item to do something upon being picked up
 	# YAGNI
@@ -29,9 +32,6 @@ func use_alternate(_user:Player) -> void:
 #region Consumption
 func is_consumable() -> bool:
 	return false
-
-func sustenance_value() -> int:
-	return 0
 
 func consumed(_by:Player) -> void:
 	if Global.scene_handler.state.name == "BetweenStops":
