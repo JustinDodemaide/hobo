@@ -1,6 +1,7 @@
-[gd_resource type="Environment" load_steps=4 format=3 uid="uid://sgni8chhd38k"]
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://sgni8chhd38k"]
 
 [ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="1_vk1t2"]
+[ext_resource type="CompressedTexture3D" uid="uid://cj3r227hsjals" path="res://lut test.png" id="1_ytgcv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("1_vk1t2")
@@ -12,4 +13,5 @@ sky_material = SubResource("PanoramaSkyMaterial_5vixs")
 background_mode = 2
 sky = SubResource("Sky_864ur")
 ambient_light_source = 3
-sdfgi_enabled = true
+adjustment_enabled = true
+adjustment_color_correction = ExtResource("1_ytgcv")
