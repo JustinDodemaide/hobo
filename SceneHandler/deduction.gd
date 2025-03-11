@@ -25,3 +25,8 @@ func item_consumed(item:Item) -> void:
 		transition("Level")
 	else:
 		screen.set_text(required_sustenance)
+
+# take resources or give consequences from last sub-challenge, give new sub-challenge
+# decrease checkpoint distance
+# if at checkpoint, take resources or give consequence (losing i guess), then end
+# game or make next checkpoint

@@ -1,10 +1,15 @@
 class_name Item
 
+enum RESOURCE_CATEGORIES {A, B, C, D, E}
+
 func item_name() -> String:
 	return "Item"
 
 func image_path() -> String:
 	return "res://test_test.png"
+
+func category() -> RESOURCE_CATEGORIES:
+	return RESOURCE_CATEGORIES.A
 
 func picked_up(_by:Player) -> void:
 	# In case we want the item to do something upon being picked up
