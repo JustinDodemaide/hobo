@@ -18,8 +18,7 @@ extends Control
 @export var interaction_component:Node
 
 func _ready() -> void:
-	#SignalBus.new_checkpoint.connect(new_checkpoint)
-	SignalBus.between_stops.connect(between_stops)
+	pass
 	#$MarginContainer/VBoxContainer/PlayerHealth.init(player)
 
 func fade_in():

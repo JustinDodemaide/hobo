@@ -13,16 +13,17 @@ func close_door() -> void:
 
 func get_manifest():
 	var players:Array[Player] = []
-	var level_items:Dictionary = {}
+	var level_items:Array[LevelItem] = []
+	var player_inventory_items:Array[Item] = []
 	#for body in $Area3D.get_overlapping_bodies():
 	for child in get_children():
 		if child is Player:
 			players.append(child)
+			for item in child.inventory_component.inventory:
+				if item != null:
+					player_inventory_items.append(item)
 		if child is LevelItem:
-			if level_items.has(child):
-				level_items[child] += 1
-				continue
-			level_items[child] = 1
+			level_items.append(child)
 	var info = {
 		"players":players,
 		"level_items":level_items

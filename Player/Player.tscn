@@ -71,11 +71,8 @@ collide_with_areas = true
 offset_right = 40.0
 offset_bottom = 23.0
 
-[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player", "health", "inventory", "interacting") instance=ExtResource("5_7gpfq")]
+[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("5_7gpfq")]
 player = NodePath("../..")
-health = NodePath("../../Health")
-inventory = NodePath("../../Inventory")
-interacting = NodePath("../../Interacting")
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 modulate = Color(0, 0, 0, 0)

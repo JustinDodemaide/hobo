@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://1xtl1qp8yajl"]
+[gd_scene load_steps=7 format=3 uid="uid://1xtl1qp8yajl"]
 
 [ext_resource type="PackedScene" uid="uid://d0qa4nkyty6s5" path="res://Player/Components/Health/UI/PlayerHealth.tscn" id="1_1j6n8"]
 [ext_resource type="Script" uid="uid://dvuyc2el7gova" path="res://Player/UI/PlayerUI.gd" id="1_n1e2r"]
+[ext_resource type="Script" uid="uid://cddbsbthwvkom" path="res://Player/UI/checkpoint.gd" id="2_10dcs"]
+[ext_resource type="Script" uid="uid://cxvb53v1l4n8y" path="res://Player/UI/level_goal.gd" id="3_mperr"]
 [ext_resource type="PackedScene" uid="uid://bdsao1btboyay" path="res://Player/Components/Inventory/UI/inventory_slot.tscn" id="3_yosim"]
 [ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/Components/Inventory/UI/hand.png" id="4_1rftq"]
 
@@ -43,9 +45,13 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 text = "placeholder placeholder placeholder"
 horizontal_alignment = 2
+script = ExtResource("2_10dcs")
 
 [node name="LevelGoal" type="Label" parent="MarginContainer/ObjectivePromptContainer"]
 layout_mode = 2
+text = "placeholder placeholder"
+horizontal_alignment = 2
+script = ExtResource("3_mperr")
 
 [node name="CenterBottom" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2

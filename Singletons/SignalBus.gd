@@ -1,6 +1,6 @@
 extends Node
 
-signal new_checkpoint()
-signal between_stops
+signal new_checkpoint_assigned
+signal new_level_challenged_assigned
 
 signal player_entered_train_car(player)
