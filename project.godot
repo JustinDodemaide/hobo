@@ -17,7 +17,8 @@ config/icon="res://salmon_salmon.png"
 
 [autoload]
 
-Global="*res://Global.gd"
+Global="*res://Singletons/Global.gd"
+SignalBus="*res://Singletons/SignalBus.gd"
 
 [display]
 

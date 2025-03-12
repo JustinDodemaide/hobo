@@ -5,6 +5,7 @@ var required_sustenance = 1
 
 func enter(_previous_state: String, _data := {}) -> void:
 	parent.distance_to_checkpoint -= 1
+	SignalBus.emit_signal("between_stops")
 	if parent.distance_to_checkpoint <= 0:
 		checkpoint_reached()
 	else:
@@ -14,6 +15,7 @@ func new_checkpoint():
 	parent.upcoming_checkpoint = parent.checkpoints.pick_random()
 	parent.distance_to_checkpoint = 3
 	print(parent.upcoming_checkpoint.description)
+	SignalBus.emit_signal("new_checkpoint")
 
 func checkpoint_reached():
 	var car_manifest = $"../TrainCar".get_manifest()

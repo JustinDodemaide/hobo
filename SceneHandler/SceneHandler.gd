@@ -22,9 +22,7 @@ class Checkpoint:
 func _ready() -> void:
 	Global.scene_handler = self
 	
-	upcoming_checkpoint = checkpoints.pick_random()
-	distance_to_checkpoint = 1
-	print(upcoming_checkpoint.description)
+	$BetweenStops.new_checkpoint()
 	
 	state = initial_state
 	transition(state.name)
