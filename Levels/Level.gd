@@ -1,6 +1,10 @@
 extends Node3D
 class_name Level
 
+@export var pullup_time:float = 20
+@export var level_time:float = 100
+@export var leave_time:float = 20
+
 @export var ui:CanvasLayer
 @export var timer:Timer
 var car:TrainCar
