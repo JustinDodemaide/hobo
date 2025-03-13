@@ -2,71 +2,126 @@ extends State
 
 @export var parent:Node
 
+var challenge
+var challenge_needs_to_be_completed:bool = true # Always needs to be true but that could change in the future
+var challenge_completed:bool = false
+
+var checkpoint
+var checkpoint_needs_to_be_completed:bool = false
+var checkpoint_completed:bool = false
+
 func enter(_previous_state: String, _data := {}) -> void:
+	# The players have to manually choose which items to give
 	parent.distance_to_checkpoint -= 1
-	SignalBus.emit_signal("between_stops")
-	var info = check_challenge_requirements()
-	if info.was_requirement_met:
-		for item in info.items:
-			item.queue_free()
+	
+	challenge = parent.challenge
+	checkpoint = parent.checkpoint
+	SignalBus.emit_signal("out_of_level")
+	SignalBus.continue_button_pressed.connect(check)
+	
+	if parent.distance_to_checkpoint == 0:
+		checkpoint_needs_to_be_completed = true
+	challenge_needs_to_be_completed = true
+	
+	if challenge_needs_to_be_completed:
+		SignalBus.item_deposited.connect(put_item_toward_challenge)
+	if checkpoint_needs_to_be_completed:
+		SignalBus.item_deposited.connect(put_item_toward_checkpoint)
+
+func put_item_toward_challenge(item):
+	if item.category() != challenge.category:
+		return
+	challenge.required_amount -= item.resource_value()
+	if challenge.required_amount <= 0:
+		challenge_completed = true
+
+func put_item_toward_checkpoint(item):
+	if item.category() != checkpoint.category:
+		return
+	checkpoint.required_amount -= item.resource_value()
+	if checkpoint.required_amount <= 0:
+		checkpoint_completed = true
+
+func check_completion() -> bool:
+	# Check challenge completion if required
+	if challenge_needs_to_be_completed and not challenge_completed:
+		return false
+		
+	# Check checkpoint completion if required
+	if checkpoint_needs_to_be_completed and not checkpoint_completed:
+		return false
+		
+	# If we got here, all required elements are complete
+	return true
+
+func check_items():
+	# Not proud
+	# Doesn't work anyway
+	var has_challenge_items:bool = false
+	var has_checkpoint_items:bool = false
+	for child in $"../TrainCar".get_children():
+		if child is LevelItem:
+			var category = child.item.category()
+			var value = child.item.resource_value()
+			if challenge_needs_to_be_completed:
+				if not challenge_completed:
+					if category == challenge.category:
+						if value >= challenge.required_amount:
+							has_challenge_items = true
+			if checkpoint_needs_to_be_completed:
+				if not checkpoint_completed:
+					if category == checkpoint.category:
+						if value >= checkpoint.required_amount:
+							has_checkpoint_items = true
+		if child is Player:
+			for item in child.inventory_component.inventory:
+				if item != null:
+					var category = item.category()
+					var value = item.resource_value()
+					if challenge_needs_to_be_completed:
+						if not challenge_completed:
+							if category == challenge.category:
+								if value >= challenge.required_amount:
+									has_challenge_items = true
+					if checkpoint_needs_to_be_completed:
+						if not checkpoint_completed:
+							if category == checkpoint.category:
+								if value >= checkpoint.required_amount:
+									has_checkpoint_items = true
+	if has_challenge_items and has_checkpoint_items:
+		return true
+	else:
+		return false
+
+func check():
+	var requirements_met = check_completion()
+	if requirements_met:
+		move_forward()
 	else:
 		parent.lose()
+
+	return
+	var items_available = check_items()
 	
-	if parent.distance_to_checkpoint <= 0:
-		var resource_info = check_checkpoint_requirements()
-		if resource_info.was_requirement_met:
-			for item in resource_info.items:
-				item.queue_free()
-			parent.new_checkpoint()
-			next_level()
-		else:
-			parent.lose()
+	# Still have more items to deposit, wait a bit
+	if items_available and not requirements_met:
+		return
+	# Out of items and requirements not met, lose
+	if not items_available and not requirements_met:
+		parent.lose()
+	# Used last item to meet requirements. Doesn't do anything but phew close call
+	if not items_available and requirements_met:
+		print("Close call!")
 
-func new_checkpoint():
-	parent.new_checkpoint()
-	parent.distance_to_checkpoint = 3
-	print(parent.upcoming_checkpoint.description)
-	SignalBus.emit_signal("new_checkpoint")
-
-func check_challenge_requirements() -> Dictionary:
-	var info = {"was_requirement_met":false,"items":[]}
+func move_forward():
+	parent.new_challenge()
+	if checkpoint_completed:
+		parent.new_checkpoint()
 	
-	# Eventually need to change this to knapsack algo
-	var required_category = parent.current_level_challenge.required_resource_category
-	var car_manifest = $"../TrainCar".get_manifest()
-	for item in car_manifest.level_items:
-		info.items.append(item)
-		var category = item.item.category()
-		if category == required_category:
-			var value = item.item.resource_value()
-			parent.current_level_challenge.required_amount -= value
-			if parent.current_level_challenge.required_amount <= 0:
-				info.was_requirement_met = true
-				break
-	return info
-
-func check_checkpoint_requirements() -> Dictionary:
-	var info = {"was_requirement_met":false,"items":[]}
+	# challenge_needs_to_be_completed = false
+	challenge_completed = false
 	
-	# Eventually need to change this to knapsack algo
-	var required_category = parent.upcoming_checkpoint.required_resource_category
-	var car_manifest = $"../TrainCar".get_manifest()
-	for item in car_manifest.level_items:
-		info.items.append(item)
-		var category = item.item.category()
-		if category == required_category:
-			var value = item.item.resource_value()
-			parent.upcoming_checkpoint.required_amount -= value
-			if parent.upcoming_checkpoint.required_amount <= 0:
-				info.was_requirement_met = true
-				break
-	return info
-
-func next_level():
-	parent.new_level_challenge()
+	checkpoint_needs_to_be_completed = false
+	checkpoint_completed = false
+	
 	transition("Level")
-
-# take resources or give consequences from last sub-challenge, give new sub-challenge
-# decrease checkpoint distance
-# if at checkpoint, take resources or give consequence (losing i guess), then end
-# game or make next checkpoint

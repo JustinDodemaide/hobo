@@ -5,7 +5,7 @@ func open_door() -> void:
 	var tween = create_tween()
 	var new_pos = Vector3(-2,2,-2)
 	tween.tween_property($Door, "position", new_pos, 3.0).set_ease(Tween.EASE_OUT)
-
+	
 func close_door() -> void:
 	var tween = create_tween()
 	var new_pos = Vector3(2,2,2)
@@ -32,6 +32,23 @@ func get_manifest():
 	for i in get_children():
 		print(i.name)
 	return info
+
+func all_items() -> Dictionary:
+	var items = {}
+	for child in get_children():
+		if child is Player:
+			for item in child.inventory_component.inventory:
+				if item != null:
+					if items.has(item):
+						items[item] += 1
+					else:
+						items[item] = 1
+		if child is LevelItem:
+			if items.has(child.item):
+				items[child.item] += 1
+			else:
+				items[child.item] = 1
+	return items
 
 var debounce_delay = []
 func _on_area_3d_body_entered(body: Node3D) -> void:

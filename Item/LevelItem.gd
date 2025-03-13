@@ -1,16 +1,13 @@
 extends RigidBody3D
 class_name LevelItem
 
-@export var item_name:String
+@export var _item_file:Script
 var item:Item = null
 @onready var sprite:Sprite3D = $Sprite3D
 
 func _ready() -> void:
-	if not item_name.is_empty():
-		init_from_name(item_name)
-
-func init_from_name(_name:String) -> void:
-	init(load("res://Item/" + _name + "/" + _name + ".gd").new())
+	if _item_file:
+		init(_item_file.new())
 
 func init(_item:Item) -> void:
 	item = _item

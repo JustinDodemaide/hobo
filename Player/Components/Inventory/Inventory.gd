@@ -37,6 +37,7 @@ func _input(event: InputEvent) -> void:
 		inventory_index = 2
 	if event.is_action_pressed("4"):
 		inventory_index = 3
+	player.held_item = inventory[inventory_index]
 	player.ui.active_inventory_slot_changed(inventory_index)
 
 func _process(delta: float) -> void:

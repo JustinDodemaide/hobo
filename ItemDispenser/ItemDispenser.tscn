@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://uawwbqn7ejs5"]
+
+[ext_resource type="Texture2D" uid="uid://duu2y0mevj7ql" path="res://test_test.png" id="1_4p2i1"]
+[ext_resource type="Script" uid="uid://b1qei768xv5rf" path="res://ItemDispenser/ItemDispenser.gd" id="1_k7wsq"]
+[ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="2_k7wsq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2604h"]
+albedo_texture = ExtResource("1_4p2i1")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_70and"]
+material = SubResource("StandardMaterial3D_2604h")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_k7yk4"]
+points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+
+[node name="ItemDispenser" type="Node3D"]
+script = ExtResource("1_k7wsq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_70and")
+
+[node name="InteractableArea" parent="." instance=ExtResource("2_k7wsq")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableArea"]
+shape = SubResource("ConvexPolygonShape3D_k7yk4")
+
+[connection signal="interacted" from="InteractableArea" to="." method="_on_interactable_area_interacted"]

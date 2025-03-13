@@ -34,9 +34,7 @@ func is_consumable() -> bool:
 	return false
 
 func consumed(_by:Player) -> void:
-	if Global.scene_handler.state.name == "BetweenStops":
-		Global.scene_handler.state.item_consumed(self)
-		_by.remove_item()
+	pass
 
 # How many levels until the food spoils
 func lifetime() -> int:

@@ -11,8 +11,11 @@ func _input(event: InputEvent) -> void:
 			hovered_interactable.interact_with(player)
 			return
 
+func _process(delta: float) -> void:
+	handle_interactable()
+
 func handle_interactable():
-	var collider = $Camera3D/InteractableRayCast.get_collider()
+	var collider = interactable_cast.get_collider()
 	if collider is not InteractableArea:
 		if hovered_interactable:
 			hovered_interactable = null

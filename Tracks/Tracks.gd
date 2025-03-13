@@ -1,9 +1,9 @@
 extends Node3D
 
 var checking_players:bool
-const START_TIME:float = 20
-const STOP_TIME:float = 100
-const LEAVING_TIME:float = 20
+const START_TIME:float = 10#20
+const STOP_TIME:float = 1#100
+const LEAVING_TIME:float = 10#20
 
 func start():
 	Global.scene_handler.train_car.global_position = $Train.get_node("CarMarker").global_position

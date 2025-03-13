@@ -4,7 +4,7 @@ func item_name() -> String:
 	return "Bread"
 
 func image_path() -> String:
-	return "res://Item/ResourceCategories/a/Bread/Bread.gd"
+	return "res://Item/ResourceCategories/a/Bread/Bread.png"
 
 func sustenance_value() -> int:
 	return 1

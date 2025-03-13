@@ -4,7 +4,7 @@ extends Control
 
 @export_category("UI Elements")
 @export var checkpoint_label:Label
-@export var level_goal_label:Label
+@export var challenge_label:Label
 @export var health_scene:Control
 @export var held_item_label:Label
 @export var inventory_slots:HBoxContainer
@@ -18,7 +18,14 @@ extends Control
 @export var interaction_component:Node
 
 func _ready() -> void:
-	pass
+	SignalBus.new_level_challenged_assigned.connect(challenge_label.update)
+	SignalBus.item_deposited.connect(challenge_label.update)
+	SignalBus.new_level_challenged_assigned.connect(challenge_label.update)
+	
+	SignalBus.new_checkpoint_assigned.connect(checkpoint_label.update)
+	SignalBus.item_deposited.connect(checkpoint_label.update)
+	SignalBus.out_of_level.connect(checkpoint_label.update)
+	SignalBus.new_checkpoint_assigned.connect(challenge_label.update)
 	#$MarginContainer/VBoxContainer/PlayerHealth.init(player)
 
 func fade_in():
@@ -66,14 +73,3 @@ func interactable_hovered() -> void:
 func interactable_unhovered() -> void:
 	hand_icon.visible = false
 	interaction_prompt.visible = false
-
-func between_stops() -> void:
-	_update_checkpoint_text()
-
-func _update_checkpoint_text() -> void:
-	var text = Global.scene_handler.upcoming_checkpoint.description
-	text += ": " + str(Global.scene_handler.distance_to_checkpoint) + " stops left"
-	checkpoint_label.text = text
-	
-func _update_level_goal_text() -> void:
-	pass

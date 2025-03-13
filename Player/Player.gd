@@ -3,6 +3,7 @@ class_name Player
 
 @export var ui:Control
 @export var inventory_component:Node
+var held_item:Item = null
 
 func _ready() -> void:
 	Global.players.append(self)
