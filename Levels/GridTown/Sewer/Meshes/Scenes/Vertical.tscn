@@ -1,0 +1,127 @@
+[gd_scene load_steps=11 format=4 uid="uid://d4cfqab6mprfq"]
+
+[ext_resource type="Script" uid="uid://bvpxtwq4phifv" path="res://Levels/GridTown/Sewer/Meshes/Scenes/SewerPiece.gd" id="1_ert2u"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fqgi"]
+load_path = "res://.godot/imported/tunnel_wall.png-cff012120aa7305fbb12ad6ebba3819c.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_val6l"]
+resource_name = "wall"
+transparency = 4
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_2fqgi")
+roughness = 0.75
+texture_filter = 2
+texture_repeat = false
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4dxvy"]
+load_path = "res://.godot/imported/tunnel_wall_mossy.png-27fc869d53c146a9258f0f991a654fd1.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5yno"]
+resource_name = "wall_mossy.001"
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_4dxvy")
+roughness = 0.75
+texture_filter = 2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j0xlb"]
+load_path = "res://.godot/imported/tunnel_wall_mossy_grade.png-3aeea2c74cd7987761e2fc5af060b63f.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35twk"]
+resource_name = "wall_mossy_grade"
+cull_mode = 2
+albedo_texture = SubResource("CompressedTexture2D_j0xlb")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_84104"]
+_surfaces = [{
+"aabb": AABB(-3, -0.00176778, -1.20208, 6, 2.40593, 2.40593),
+"format": 34896613377,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"name": "wall",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAwABq1AAD//zAAs0oAAP//MAAatQAAAAAwALNKAAD//+RKzv8AAAAAS7XO/wAAAADkSs7/AAD//0u1zv8AAP//AADCtAAAAAA8S///AAAAAAAAwrQAAP//PEv+/wAA//9sSwAAAAAAADAAPEsAAAAAbEsAAAAA//8wADxLAAD/////krQAAAAAwrTO/wAAAAD+/5K0AAD//8K0zv8AAA==")
+}, {
+"aabb": AABB(-3, 1.69706, -1.20208, 6, 0.707107, 0.707107),
+"format": 34896613377,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"name": "wall_mossy.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("////////AAAAAAAAAAAAAAAA///+/wAA//8AAAAAAAA=")
+}, {
+"aabb": AABB(-3, 0.700314, -1.20031, 6, 1.70208, 1.70208),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"name": "wall_mossy_grade",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//9mlgAAAAAAAAAAAAAAAAAAZpYAAAAA//8AAAAAAAAAAP//mGkAAP///////wAA/////5hpAAAAAP////8AAA==")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_5uywq"]
+resource_name = "tunnel_wall_005"
+_surfaces = [{
+"aabb": AABB(-3, -0.00176778, -1.20208, 6, 2.40593, 2.40593),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAAAA/////wAA/////wAAAAAAAP////8AAP////8AAAAAAAD/////AAD/////AAAAAAAA/////wAA/////wAAAAA="),
+"format": 34896613399,
+"index_count": 30,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUACAAJAAoACAALAAkADAANAA4ADAAPAA0AEAARABIAEAATABEA"),
+"material": SubResource("StandardMaterial3D_val6l"),
+"name": "wall",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 20,
+"vertex_data": PackedByteArray("AAAwABq1/7///zAAs0r/v///MAAatf+/AAAwALNK/7///+RKzv///wAAS7XO////AADkSs7//////0u1zv//////AADCtP//AAA8S/////8AAAAAwrT/////PEv+//////9sSwAA//8AADAAPEv//wAAbEsAAP////8wADxL////////krT//wAAwrTO////AAD+/5K0/////8K0zv///////3////9/////f////3//f////3////9/////f////3+B2v9/gdr/f4Ha/3+B2v9/fKX/f3yl/398pf9/fKX/f3yl/398pf9/fKX/f3yl")
+}, {
+"aabb": AABB(-3, 1.69706, -1.20208, 6, 0.707107, 0.707107),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAA=="),
+"format": 34896613399,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAAADAAEA"),
+"material": SubResource("StandardMaterial3D_h5yno"),
+"name": "wall_mossy.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("//////////8AAAAAAAD//wAA///+//////8AAAAA////f4Ja/3+CWv9/glr/f4Ja")
+}, {
+"aabb": AABB(-3, 0.700314, -1.20031, 6, 1.70208, 1.70208),
+"attribute_data": PackedByteArray("AAD/////AAD/////AAAAAAAA/////wAA/////wAAAAA="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAABAAIAAAADAAEABAAFAAYABAAHAAUA"),
+"material": SubResource("StandardMaterial3D_35twk"),
+"name": "wall_mossy_grade",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("//9mlgAA//8AAAAAAAD//wAAZpYAAP////8AAAAA//8AAP//mGn/v/////////+//////5hp/78AAP//////v/9//3//f/9//3//f/9//38AAP9/AAD/fwAA/38AAP9/")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_84104")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fm7fv"]
+data = PackedVector3Array(-3, 0, 0.5, 3, 0, -0.5, 3, 0, 0.5, -3, 0, 0.5, -3, 0, -0.5, 3, 0, -0.5, 3, 0.7021, 1.2021, -3, 1.7021, 1.2021, -3, 0.7021, 1.2021, 3, 0.7021, 1.2021, 3, 1.7021, 1.2021, -3, 1.7021, 1.2021, 3, -0.0018, 0.4967, -3, 0.7053, 1.2038, -3, -0.0018, 0.4967, 3, -0.0018, 0.4967, 3, 0.7053, 1.2038, -3, 0.7053, 1.2038, 3, 0.7071, -1.2021, -3, 0, -0.495, -3, 0.7071, -1.2021, 3, 0.7071, -1.2021, 3, 0, -0.495, -3, 0, -0.495, 3, 2.4042, 0.495, -3, 1.6971, 1.2021, -3, 2.4041, 0.495, 3, 2.4042, 0.495, 3, 1.6971, 1.2021, -3, 1.6971, 1.2021, 3, 2.4042, -0.495, -3, 1.6971, -1.2021, -3, 2.4042, -0.495, 3, 2.4042, -0.495, 3, 1.6971, -1.2021, -3, 1.6971, -1.2021, 3, 1.7003, -1.2003, -3, 0.7003, -1.2003, -3, 1.7003, -1.2003, 3, 1.7003, -1.2003, 3, 0.7003, -1.2003, -3, 0.7003, -1.2003, -3, 2.4024, -0.4982, 3, 2.4024, 0.5018, 3, 2.4024, -0.4982, -3, 2.4024, -0.4982, -3, 2.4024, 0.5018, 3, 2.4024, 0.5018)
+
+[node name="Vertical" type="Node3D"]
+script = ExtResource("1_ert2u")
+
+[node name="tunnel" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 1.41421, 1.41421, 0, -1.41421, 1.41421, 2, 0, 0, -1.7, 4.1, 0)
+mesh = SubResource("ArrayMesh_5uywq")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tunnel"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tunnel/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_fm7fv")

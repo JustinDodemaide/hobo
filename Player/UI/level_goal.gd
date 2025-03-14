@@ -8,4 +8,5 @@ func update(_item=null):
 	text = Global.scene_handler.challenge.description()
 
 func _process(delta: float) -> void:
+	return
 	text = Global.scene_handler.challenge.description()

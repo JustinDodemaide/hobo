@@ -27,11 +27,11 @@ void fragment() {
 	// divide light source pos by screen size for correct UV positioning
 	vec2 light_pos = light_source_pos / (1.0 / SCREEN_PIXEL_SIZE);
 	vec2 dir = UV - light_pos;
-	
+
 	// light source uv coords with correct aspect ratio for drawing circle
 	vec2 ratio = vec2(SCREEN_PIXEL_SIZE.x / SCREEN_PIXEL_SIZE.y, 1.0);
 	vec2 dir2 = UV / ratio - light_pos / ratio;
-	
+
 	float light_rays = 0.0;
 	vec2 uv2;
 	float scale, l;
@@ -42,14 +42,14 @@ void fragment() {
 		l *= smoothstep(1.0, 0.999 - light_source_feather, dot(uv2, uv2) * 4.0);
 		light_rays += l / float(SAMPLE_COUNT);
 	}
-	
+
 	// multiply with noise to reduce color banding
 	float n = 1.0 - random(UV) * noise_strength * smoothstep(0.999 - 1.25, 1.0, dot(dir2, dir2) * 2.0);
 	light_rays *= n;
-	
-	// multiply with camera/light dot to fade based on view angle 
+
+	// multiply with camera/light dot to fade based on view angle
 	float d = clamp(-dot(normalize(camera_dir), normalize(light_source_dir)), 0.0, 1.0);
 	light_rays *= d;
-	
+
 	COLOR.rgb = vec3(light_rays * ray_intensity) * texture(light_color, UV).rgb;
 }
