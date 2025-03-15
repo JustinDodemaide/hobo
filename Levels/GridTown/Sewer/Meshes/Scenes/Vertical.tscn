@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://d4cfqab6mprfq"]
+[gd_scene load_steps=12 format=4 uid="uid://d4cfqab6mprfq"]
 
 [ext_resource type="Script" uid="uid://bvpxtwq4phifv" path="res://Levels/GridTown/Sewer/Meshes/Scenes/SewerPiece.gd" id="1_ert2u"]
+[ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="2_4dxvy"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2fqgi"]
 load_path = "res://.godot/imported/tunnel_wall.png-cff012120aa7305fbb12ad6ebba3819c.s3tc.ctex"
@@ -113,8 +114,9 @@ shadow_mesh = SubResource("ArrayMesh_84104")
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fm7fv"]
 data = PackedVector3Array(-3, 0, 0.5, 3, 0, -0.5, 3, 0, 0.5, -3, 0, 0.5, -3, 0, -0.5, 3, 0, -0.5, 3, 0.7021, 1.2021, -3, 1.7021, 1.2021, -3, 0.7021, 1.2021, 3, 0.7021, 1.2021, 3, 1.7021, 1.2021, -3, 1.7021, 1.2021, 3, -0.0018, 0.4967, -3, 0.7053, 1.2038, -3, -0.0018, 0.4967, 3, -0.0018, 0.4967, 3, 0.7053, 1.2038, -3, 0.7053, 1.2038, 3, 0.7071, -1.2021, -3, 0, -0.495, -3, 0.7071, -1.2021, 3, 0.7071, -1.2021, 3, 0, -0.495, -3, 0, -0.495, 3, 2.4042, 0.495, -3, 1.6971, 1.2021, -3, 2.4041, 0.495, 3, 2.4042, 0.495, 3, 1.6971, 1.2021, -3, 1.6971, 1.2021, 3, 2.4042, -0.495, -3, 1.6971, -1.2021, -3, 2.4042, -0.495, 3, 2.4042, -0.495, 3, 1.6971, -1.2021, -3, 1.6971, -1.2021, 3, 1.7003, -1.2003, -3, 0.7003, -1.2003, -3, 1.7003, -1.2003, 3, 1.7003, -1.2003, 3, 0.7003, -1.2003, -3, 0.7003, -1.2003, -3, 2.4024, -0.4982, 3, 2.4024, 0.5018, 3, 2.4024, -0.4982, -3, 2.4024, -0.4982, -3, 2.4024, 0.5018, 3, 2.4024, 0.5018)
 
-[node name="Vertical" type="Node3D"]
+[node name="Vertical" type="Node3D" node_paths=PackedStringArray("spawn")]
 script = ExtResource("1_ert2u")
+spawn = NodePath("Marker3D")
 
 [node name="tunnel" type="MeshInstance3D" parent="."]
 transform = Transform3D(0, 1.41421, 1.41421, 0, -1.41421, 1.41421, 2, 0, 0, -1.7, 4.1, 0)
@@ -125,3 +127,9 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="tunnel/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_fm7fv")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Water" parent="." instance=ExtResource("2_4dxvy")]
+transform = Transform3D(12, 0, 0, 0, 1, 0, 0, 0, 12, 0, 0.101, 0)

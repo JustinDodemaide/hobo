@@ -88,3 +88,6 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.3
 [node name="Animations" type="Node" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Animations"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.682353, 0.431373, 1)

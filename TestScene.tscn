@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://c0sisgu0mfksg" path="res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn" id="6_tq6uv"]
 [ext_resource type="PackedScene" uid="uid://d4cfqab6mprfq" path="res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical.tscn" id="7_12c36"]
 [ext_resource type="PackedScene" uid="uid://2aee7pln4evp" path="res://Levels/GridTown/Sewer/Meshes/Scenes/Cross.tscn" id="8_5uqhi"]
-[ext_resource type="PackedScene" uid="uid://cyvsxlswokbrr" path="res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn" id="9_b3dy1"]
+[ext_resource type="PackedScene" uid="uid://cyvsxlswokbrr" path="res://Levels/GridTown/Sewer/Meshes/Scenes/neCorner.tscn" id="9_b3dy1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xtca"]
 size = Vector3(100, 1, 100)
