@@ -10,8 +10,6 @@ func _ready() -> void:
 
 var fast_mode:bool = true
 func _physics_process(delta: float) -> void:
-	print(global_position)
-	
 	if Input.is_action_pressed("Esc"):
 		get_tree().quit()
 	#if Input.is_action_pressed("equal"):

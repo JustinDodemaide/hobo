@@ -19,10 +19,13 @@ load("res://Levels/GridTown/Buildings/Building3/3.tscn"),
 load("res://Levels/GridTown/Buildings/Alley/alley.tscn"),
 ]
 
+@export var sewer_scene:Node3D
+
 func generate():
 	tracks()
 	terrain_mesh()
 	building_layout()
+	sewer()
 
 func building_layout():
 	# first value is left right
@@ -117,6 +120,36 @@ func tget(which:TileMapLayer,where:Vector2i) -> int:
 
 func get_height(_where:Vector2i):
 	return 0
+
+func sewer():
+	const NUM_ENTRANCES:int = 6
+	var sewer_map = sewer_scene.tilemap
+	var street_tiles = buildings.get_used_cells_by_id(0, Vector2i(STREET,0))
+	var sewer_tunnels = sewer_map.get_used_cells_by_id(0, Vector2i(2,0))
+	# get_used_cells_by_id(source_id: int = -1, atlas_coords: Vector2i = Vector2i(-1, -1), alternative_tile: int = -1) const
+	var overlapping_tiles = Global.intersection(street_tiles,sewer_tunnels)
+	var entrance_scene = load("res://Levels/GridTown/Sewer/Doors/Entrance/SewerEntrance.tscn")
+	var exit_scene = load("res://Levels/GridTown/Sewer/Doors/Exit/SewerExit.tscn")
+	for i in NUM_ENTRANCES:
+		var tile = overlapping_tiles.pick_random()
+		overlapping_tiles.erase(tile)
+		
+		var street_2d = buildings.map_to_local(tile)
+		var street_pos = Vector3(street_2d.x + (TILE_TO_METER_RATIO / 2), 0, street_2d.y + (TILE_TO_METER_RATIO / 2))
+		var sewer_2d = sewer_map.map_to_local(tile)
+		var sewer_pos = Vector3(sewer_2d.x + (TILE_TO_METER_RATIO / 2), sewer_scene.global_position.y + 1, sewer_2d.y + (TILE_TO_METER_RATIO / 2))
+		
+		var entrance = entrance_scene.instantiate()
+		var exit = exit_scene.instantiate()
+		
+		entrance.global_position = street_pos
+		exit.global_position = sewer_pos
+		
+		entrance.exit = exit
+		exit.entrance = entrance
+		
+		level.add_child(entrance)
+		level.add_child(exit)
 
 func _process(_delta: float) -> void:
 	var player = Global.players.front()
