@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://0i2cbdgo1513"]
+[gd_scene load_steps=5 format=3 uid="uid://0i2cbdgo1513"]
 
 [ext_resource type="Script" uid="uid://d1trpgjl0gx6s" path="res://Levels/GridTown/Sewer/Sewer.gd" id="1_22p6n"]
 [ext_resource type="Texture2D" uid="uid://fv8ofjv1g36" path="res://Levels/GridTown/Sewer/paths1.png" id="1_ge28y"]
-[ext_resource type="Texture2D" uid="uid://c55pxy8oos4ej" path="res://icon.svg" id="3_mx243"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ge28y"]
 texture = ExtResource("1_ge28y")
@@ -27,16 +26,10 @@ texture_region_size = Vector2i(3, 3)
 tile_size = Vector2i(3, 3)
 sources/0 = SubResource("TileSetAtlasSource_ge28y")
 
-[node name="TileMapLayer" type="TileMapLayer"]
+[node name="Sewer" type="Node3D" node_paths=PackedStringArray("tilemap")]
+script = ExtResource("1_22p6n")
+tilemap = NodePath("TileMapLayer")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
 texture_filter = 1
 tile_set = SubResource("TileSet_moubu")
-script = ExtResource("1_22p6n")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(116, 66)
-zoom = Vector2(5, 5)
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("3_mx243")

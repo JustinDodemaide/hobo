@@ -1,4 +1,6 @@
-extends TileMapLayer
+extends Node3D
+
+@export var tilemap:TileMapLayer
 
 @export var maze_width := 31  # Must be odd
 @export var maze_height := 31
@@ -43,20 +45,20 @@ var player
 func _ready() -> void:
 	generate_maze()
 	identify_tunnel_types()
-	place_3d_meshes()  # New function call
+	place_3d_meshes()
 	
 	player = load("res://Player/Player.tscn").instantiate()
-	get_node("MazeGeometry").add_child(player)
-	player.global_position = get_node("MazeGeometry").get_children().pick_random().spawn.global_position
+	add_child(player)
+	player.global_position = get_children().pick_random().spawn.global_position
 
 func generate_maze() -> void:
 	for x in maze_width:
 		for y in maze_height:
-			set_cell(Vector2i(x, y), 0, wall_tile)
+			tilemap.set_cell(Vector2i(x, y), 0, wall_tile)
 	
 	var stack: Array[Vector2i] = []
 	var start_pos := Vector2i(1, 1)
-	set_cell(start_pos, 0, floor_tiles["vertical"])
+	tilemap.set_cell(start_pos, 0, floor_tiles["vertical"])
 	stack.push_back(start_pos)
 	
 	var directions := [
@@ -76,10 +78,10 @@ func generate_maze() -> void:
 			if next.y < 1 or next.y >= maze_height - 1:
 				continue
 			
-			if get_cell_atlas_coords(next) == wall_tile:
+			if tilemap.get_cell_atlas_coords(next) == wall_tile:
 				var between = current + (dir / 2)
-				set_cell(between, 0, floor_tiles["vertical"])
-				set_cell(next, 0, floor_tiles["vertical"])
+				tilemap.set_cell(between, 0, floor_tiles["vertical"])
+				tilemap.set_cell(next, 0, floor_tiles["vertical"])
 				stack.push_back(current)
 				stack.push_back(next)
 				found = true
@@ -92,13 +94,18 @@ func identify_tunnel_types() -> void:
 	for x in maze_width:
 		for y in maze_height:
 			var pos := Vector2i(x, y)
-			if get_cell_atlas_coords(pos) == wall_tile:
+			if tilemap.get_cell_atlas_coords(pos) == wall_tile:
 				continue
 			
 			var connections := get_connections(pos)
-			set_cell(pos, 0, determine_tile_type(connections))
+			tilemap.set_cell(pos, 0, determine_tile_type(connections))
 
 func get_connections(pos: Vector2i) -> Dictionary:
+	# Standard 2D tilemap grid:
+	# +Y is down (south)
+	# -Y is up (north)
+	# +X is right (east)
+	# -X is left (west)
 	return {
 		north = is_floor(pos + Vector2i(0, -1)),
 		east = is_floor(pos + Vector2i(1, 0)),
@@ -107,8 +114,9 @@ func get_connections(pos: Vector2i) -> Dictionary:
 	}
 
 func is_floor(pos: Vector2i) -> bool:
-	return get_cell_atlas_coords(pos) != wall_tile
+	return tilemap.get_cell_atlas_coords(pos) != wall_tile
 
+# This function remains the same, since tile typing logic is consistent
 func determine_tile_type(conn: Dictionary) -> Vector2i:
 	var count := int(conn.north) + int(conn.east) + int(conn.south) + int(conn.west)
 	
@@ -140,11 +148,6 @@ func determine_tile_type(conn: Dictionary) -> Vector2i:
 
 # New function to place 3D meshes
 func place_3d_meshes() -> void:
-	# Create a parent node for organization
-	var mesh_parent = Node3D.new()
-	mesh_parent.name = "MazeGeometry"
-	add_child(mesh_parent)
-	
 	# Create a reverse mapping from tile coords to type strings
 	var coords_to_type = {}
 	for type_name in floor_tiles:
@@ -154,7 +157,7 @@ func place_3d_meshes() -> void:
 	for x in maze_width:
 		for y in maze_height:
 			var pos := Vector2i(x, y)
-			var atlas_coords = get_cell_atlas_coords(pos)
+			var atlas_coords = tilemap.get_cell_atlas_coords(pos)
 			
 			# Skip walls
 			if atlas_coords == wall_tile:
@@ -175,22 +178,20 @@ func place_3d_meshes() -> void:
 			var mesh_instance = mesh_scene.instantiate()
 			
 			# Position the mesh in 3D space
-			# Using x,z for horizontal position (y is up in 3D)
-			mesh_instance.position = Vector3(x, 0, y)  * 12
+			# When converting from 2D to 3D:
+			# 2D X → 3D X (east-west)
+			# 2D Y → 3D Z (north-south), where positive Z is north
+			mesh_instance.position = Vector3(x, 0, y) * 12
 			
-			# Call the orient function on the mesh, passing the tile type
+			# Call the orient function on the mesh, passing the tile type string
+			# In this system, a "t_junction_n" has an opening to the north (positive Z)
+			
+			# Call the orient function on the mesh, passing the tile type string
 			mesh_instance.orient(tile_type)
 			
-			# Add the mesh to our parent node
-			mesh_parent.add_child(mesh_instance)
-			
-			var water = load("res://Shaders/WaterPlane.tscn").instantiate()
-			#water.scale = Vector3(100,1,100)
-			mesh_parent.add_child(water)
-
-func _process(delta: float) -> void:
-	if player == null:
-		return
-	#$Sprite2D.position = local_to_map(Vector2(player.position.x, player.position.z))
-	$Sprite2D.position.x = player.position.x / 12
-	$Sprite2D.position.y = player.position.z / 12
+			# Add the mesh to our scene
+			add_child(mesh_instance)
+	
+	# Add water plane
+	var water = load("res://Shaders/WaterPlane.tscn").instantiate()
+	add_child(water)

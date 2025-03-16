@@ -19,19 +19,26 @@ class_name SewerPiece
 	#"dead_end_s": Vector2i(14, 0),
 	#"dead_end_w": Vector2i(15, 0)
 
+# NORTH IS POSITIVE X
+var direction
 func orient(s:String):
+	if has_node("Label3D"):
+		$Label3D.text = s
+	
 	match s:
 		"horizontal":rotation_degrees = Vector3(0,90,0)
 		
-		"t_junction_e":rotation_degrees = Vector3(0,-90,0)
-		"t_junction_s":rotation_degrees = Vector3(0,180,0)
-		"t_junction_w":rotation_degrees = Vector3(0,90,0)
+		"t_junction_n":rotation_degrees = Vector3(0,-90,0)
+		"t_junction_e":rotation_degrees = Vector3(0,180,0)
+		"t_junction_s":rotation_degrees = Vector3(0,90,0)
+		"t_junction_w":rotation_degrees = Vector3(0,0,0)
 		
 		"corner_ne":rotation_degrees = Vector3(0,-90 + 180,0)
 		"corner_es":rotation_degrees = Vector3(0,180 + 180,0)
 		"corner_sw":rotation_degrees = Vector3(0,90 + 180,0)
+		"corner_wn":rotation_degrees = Vector3(0,0 + 180,0)
 		
-		#"dead_end_n":rotation_degrees = Vector3()
-		"dead_end_e":rotation_degrees = Vector3(0,-90,0)
-		"dead_end_w":rotation_degrees = Vector3(0,90,0)
-		"dead_end_s":rotation_degrees = Vector3(0,-180,0)
+		"dead_end_n":rotation_degrees = Vector3(0,-180 + 180,0)
+		"dead_end_e":rotation_degrees = Vector3(0,90 + 180,0)
+		"dead_end_s":rotation_degrees = Vector3(0,-90 + 180,0)
+		"dead_end_w":rotation_degrees = Vector3(0,90 + 180,0)

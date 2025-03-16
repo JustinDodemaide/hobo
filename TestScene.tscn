@@ -1,14 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c7eq64ya3j7ei"]
+[gd_scene load_steps=7 format=3 uid="uid://c7eq64ya3j7ei"]
 
 [ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Levels/GridTown/Environment/GridTown_Env.tres" id="1_sreuk"]
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="2_tq6uv"]
-[ext_resource type="PackedScene" uid="uid://cs0cgbsr1uy5b" path="res://Item/LevelItem.tscn" id="3_12c36"]
-[ext_resource type="Script" uid="uid://c3f8qsy3wmj8t" path="res://Item/ResourceCategories/a/Bread/Bread.gd" id="4_5uqhi"]
-[ext_resource type="Texture2D" uid="uid://duu2y0mevj7ql" path="res://test_test.png" id="5_b3dy1"]
 [ext_resource type="PackedScene" uid="uid://c0sisgu0mfksg" path="res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn" id="6_tq6uv"]
-[ext_resource type="PackedScene" uid="uid://d4cfqab6mprfq" path="res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical.tscn" id="7_12c36"]
-[ext_resource type="PackedScene" uid="uid://2aee7pln4evp" path="res://Levels/GridTown/Sewer/Meshes/Scenes/Cross.tscn" id="8_5uqhi"]
-[ext_resource type="PackedScene" uid="uid://cyvsxlswokbrr" path="res://Levels/GridTown/Sewer/Meshes/Scenes/neCorner.tscn" id="9_b3dy1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xtca"]
 size = Vector3(100, 1, 100)
@@ -18,11 +12,6 @@ albedo_color = Color(0.537011, 0.537011, 0.537011, 1)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_rf4oh"]
 data = PackedVector3Array(-50, 0.5, 50, 50, 0.5, 50, -50, -0.5, 50, 50, 0.5, 50, 50, -0.5, 50, -50, -0.5, 50, 50, 0.5, -50, -50, 0.5, -50, 50, -0.5, -50, -50, 0.5, -50, -50, -0.5, -50, 50, -0.5, -50, 50, 0.5, 50, 50, 0.5, -50, 50, -0.5, 50, 50, 0.5, -50, 50, -0.5, -50, 50, -0.5, 50, -50, 0.5, -50, -50, 0.5, 50, -50, -0.5, -50, -50, 0.5, 50, -50, -0.5, 50, -50, -0.5, -50, 50, 0.5, 50, -50, 0.5, 50, 50, 0.5, -50, -50, 0.5, 50, -50, 0.5, -50, 50, 0.5, -50, -50, -0.5, 50, 50, -0.5, 50, -50, -0.5, -50, 50, -0.5, 50, 50, -0.5, -50, -50, -0.5, -50)
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_sreuk"]
-top_radius = 4.0
-bottom_radius = 4.0
-height = 12.0
 
 [node name="TestScene" type="Node3D"]
 
@@ -47,26 +36,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="Player" parent="." instance=ExtResource("2_tq6uv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
-[node name="LevelItem" parent="." instance=ExtResource("3_12c36")]
-_item_file = ExtResource("4_5uqhi")
-
-[node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
-texture_filter = 0
-texture = ExtResource("5_b3dy1")
-
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 3.5, 0)
-visible = false
-mesh = SubResource("CylinderMesh_sreuk")
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 1, 0)
+billboard = 1
+text = "NORTH"
 
 [node name="Junction" parent="." instance=ExtResource("6_tq6uv")]
-
-[node name="Vertical" parent="." instance=ExtResource("7_12c36")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
-
-[node name="Cross" parent="." instance=ExtResource("8_5uqhi")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
-
-[node name="Corner" parent="." instance=ExtResource("9_b3dy1")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, -12)
