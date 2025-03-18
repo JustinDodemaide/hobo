@@ -27,6 +27,7 @@ tile_size = Vector2i(3, 3)
 sources/0 = SubResource("TileSetAtlasSource_ge28y")
 
 [node name="Sewer" type="Node3D" node_paths=PackedStringArray("tilemap")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 script = ExtResource("1_22p6n")
 tilemap = NodePath("TileMapLayer")
 

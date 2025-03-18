@@ -42,3 +42,8 @@ func orient(s:String):
 		"dead_end_e":rotation_degrees = Vector3(0,90 + 180,0)
 		"dead_end_s":rotation_degrees = Vector3(0,-90 + 180,0)
 		"dead_end_w":rotation_degrees = Vector3(0,90 + 180,0)
+
+func _ready() -> void:
+	if has_node("SewerExit"):
+		#Global.level.get_node("LevelGen").sewer_entrances.pick_random().connect_exit($SewerExit)
+		Global.level.get_node("LevelGen").sewer_exits.append($SewerExit)

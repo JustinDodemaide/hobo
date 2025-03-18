@@ -20,6 +20,9 @@ load("res://Levels/GridTown/Buildings/Alley/alley.tscn"),
 ]
 
 @export var sewer_scene:Node3D
+var num_sewer_connections = 6
+var sewer_entrances = []
+var sewer_exits = []
 
 func generate():
 	tracks()
@@ -122,6 +125,17 @@ func get_height(_where:Vector2i):
 	return 0
 
 func sewer():
+	level.add_child(load("res://Levels/GridTown/Sewer/Sewer.tscn").instantiate())
+	sewer_exits.shuffle()
+	sewer_entrances.shuffle()
+	for i in num_sewer_connections:
+		sewer_entrances[i].connect_exit(sewer_exits[i])
+	for i in range(num_sewer_connections, sewer_entrances.size()):
+		sewer_entrances[i].queue_free()
+	for i in range(num_sewer_connections, sewer_exits.size()):
+		sewer_exits[i].queue_free()
+
+	return
 	const NUM_ENTRANCES:int = 6
 	var sewer_map = sewer_scene.tilemap
 	var street_tiles = buildings.get_used_cells_by_id(0, Vector2i(STREET,0))

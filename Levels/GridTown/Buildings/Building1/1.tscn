@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=4 uid="uid://d2ws8rx11hqms"]
+[gd_scene load_steps=14 format=4 uid="uid://d2ws8rx11hqms"]
 
 [ext_resource type="PackedScene" uid="uid://5al04qnt4o0s" path="res://Levels/GridTown/Buildings/Foundation/foundation.tscn" id="1_6siyg"]
+[ext_resource type="Script" uid="uid://dhtyy6t26s54o" path="res://Levels/GridTown/Buildings/Building1/1.gd" id="1_i6syy"]
 [ext_resource type="Texture2D" uid="uid://cp5iu3fkyew3t" path="res://Levels/GridTown/Buildings/Building1/building1_1.png" id="2_v6kpi"]
 [ext_resource type="PackedScene" uid="uid://bkvyhp1y6b43r" path="res://NPCs/Citizen/Node/CitizenNode.tscn" id="3_i6syy"]
+[ext_resource type="PackedScene" uid="uid://ds5hjcdctnxdl" path="res://Levels/GridTown/Sewer/Doors/Entrance/SewerEntrance.tscn" id="5_kfs88"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_4pbtp"]
 size = Vector3(10, 12, 10)
@@ -170,6 +172,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_amkp0")
 
 [node name="building2" type="Node3D"]
+script = ExtResource("1_i6syy")
 
 [node name="Foundation" parent="." instance=ExtResource("1_6siyg")]
 
@@ -188,3 +191,6 @@ skeleton = NodePath("")
 
 [node name="CitizenNode" parent="." instance=ExtResource("3_i6syy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.02209, 1.11067, 2.38419e-07)
+
+[node name="SewerEntrance" parent="." instance=ExtResource("5_kfs88")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)

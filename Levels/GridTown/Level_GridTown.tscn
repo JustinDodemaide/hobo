@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://7ryuaso11stc"]
+[gd_scene load_steps=10 format=3 uid="uid://7ryuaso11stc"]
 
 [ext_resource type="Script" uid="uid://bhsf2p6rmbbww" path="res://Levels/GridTown/Level_GridTown.gd" id="1_v3144"]
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Levels/LevelGen/LevelGen.tscn" id="2_gvxhc"]
 [ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Tracks/Tracks.tscn" id="3_w8n7n"]
-[ext_resource type="PackedScene" uid="uid://0i2cbdgo1513" path="res://Levels/GridTown/Sewer/Sewer.tscn" id="4_w7l7n"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="5_kfcjh"]
 [ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Levels/GridTown/Environment/GridTown_Env.tres" id="5_w7l7n"]
 [ext_resource type="Texture2D" uid="uid://cgoo0guwakivh" path="res://Watch/under.png" id="7_exxes"]
@@ -20,14 +19,10 @@ script = ExtResource("1_v3144")
 ui = NodePath("CanvasLayer")
 timer = NodePath("Timer")
 
-[node name="LevelGen" parent="." node_paths=PackedStringArray("sewer_scene") instance=ExtResource("2_gvxhc")]
-sewer_scene = NodePath("../Sewer")
+[node name="LevelGen" parent="." instance=ExtResource("2_gvxhc")]
 
 [node name="Tracks" parent="." instance=ExtResource("3_w8n7n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Sewer" parent="." instance=ExtResource("4_w7l7n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("5_w7l7n")
