@@ -23,21 +23,22 @@ extends Node3D
 	"dead_end_w": Vector2i(15, 0)
 }
 var meshes = {
-	"vertical": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical.tscn"),
-	"horizontal": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical.tscn"),
-	"corner_ne": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn"),
-	"corner_es": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn"),
-	"corner_sw": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn"),
-	"corner_wn": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn"),
-	"t_junction_n": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn"),
-	"t_junction_e": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn"),
-	"t_junction_s": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn"),
-	"t_junction_w": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn"),
-	"cross": load("res://Levels/GridTown/Sewer/Meshes/Scenes/Cross.tscn"),
-	"dead_end_n": load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn"),
-	"dead_end_e": load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn"),
-	"dead_end_s": load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn"),
-	"dead_end_w": load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")
+	"vertical": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical.tscn"),
+				load("res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical_Room.tscn")],
+	"horizontal": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical.tscn")],
+	"corner_ne": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
+	"corner_es": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
+	"corner_sw": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
+	"corner_wn": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
+	"t_junction_n": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
+	"t_junction_e": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
+	"t_junction_s": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
+	"t_junction_w": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
+	"cross": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Cross.tscn")],
+	"dead_end_n": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
+	"dead_end_e": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
+	"dead_end_s": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
+	"dead_end_w": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")]
 }
 
 var player
@@ -174,7 +175,7 @@ func place_3d_meshes() -> void:
 				continue
 			
 			# Instantiate the mesh
-			var mesh_scene = meshes[tile_type]
+			var mesh_scene = meshes[tile_type].pick_random()
 			var mesh_instance = mesh_scene.instantiate()
 			
 			# Position the mesh in 3D space

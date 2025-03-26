@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d028ag0x460wm"
-path="res://.godot/imported/junction.glb-b9dc2ccc890ba4587ad276546c0276c1.scn"
+uid="uid://ckmvh3m4j052q"
+path="res://.godot/imported/vertical_room.glb-5cfa7041f020efa5bfbfca4dad2e1363.scn"
 
 [deps]
 
-source_file="res://Levels/GridTown/Sewer/Meshes/Junction/junction.glb"
-dest_files=["res://.godot/imported/junction.glb-b9dc2ccc890ba4587ad276546c0276c1.scn"]
+source_file="res://Levels/GridTown/Sewer/Meshes/Vertical_Room/vertical_room.glb"
+dest_files=["res://.godot/imported/vertical_room.glb-5cfa7041f020efa5bfbfca4dad2e1363.scn"]
 
 [params]
 

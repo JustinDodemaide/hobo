@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du81vm2oi2qni"
-path.s3tc="res://.godot/imported/junction_wall_3.png-3eeba5ffa9877c75cb93734b0219afa1.s3tc.ctex"
+uid="uid://b5fxdfekfdc65"
+path.s3tc="res://.godot/imported/vertical_room_wall_mossy_grade.png-2e0652501c2975a03a0a89967bf78912.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "d4a29d530a0cf44e8e8d6e4881888a6f"
+"md5": "f30a83718f0b4c5348d97d2b4169e6e8"
 }
 
 [deps]
 
-source_file="res://Levels/GridTown/Sewer/Meshes/Junction/junction_wall_3.png"
-dest_files=["res://.godot/imported/junction_wall_3.png-3eeba5ffa9877c75cb93734b0219afa1.s3tc.ctex"]
+source_file="res://Levels/GridTown/Sewer/Meshes/Vertical_Room/vertical_room_wall_mossy_grade.png"
+dest_files=["res://.godot/imported/vertical_room_wall_mossy_grade.png-2e0652501c2975a03a0a89967bf78912.s3tc.ctex"]
 
 [params]
 
