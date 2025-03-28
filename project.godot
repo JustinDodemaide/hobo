@@ -13,7 +13,7 @@ config_version=5
 config/name="Hobo"
 run/main_scene="res://SceneHandler/SceneHandler.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://salmon_salmon.png"
+config/icon="res://Salmon/salmon_salmon.png"
 
 [autoload]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy8mume5iaxoj"]
 
 [ext_resource type="Script" uid="uid://uvho5qwye13d" path="res://ResourceDeposits/ResourceDeposit.gd" id="1_u8md0"]
-[ext_resource type="PackedScene" uid="uid://b1foujsfrbjtx" path="res://salmon.glb" id="2_pje8y"]
+[ext_resource type="PackedScene" uid="uid://b1foujsfrbjtx" path="res://Salmon/salmon.glb" id="2_pje8y"]
 [ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="3_0ja4y"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_tkuot"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b32d3i07l2fej"]
 
-[ext_resource type="Script" uid="uid://bdwcnpseo4b1m" path="res://AI/Sensor/sensor.gd" id="1_mypeg"]
+[ext_resource type="Script" uid="uid://bdwcnpseo4b1m" path="res://NPCs/AI/Sensor/sensor.gd" id="1_mypeg"]
 
 [node name="Sensors" type="Node3D"]
 script = ExtResource("1_mypeg")

@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuyx85j5dnog2"
-path.s3tc="res://.godot/imported/salmon_salmon.png-ab8a7bd05743cd695e739d54cd88e424.s3tc.ctex"
+uid="uid://dcg10l14vnmte"
+path.bptc="res://.godot/imported/rosendal_plains_2_4k.hdr-54c5209e32b101fa8c7bb37580e1b33f.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "1a65cdbf03f020ba2c2eed0a22e3502a"
-}
 
 [deps]
 
-source_file="res://salmon_salmon.png"
-dest_files=["res://.godot/imported/salmon_salmon.png-ab8a7bd05743cd695e739d54cd88e424.s3tc.ctex"]
+source_file="res://Levels/GridTown/Environment/rosendal_plains_2_4k.hdr"
+dest_files=["res://.godot/imported/rosendal_plains_2_4k.hdr-54c5209e32b101fa8c7bb37580e1b33f.bptc.ctex"]
 
 [params]
 

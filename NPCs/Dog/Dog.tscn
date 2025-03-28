@@ -1,8 +1,8 @@
 [gd_scene load_steps=32 format=3 uid="uid://c7c8dvikiai4i"]
 
 [ext_resource type="Script" uid="uid://dmlm6lmgho4g" path="res://NPCs/Dog/dog.gd" id="1_e3m4t"]
-[ext_resource type="PackedScene" uid="uid://b32d3i07l2fej" path="res://AI/Sensor/sensor.tscn" id="2_peirs"]
-[ext_resource type="Script" uid="uid://bibihc6i6md4n" path="res://AI/States/wandering.gd" id="2_xyayd"]
+[ext_resource type="PackedScene" uid="uid://b32d3i07l2fej" path="res://NPCs/AI/Sensor/sensor.tscn" id="2_peirs"]
+[ext_resource type="Script" uid="uid://bibihc6i6md4n" path="res://NPCs/AI/States/wandering.gd" id="2_xyayd"]
 [ext_resource type="Script" uid="uid://05wcxygour50" path="res://NPCs/Dog/alert.gd" id="4_0vece"]
 [ext_resource type="Texture2D" uid="uid://ml6ps5fve0wu" path="res://NPCs/Dog/Image/Sprite-0002.png" id="4_uyrir"]
 [ext_resource type="Texture2D" uid="uid://wnxrr1t1csuh" path="res://NPCs/Dog/Image/Sprite-0004.png" id="5_g75cm"]

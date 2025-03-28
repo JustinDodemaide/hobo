@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yybjftljm7lv"
-path.s3tc="res://.godot/imported/tracks_long_gravel_sides.png-825677bcc19c7e1373b60c20b0887242.s3tc.ctex"
+uid="uid://cibv3oaxfb00m"
+path.s3tc="res://.godot/imported/tracks_long_gravel.png-c6d1b9fd4e5fd42bd52b6fccfd2efe4d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "c7d6f37633d6d851e1d0790868d0aaad"
+"md5": "35611818d21e80a9ed918aa1453710c5"
 }
 
 [deps]
 
-source_file="res://Tracks/tracks_long_gravel_sides.png"
-dest_files=["res://.godot/imported/tracks_long_gravel_sides.png-825677bcc19c7e1373b60c20b0887242.s3tc.ctex"]
+source_file="res://Train/Tracks/tracks_long_gravel.png"
+dest_files=["res://.godot/imported/tracks_long_gravel.png-c6d1b9fd4e5fd42bd52b6fccfd2efe4d.s3tc.ctex"]
 
 [params]
 

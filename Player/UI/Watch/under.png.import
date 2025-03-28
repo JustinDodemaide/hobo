@@ -2,19 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b58f4kucw1bx4"
-path="res://.godot/imported/tracks_long_track.png-7818881d7baeb803afaf7bdcd3dc4deb.ctex"
+uid="uid://cgoo0guwakivh"
+path="res://.godot/imported/under.png-b29cb90266721be9bc8b02981b99040b.ctex"
 metadata={
 "vram_texture": false
-}
-generator_parameters={
-"md5": "0bd4cdc00b2852ec74022493bbf09e82"
 }
 
 [deps]
 
-source_file="res://Tracks/tracks_long_track.png"
-dest_files=["res://.godot/imported/tracks_long_track.png-7818881d7baeb803afaf7bdcd3dc4deb.ctex"]
+source_file="res://Player/UI/Watch/under.png"
+dest_files=["res://.godot/imported/under.png-b29cb90266721be9bc8b02981b99040b.ctex"]
 
 [params]
 
@@ -24,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -34,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

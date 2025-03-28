@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bhsf2p6rmbbww" path="res://Levels/GridTown/Level_GridTown.gd" id="1_v3144"]
 [ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Levels/LevelGen/LevelGen.tscn" id="2_gvxhc"]
-[ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Tracks/Tracks.tscn" id="3_w8n7n"]
+[ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Train/Tracks/Tracks.tscn" id="3_w8n7n"]
 [ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="5_kfcjh"]
 [ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Levels/GridTown/Environment/GridTown_Env.tres" id="5_w7l7n"]
-[ext_resource type="Texture2D" uid="uid://cgoo0guwakivh" path="res://Watch/under.png" id="7_exxes"]
-[ext_resource type="Texture2D" uid="uid://c5lu8iolanyd5" path="res://Watch/over.png" id="8_lcklc"]
-[ext_resource type="Texture2D" uid="uid://xv2gy40fprs7" path="res://Watch/progress.png" id="9_x4w7q"]
+[ext_resource type="Texture2D" uid="uid://cgoo0guwakivh" path="res://Player/UI/Watch/under.png" id="7_exxes"]
+[ext_resource type="Texture2D" uid="uid://c5lu8iolanyd5" path="res://Player/UI/Watch/over.png" id="8_lcklc"]
+[ext_resource type="Texture2D" uid="uid://xv2gy40fprs7" path="res://Player/UI/Watch/progress.png" id="9_x4w7q"]
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o4etc"]
 auto_exposure_enabled = true

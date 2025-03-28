@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://yybjftljm7lv"
+path.s3tc="res://.godot/imported/tracks_long_gravel_sides.png-37a33d72a939987c66d9d679ffdd5c95.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "c7d6f37633d6d851e1d0790868d0aaad"
+}
+
+[deps]
+
+source_file="res://Train/Tracks/tracks_long_gravel_sides.png"
+dest_files=["res://.godot/imported/tracks_long_gravel_sides.png-37a33d72a939987c66d9d679ffdd5c95.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

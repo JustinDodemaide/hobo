@@ -1,7 +1,7 @@
 [gd_resource type="Environment" load_steps=5 format=3 uid="uid://sgni8chhd38k"]
 
-[ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://rosendal_plains_2_4k.hdr" id="1_vk1t2"]
-[ext_resource type="CompressedTexture3D" uid="uid://cj3r227hsjals" path="res://lut test.png" id="1_ytgcv"]
+[ext_resource type="Texture2D" uid="uid://dcg10l14vnmte" path="res://Levels/GridTown/Environment/rosendal_plains_2_4k.hdr" id="1_vk1t2"]
+[ext_resource type="CompressedTexture3D" uid="uid://cj3r227hsjals" path="res://Levels/GridTown/Environment/lut test.png" id="1_ytgcv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
 panorama = ExtResource("1_vk1t2")

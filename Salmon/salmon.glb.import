@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cs7huranb42aw"
-path="res://.godot/imported/tracks.glb-781d20b3db881164ca5b32e293de76ea.scn"
+uid="uid://b1foujsfrbjtx"
+path="res://.godot/imported/salmon.glb-5d78a92c9dd2fd7d4824f7aa0b781987.scn"
 
 [deps]
 
-source_file="res://Tracks/tracks.glb"
-dest_files=["res://.godot/imported/tracks.glb-781d20b3db881164ca5b32e293de76ea.scn"]
+source_file="res://Salmon/salmon.glb"
+dest_files=["res://.godot/imported/salmon.glb-5d78a92c9dd2fd7d4824f7aa0b781987.scn"]
 
 [params]
 

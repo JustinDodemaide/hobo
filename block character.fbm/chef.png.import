@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcg10l14vnmte"
-path.bptc="res://.godot/imported/rosendal_plains_2_4k.hdr-b5e49180541441d0f92e3115c55a1878.bptc.ctex"
+uid="uid://ddj15r618xu00"
+path.s3tc="res://.godot/imported/chef.png-aa6601856bb8c0cd7f27e35fa1003794.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://rosendal_plains_2_4k.hdr"
-dest_files=["res://.godot/imported/rosendal_plains_2_4k.hdr-b5e49180541441d0f92e3115c55a1878.bptc.ctex"]
+source_file="res://block character.fbm/chef.png"
+dest_files=["res://.godot/imported/chef.png-aa6601856bb8c0cd7f27e35fa1003794.s3tc.ctex"]
 
 [params]
 
