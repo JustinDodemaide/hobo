@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddj15r618xu00"
-path.s3tc="res://.godot/imported/chef.png-aa6601856bb8c0cd7f27e35fa1003794.s3tc.ctex"
+uid="uid://dd4d5kwo0o0qk"
+path.s3tc="res://.godot/imported/chef.png-5a86c22bbf75609bb7b5874ae59bf958.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://block character.fbm/chef.png"
-dest_files=["res://.godot/imported/chef.png-aa6601856bb8c0cd7f27e35fa1003794.s3tc.ctex"]
+source_file="res://HumanCharacterModels/CharacterTextures/chef.png"
+dest_files=["res://.godot/imported/chef.png-5a86c22bbf75609bb7b5874ae59bf958.s3tc.ctex"]
 
 [params]
 
