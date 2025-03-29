@@ -1,15 +1,19 @@
 extends Node3D
 
+signal jumped
 @export var animation_player:AnimationPlayer
-enum ANIMATION{IDLE,WALK,JUMP}
-var moving
+var modifier:String
 
-func play_animation(animation:ANIMATION) -> void:
+
+func play_animation(animation:String) -> void:
 	match animation:
-		ANIMATION.IDLE:animation_player.play("human/idle")
-		ANIMATION.WALK:animation_player.play("human/walk")
-		ANIMATION.JUMP:animation_player.play("human/jump")
+		"idle":animation_player.play("human/idle")
+		"walk":animation_player.play("human/walk")
+		"walk_backwards":animation_player.play_backwards("human/walk")
+		"strafe_left":animation_player.play("human/strafe left")
+		"strafe_right":animation_player.play("human/strafe right")
+		"jump":animation_player.play("human/jump")
 
-func _process(delta: float) -> void:
-	if moving:
-		animation_player.speed_scale = $"../Movement".current_speed * 0.25
+
+func jump():
+	emit_signal("jumped")

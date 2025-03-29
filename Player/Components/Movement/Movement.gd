@@ -235,7 +235,7 @@ func handle_movement(delta, input_dir):
 	if state == "normal" and current_speed > 0:
 		model.moving = true
 		model.play_animation(model.ANIMATION.WALK)
-	if state == "normal" and current_speed <= 0:
+	if state == "normal" and current_speed <=0:
 		model.moving = false
 		model.play_animation(model.ANIMATION.IDLE)
 
