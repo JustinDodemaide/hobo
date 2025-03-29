@@ -50,7 +50,11 @@ func _ready() -> void:
 	
 	player = load("res://Player/Player.tscn").instantiate()
 	add_child(player)
-	player.global_position = get_children().pick_random().spawn.global_position
+	
+	var spawn = get_children().pick_random().spawn
+	while spawn == null:
+		spawn = get_children().pick_random().spawn
+	player.global_position = spawn.global_position
 
 func generate_maze() -> void:
 	for x in maze_width:

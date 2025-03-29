@@ -42,14 +42,10 @@ extends Node
 @export var HEAD : Node3D
 ## A reference to the camera for use in the character script.
 @export var CAMERA : Camera3D
-## A reference to the headbob animation for use in the character script.
-@export var HEADBOB_ANIMATION : AnimationPlayer
-## A reference to the jump animation for use in the character script.
-@export var JUMP_ANIMATION : AnimationPlayer
-## A reference to the crouch animation for use in the character script.
-@export var CROUCH_ANIMATION : AnimationPlayer
 ## A reference to the the player's collision shape for use in the character script.
 @export var COLLISION_MESH : CollisionShape3D
+
+@export var model:Node3D
 
 #endregion
 
@@ -190,9 +186,6 @@ func _physics_process(delta): # Most things happen here.
 	if dynamic_fov: # This may be changed to an AnimationPlayer
 		update_camera_fov()
 
-	if view_bobbing:
-		play_headbob_animation(input_dir)
-
 	if jump_animation:
 		play_jump_animation()
 
@@ -209,12 +202,12 @@ func handle_jumping():
 		if continuous_jumping: # Hold down the jump button
 			if Input.is_action_pressed(controls.JUMP) and player.is_on_floor() and !low_ceiling:
 				if jump_animation:
-					JUMP_ANIMATION.play("jump", 0.25)
+					play_jump_animation()
 				player.velocity.y += jump_velocity # Adding instead of setting so jumping on slopes works properly
 		else:
 			if Input.is_action_just_pressed(controls.JUMP) and player.is_on_floor() and !low_ceiling:
 				if jump_animation:
-					JUMP_ANIMATION.play("jump", 0.25)
+					play_jump_animation()
 				player.velocity.y += jump_velocity
 
 
@@ -238,7 +231,13 @@ func handle_movement(delta, input_dir):
 		else:
 			player.velocity.x = direction.x * speed
 			player.velocity.z = direction.z * speed
-
+	
+	if state == "normal" and current_speed > 0:
+		model.moving = true
+		model.play_animation(model.ANIMATION.WALK)
+	if state == "normal" and current_speed <= 0:
+		model.moving = false
+		model.play_animation(model.ANIMATION.IDLE)
 
 func handle_head_rotation():
 	if invert_camera_x_axis:
@@ -346,7 +345,8 @@ func enter_normal_state():
 	#print("entering normal state")
 	var prev_state = state
 	if prev_state == "crouching":
-		CROUCH_ANIMATION.play_backwards("crouch")
+		pass
+		#CROUCH_ANIMATION.play_backwards("crouch")
 	state = "normal"
 	speed = base_speed
 
@@ -354,13 +354,14 @@ func enter_crouch_state():
 	#print("entering crouch state")
 	state = "crouching"
 	speed = crouch_speed
-	CROUCH_ANIMATION.play("crouch")
+	#CROUCH_ANIMATION.play("crouch")
 
 func enter_sprint_state():
 	#print("entering sprint state")
 	var prev_state = state
 	if prev_state == "crouching":
-		CROUCH_ANIMATION.play_backwards("crouch")
+		pass
+		#CROUCH_ANIMATION.play_backwards("crouch")
 	state = "sprinting"
 	speed = sprint_speed
 
@@ -373,37 +374,12 @@ func initialize_animations():
 	# If you want to change the default head height, change these animations.
 	#HEADBOB_ANIMATION.play("RESET")
 	#JUMP_ANIMATION.play("RESET")
+	#JUMP_ANIMATION = $"../CharacterModel".
 	#CROUCH_ANIMATION.play("RESET")
 	pass
 
-func play_headbob_animation(moving):
-	if moving and player.is_on_floor():
-		var use_headbob_animation : String
-		match state:
-			"normal","crouching":
-				use_headbob_animation = "walk"
-			"sprinting":
-				use_headbob_animation = "sprint"
-
-		var was_playing : bool = false
-		if HEADBOB_ANIMATION.current_animation == use_headbob_animation:
-			was_playing = true
-
-		HEADBOB_ANIMATION.play(use_headbob_animation, 0.25)
-		HEADBOB_ANIMATION.speed_scale = (current_speed / base_speed) * 1.75
-		if !was_playing:
-			HEADBOB_ANIMATION.seek(float(randi() % 2)) # Randomize the initial headbob direction
-			# Let me explain that piece of code because it looks like it does the opposite of what it actually does.
-			# The headbob animation has two starting positions. One is at 0 and the other is at 1.
-			# randi() % 2 returns either 0 or 1, and so the animation randomly starts at one of the starting positions.
-			# This code is extremely performant but it makes no sense.
-
-	else:
-		if HEADBOB_ANIMATION.current_animation == "sprint" or HEADBOB_ANIMATION.current_animation == "walk":
-			HEADBOB_ANIMATION.speed_scale = 1
-			HEADBOB_ANIMATION.play("RESET", 1)
-
 func play_jump_animation():
+	model.moving = false
 	if !was_on_floor and player.is_on_floor(): # The player just landed
 		var facing_direction : Vector3 = CAMERA.get_global_transform().basis.x
 		var facing_direction_2D : Vector2 = Vector2(facing_direction.x, facing_direction.z).normalized()
@@ -412,12 +388,7 @@ func play_jump_animation():
 		# Compares velocity direction against the camera direction (via dot product) to determine which landing animation to play.
 		var side_landed : int = round(velocity_2D.dot(facing_direction_2D))
 
-		if side_landed > 0:
-			JUMP_ANIMATION.play("land_right", 0.25)
-		elif side_landed < 0:
-			JUMP_ANIMATION.play("land_left", 0.25)
-		else:
-			JUMP_ANIMATION.play("land_center", 0.25)
+		model.play_animation(model.ANIMATION.JUMP)
 
 #endregion
 

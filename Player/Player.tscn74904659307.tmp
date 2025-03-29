@@ -1,0 +1,114 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccd2kgud4w32e"]
+
+[ext_resource type="Script" uid="uid://bvvwhl8nhlldu" path="res://Player/Player.gd" id="1_26bnj"]
+[ext_resource type="Script" uid="uid://cjnd3dgyfgxoe" path="res://Player/Components/Movement/Movement.gd" id="2_6ysni"]
+[ext_resource type="Script" uid="uid://b4pj7bm4dv16m" path="res://Player/Components/Inventory/Inventory.gd" id="2_ddoul"]
+[ext_resource type="Script" uid="uid://klqlsfdbohb3" path="res://Player/Components/Health/Health.gd" id="2_tok1r"]
+[ext_resource type="PackedScene" uid="uid://1xtl1qp8yajl" path="res://Player/UI/PlayerUI.tscn" id="5_7gpfq"]
+[ext_resource type="Script" uid="uid://dtel1yhftdoh7" path="res://Player/Components/Interacting/Interacting.gd" id="5_vlldt"]
+[ext_resource type="PackedScene" uid="uid://fagovtom55vn" path="res://HumanCharacterModels/CharacterModel.tscn" id="6_vlldt"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpqv4"]
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("ui", "inventory_component")]
+collision_layer = 2
+platform_floor_layers = 0
+script = ExtResource("1_26bnj")
+ui = NodePath("CanvasLayer/PlayerUI")
+inventory_component = NodePath("Inventory")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_kpqv4")
+
+[node name="Movement" type="Node" parent="." node_paths=PackedStringArray("player", "crouch_ceiling_detection", "HEAD", "CAMERA", "COLLISION_MESH")]
+script = ExtResource("2_6ysni")
+base_speed = 5.0
+sprint_speed = 10.0
+crouch_speed = null
+acceleration = null
+jump_velocity = null
+mouse_sensitivity = 0.5
+invert_camera_x_axis = null
+invert_camera_y_axis = null
+immobile = null
+controls = null
+controller_support = null
+controller_controls = null
+look_sensitivity = null
+jumping_enabled = null
+in_air_momentum = null
+motion_smoothing = null
+sprint_enabled = null
+sprint_mode = null
+crouch_enabled = null
+crouch_mode = null
+dynamic_fov = null
+continuous_jumping = null
+view_bobbing = null
+jump_animation = null
+pausing_enabled = null
+gravity_enabled = null
+dynamic_gravity = null
+player = NodePath("..")
+crouch_ceiling_detection = NodePath("../CrouchCeilingDetection")
+HEAD = NodePath("..")
+CAMERA = NodePath("../Camera3D")
+COLLISION_MESH = NodePath("../CollisionShape3D")
+
+[node name="Health" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("2_tok1r")
+player = NodePath("..")
+
+[node name="Inventory" type="Node" parent="." node_paths=PackedStringArray("player", "item_cast", "held_item_display")]
+script = ExtResource("2_ddoul")
+player = NodePath("..")
+item_cast = NodePath("../Camera3D/ItemRayCast")
+held_item_display = NodePath("../Camera3D/HeldItem")
+
+[node name="Interacting" type="Node" parent="." node_paths=PackedStringArray("player", "interactable_cast")]
+script = ExtResource("5_vlldt")
+player = NodePath("..")
+interactable_cast = NodePath("../Camera3D/InteractableRayCast")
+
+[node name="CharacterModel" parent="." instance=ExtResource("6_vlldt")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -2, 0)
+collision_mask = 4
+collide_with_areas = true
+
+[node name="InteractableRayCast" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -2, 0)
+collision_mask = 16
+collide_with_areas = true
+
+[node name="HeldItem" type="Sprite3D" parent="Camera3D"]
+transform = Transform3D(0.00530408, 0, -0.00847743, 0, 0.01, 0, 0.00847743, 0, 0.00530408, 0.427708, -0.143193, -1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FPS" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="PlayerUI" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("5_7gpfq")]
+player = NodePath("../..")
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CrouchCeilingDetection" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.375192, 0)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.682353, 0.431373, 1)
