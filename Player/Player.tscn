@@ -402,9 +402,10 @@ transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0.3
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 light_color = Color(1, 0.682353, 0.431373, 1)
+light_energy = 0.0
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.61565, 2.59245)
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0.952393, 2.59245)
 script = ExtResource("10_roy6y")
 
 [node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]
@@ -433,7 +434,7 @@ libraries = {
 &"human": SubResource("AnimationLibrary_87k6f")
 }
 autoplay = "human/idle"
-playback_default_blend_time = 1.0
+playback_default_blend_time = 0.5
 
 [node name="Armature" type="Node3D" parent="CharacterModel"]
 transform = Transform3D(-9.1356, 99.4302, 5.49294, 6.52062, -4.90688, 99.6664, 99.3681, 9.4633, -6.03519, 0.016347, 1.48417, 0.00772075)
