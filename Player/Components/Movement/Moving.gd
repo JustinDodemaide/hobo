@@ -12,8 +12,15 @@ func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("A", "D", "W", "S")
 
 	var direction = input_dir.rotated(-player.rotation.y)
-	change_walk_direction(direction)
-	direction = Vector3(direction.x, 0, direction.y)
+	if input_dir != Vector2.ZERO:
+		var current_rot = get_parent().model.rotation.y
+		var new_rot = atan2(direction.x, direction.y)
+		print(rad_to_deg(new_rot))
+		get_parent().model.rotation.y = lerp_angle(current_rot, new_rot, 0.25)
+
+
+	#change_walk_direction(direction)
+	direction = Vector3(input_dir.x, 0, input_dir.y).normalized()
 	player.move_and_slide()
 
 	if player.is_on_floor():
@@ -34,21 +41,3 @@ func enter(_previous_state: String, _data := {}) -> void:
 
 func exit() -> void:
 	get_parent().model.get_node("AnimationPlayer").speed_scale = 1.0
-
-func change_walk_direction(direction:Vector2):
-	# Normalize to ensure consistent comparisons
-	direction = direction.normalized()
-	
-	# Default animation
-	var anim: String = "walk"
-	
-	# Simple direction checks
-	if direction.x < -0.5:  # Primarily west/left
-		anim = "strafe_left"
-	elif direction.x > 0.5:  # Primarily east/right
-		anim = "strafe_right"
-	elif direction.y > 0.5:  # Primarily south/down
-		anim = "walk_backwards"
-	# else use default "walk" animation
-	
-	get_parent().model.play_animation(anim)

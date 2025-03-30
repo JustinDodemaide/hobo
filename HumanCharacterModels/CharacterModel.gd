@@ -17,3 +17,6 @@ func play_animation(animation:String) -> void:
 
 func jump():
 	emit_signal("jumped")
+
+func ragdoll():
+	$Armature/Skeleton3D.physical_bones_start_simulation()

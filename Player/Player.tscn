@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://ccd2kgud4w32e"]
+[gd_scene load_steps=47 format=4 uid="uid://ccd2kgud4w32e"]
 
 [ext_resource type="Script" uid="uid://bvvwhl8nhlldu" path="res://Player/Player.gd" id="1_26bnj"]
 [ext_resource type="Script" uid="uid://buspfjqe2164u" path="res://Player/Components/Movement/Movement_new.gd" id="2_3nb2p"]
@@ -10,16 +10,17 @@
 [ext_resource type="Script" uid="uid://om50x7tlppj5" path="res://Player/Components/Movement/Jumping.gd" id="5_evw08"]
 [ext_resource type="Script" uid="uid://dtel1yhftdoh7" path="res://Player/Components/Interacting/Interacting.gd" id="5_vlldt"]
 [ext_resource type="Script" uid="uid://bdkme4mvab3kg" path="res://HumanCharacterModels/CharacterModel.gd" id="6_j23h2"]
-[ext_resource type="Texture2D" uid="uid://chnhsbsrg2opv" path="res://HumanCharacterModels/CharacterTextures/headless.png" id="7_7v5gs"]
 [ext_resource type="Texture2D" uid="uid://b3dky25res4r3" path="res://HumanCharacterModels/CharacterTextures/syllables.png" id="7_j23h2"]
 [ext_resource type="Animation" uid="uid://cun1quihlxq7e" path="res://HumanCharacterModels/animations/idle.res" id="9_8sa4y"]
 [ext_resource type="Animation" uid="uid://mi6kebsdkank" path="res://HumanCharacterModels/animations/jump.res" id="10_3nb2p"]
+[ext_resource type="Script" uid="uid://kdprvstd3xpi" path="res://Player/camera_3d.gd" id="10_roy6y"]
 [ext_resource type="Animation" uid="uid://b74ntf6wb3uwn" path="res://HumanCharacterModels/animations/sitting laughing.res" id="11_d7xyo"]
 [ext_resource type="Animation" uid="uid://d247j7cdbgv1e" path="res://HumanCharacterModels/animations/strafe left.res" id="12_evw08"]
 [ext_resource type="Animation" uid="uid://dvsmmpk1swvcp" path="res://HumanCharacterModels/animations/strafe right.res" id="13_roy6y"]
 [ext_resource type="Animation" uid="uid://cnxccvfbua8fu" path="res://HumanCharacterModels/animations/turn left.res" id="14_u5tep"]
 [ext_resource type="Animation" uid="uid://dpsa204sqfo6e" path="res://HumanCharacterModels/animations/turn right.res" id="15_ps8ct"]
 [ext_resource type="Animation" uid="uid://bkuii0m06h74m" path="res://HumanCharacterModels/animations/walk.res" id="16_7uipr"]
+[ext_resource type="Texture2D" uid="uid://bt683kg3ete8y" path="res://HumanCharacterModels/CharacterTextures/overalls.png" id="20_roy6y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_kpqv4"]
 
@@ -145,7 +146,7 @@ _data = {
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_87c0k"]
 resource_name = "Material.009"
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("7_7v5gs")
+albedo_texture = ExtResource("20_roy6y")
 emission_enabled = true
 emission = Color(1, 1, 1, 1)
 emission_energy_multiplier = 0.0
@@ -404,6 +405,7 @@ light_color = Color(1, 0.682353, 0.431373, 1)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 1.61565, 2.59245)
+script = ExtResource("10_roy6y")
 
 [node name="ItemRayCast" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0, 0)
@@ -421,7 +423,7 @@ collide_with_areas = true
 transform = Transform3D(0.00530408, 0, -0.00847743, 0, 0.01, 0, 0.00847743, 0, 0.00530408, 0.427708, -0.143193, -1)
 
 [node name="CharacterModel" type="Node3D" parent="." node_paths=PackedStringArray("animation_player")]
-transform = Transform3D(-0.5, 0, 4.37114e-08, 0, 0.5, 0, -4.37114e-08, 0, -0.5, 0, -1, 0)
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, -1, 0)
 script = ExtResource("6_j23h2")
 animation_player = NodePath("AnimationPlayer")
 
@@ -430,6 +432,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_5i6m1"),
 &"human": SubResource("AnimationLibrary_87k6f")
 }
+autoplay = "human/idle"
+playback_default_blend_time = 1.0
 
 [node name="Armature" type="Node3D" parent="CharacterModel"]
 transform = Transform3D(-9.1356, 99.4302, 5.49294, 6.52062, -4.90688, 99.6664, 99.3681, 9.4633, -6.03519, 0.016347, 1.48417, 0.00772075)
@@ -574,7 +578,7 @@ mesh = SubResource("ArrayMesh_8sa4y")
 skin = SubResource("Skin_3nb2p")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="CharacterModel/Armature/Skeleton3D"]
-transform = Transform3D(0.979915, 0.197307, 0.0289261, 0.0481936, -0.09356, -0.994447, -0.193505, 0.975867, -0.10119, 0.000881145, -0.000558332, 0.0149637)
+transform = Transform3D(0.979915, 0.197307, 0.0289262, 0.0481937, -0.0935604, -0.994447, -0.193505, 0.975867, -0.10119, 0.000881144, -0.000558339, 0.0149637)
 bone_name = "Bone.013"
 bone_idx = 9
 
@@ -586,6 +590,7 @@ autoplay = "default"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterModel/Armature/Skeleton3D/BoneAttachment3D"]
 transform = Transform3D(0.000631173, 1.10494e-05, -0.00998006, 0.000797627, 0.00996795, 6.14808e-05, 0.00994814, -0.000799917, 0.000628269, 0.000218299, 0.00530321, 3.37968e-05)
+visible = false
 mesh = SubResource("BoxMesh_8sa4y")
 skeleton = NodePath("../../../../..")
 

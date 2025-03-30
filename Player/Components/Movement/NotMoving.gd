@@ -13,6 +13,9 @@ func physics_update(delta: float) -> void:
 	var input_dir = Input.get_vector("A", "D", "W", "S")
 	if input_dir != Vector2.ZERO:
 		transition("Moving")
+	
+	if Input.is_action_pressed("1"):
+		sm.model.ragdoll()
 
 func enter(_previous_state: String, _data := {}) -> void:
 	print("idle")
