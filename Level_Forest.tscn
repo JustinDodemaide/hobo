@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://sv74221se0kn"]
+
+[ext_resource type="PackedScene" uid="uid://cmvjt6qnu6tgu" path="res://Levels/Forest/Gen/Gen.tscn" id="1_jdtuh"]
+[ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="2_apnuk"]
+
+[node name="Forest" type="Node3D"]
+
+[node name="LevelGen" parent="." instance=ExtResource("1_jdtuh")]
+
+[node name="Player" parent="." instance=ExtResource("2_apnuk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)

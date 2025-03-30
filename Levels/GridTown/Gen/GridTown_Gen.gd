@@ -29,6 +29,7 @@ func generate():
 	terrain_mesh()
 	building_layout()
 	sewer()
+	queue_free()
 
 func building_layout():
 	# first value is left right
