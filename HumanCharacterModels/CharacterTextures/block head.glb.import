@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0gdycasa8jgn"
-path="res://.godot/imported/block character.fbx-8912df8b9ed1a7d8639f531907d54278.scn"
+uid="uid://ctqc4umrisrns"
+path="res://.godot/imported/block head.glb-a27a8d3fa55caadac80999a58a47b925.scn"
 
 [deps]
 
-source_file="res://HumanCharacterModels/block character.fbx"
-dest_files=["res://.godot/imported/block character.fbx-8912df8b9ed1a7d8639f531907d54278.scn"]
+source_file="res://HumanCharacterModels/CharacterTextures/block head.glb"
+dest_files=["res://.godot/imported/block head.glb-a27a8d3fa55caadac80999a58a47b925.scn"]
 
 [params]
 
@@ -28,11 +28,10 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=true
+animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=0
-fbx/allow_geometry_helper_nodes=false
-fbx/embedded_image_handling=1
+gltf/naming_version=1
+gltf/embedded_image_handling=1
