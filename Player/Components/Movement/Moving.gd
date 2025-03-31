@@ -1,5 +1,5 @@
 extends State
-@export var speed:float = 5.0
+@export var speed:float = 15#5.0
 @export var acceleration : float = 10.0
 
 func physics_update(delta: float) -> void:
