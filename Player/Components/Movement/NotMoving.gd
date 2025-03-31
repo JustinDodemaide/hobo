@@ -18,7 +18,6 @@ func physics_update(delta: float) -> void:
 		sm.model.ragdoll()
 
 func enter(_previous_state: String, _data := {}) -> void:
-	print("idle")
 	sm.model.play_animation("idle")
 	var tween = create_tween()
 	tween.tween_interval(0.01)
