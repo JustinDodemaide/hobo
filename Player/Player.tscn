@@ -639,7 +639,7 @@ mesh = SubResource("ArrayMesh_u5tep")
 skin = SubResource("Skin_ps8ct")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="CharacterModel/Armature/Skeleton3D"]
-transform = Transform3D(0.979915, 0.197307, 0.0289262, 0.0481937, -0.0935604, -0.994447, -0.193505, 0.975867, -0.10119, 0.000881144, -0.000558339, 0.0149637)
+transform = Transform3D(0.979915, 0.197307, 0.0289261, 0.0481936, -0.09356, -0.994447, -0.193505, 0.975867, -0.10119, 0.000881145, -0.000558332, 0.0149637)
 bone_name = "Bone.013"
 bone_idx = 9
 

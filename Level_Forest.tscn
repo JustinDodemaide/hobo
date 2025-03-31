@@ -1,11 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://sv74221se0kn"]
+[gd_scene load_steps=4 format=3 uid="uid://sv74221se0kn"]
 
 [ext_resource type="PackedScene" uid="uid://cmvjt6qnu6tgu" path="res://Levels/Forest/Gen/Gen.tscn" id="1_jdtuh"]
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="2_apnuk"]
+[ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Levels/GridTown/Environment/GridTown_Env.tres" id="3_k33lt"]
 
 [node name="Forest" type="Node3D"]
 
 [node name="LevelGen" parent="." instance=ExtResource("1_jdtuh")]
 
 [node name="Player" parent="." instance=ExtResource("2_apnuk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 100, 10)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_k33lt")

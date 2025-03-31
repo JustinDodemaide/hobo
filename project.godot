@@ -125,6 +125,10 @@ Sprint={
 3d_physics/layer_5="interactable"
 3d_physics/layer_8="moving platform"
 
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
 [rendering]
 
 occlusion_culling/use_occlusion_culling=true
