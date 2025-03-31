@@ -30,5 +30,5 @@ func ragdoll():
 	$Armature/Skeleton3D.physical_bones_start_simulation()
 
 func _physics_process(delta: float) -> void:
-	$Armature/Skeleton3D/BoneAttachment3D/Head.look_at($"../Camera3D".global_position)
+	$Armature/Skeleton3D/BoneAttachment3D/Head.look_at(look_target.global_position)
 	$Armature/Skeleton3D/BoneAttachment3D/Head.rotate_object_local(Vector3(0, 1, 0), PI/2) # dont really understand this but it works
