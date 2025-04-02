@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bd5tp0f3r2mu6"]
+
+[ext_resource type="Texture2D" uid="uid://cl1mvqyjm0wig" path="res://Levels/Forest/Gen/grass.png" id="1_h3cll"]
+
+[resource]
+cull_mode = 1
+albedo_texture = ExtResource("1_h3cll")
+uv1_scale = Vector3(0.125, 0.125, 0.125)
+texture_filter = 0

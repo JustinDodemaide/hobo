@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://sv74221se0kn"]
+[gd_scene load_steps=8 format=3 uid="uid://sv74221se0kn"]
 
 [ext_resource type="PackedScene" uid="uid://cmvjt6qnu6tgu" path="res://Levels/Forest/Gen/Gen.tscn" id="1_jdtuh"]
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="2_apnuk"]
-[ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Levels/GridTown/Environment/GridTown_Env.tres" id="3_k33lt"]
+[ext_resource type="CompressedTexture3D" uid="uid://cj3r227hsjals" path="res://Levels/GridTown/Environment/lut test.png" id="3_wib81"]
+[ext_resource type="Texture2D" uid="uid://fbbjmk82negu" path="res://Levels/Forest/Env/AllSkyFree_Sky_ClearBlueSky_Equirect.png" id="4_wib81"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
+panorama = ExtResource("4_wib81")
+
+[sub_resource type="Sky" id="Sky_864ur"]
+sky_material = SubResource("PanoramaSkyMaterial_5vixs")
+
+[sub_resource type="Environment" id="Environment_xih65"]
+background_mode = 2
+sky = SubResource("Sky_864ur")
+ambient_light_source = 3
+adjustment_enabled = true
+adjustment_color_correction = ExtResource("3_wib81")
 
 [node name="Forest" type="Node3D"]
 
@@ -12,4 +26,7 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 100, 10)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("3_k33lt")
+environment = SubResource("Environment_xih65")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2, 0)
