@@ -6,7 +6,6 @@
 script/source = "extends Node3D
 
 func _ready() -> void:
-	return
 	var mesh = $plot/NavigationRegion3D.navigation_mesh
 	var level_navmesh = Global.level.get_node(\"GridTownGround\").get_node(\"NavigationRegion3D\").navigation_mesh
 	print(mesh.get_polygon_count())

@@ -53,3 +53,6 @@ func new_checkpoint():
 func new_challenge():
 	challenge = ResourceRequirement.new(randi_range(0,Item.RESOURCE_CATEGORIES.keys().size() - 1),randi_range(1,3))
 	SignalBus.emit_signal("new_level_challenged_assigned")
+
+# BetweenStops
+# Select cot to end BetweenStops

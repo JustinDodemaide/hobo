@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1lseff1ioo87"
-path.s3tc="res://.godot/imported/Bed.webp-80d2c55c4c233fdb6bc6c3cd614d2d43.s3tc.ctex"
+path.s3tc="res://.godot/imported/Bed.webp-828e92139e87a1c1aceb07b7e9107d53.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://ContinueButton/Bed.webp"
-dest_files=["res://.godot/imported/Bed.webp-80d2c55c4c233fdb6bc6c3cd614d2d43.s3tc.ctex"]
+source_file="res://SceneHandler/BetweenStops/Cot/Bed.webp"
+dest_files=["res://.godot/imported/Bed.webp-828e92139e87a1c1aceb07b7e9107d53.s3tc.ctex"]
 
 [params]
 
