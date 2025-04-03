@@ -3,10 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://cmvjt6qnu6tgu" path="res://Levels/Forest/Gen/Gen.tscn" id="1_jdtuh"]
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="2_apnuk"]
 [ext_resource type="CompressedTexture3D" uid="uid://cj3r227hsjals" path="res://Levels/GridTown/Environment/lut test.png" id="3_wib81"]
-[ext_resource type="Texture2D" uid="uid://fbbjmk82negu" path="res://Levels/Forest/Env/AllSkyFree_Sky_ClearBlueSky_Equirect.png" id="4_wib81"]
+[ext_resource type="Texture2D" uid="uid://ru0ybwyuak0i" path="res://Levels/Forest/Env/AllSkyFree_Sky_OvercastLow_Equirect.png" id="4_c6ta1"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5vixs"]
-panorama = ExtResource("4_wib81")
+panorama = ExtResource("4_c6ta1")
 
 [sub_resource type="Sky" id="Sky_864ur"]
 sky_material = SubResource("PanoramaSkyMaterial_5vixs")
@@ -15,12 +15,14 @@ sky_material = SubResource("PanoramaSkyMaterial_5vixs")
 background_mode = 2
 sky = SubResource("Sky_864ur")
 ambient_light_source = 3
+fog_enabled = true
 adjustment_enabled = true
 adjustment_color_correction = ExtResource("3_wib81")
 
 [node name="Forest" type="Node3D"]
 
 [node name="LevelGen" parent="." instance=ExtResource("1_jdtuh")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_apnuk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 100, 10)

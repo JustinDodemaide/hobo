@@ -3,8 +3,8 @@ var level
 var height = 100
 var width = 100
 const WATER_LEVEL = 1
-var tile_scale = 24
-var height_scale = 6#tile_scale / 2
+var tile_scale = 12
+var height_scale = 3#tile_scale / 2
 
 # for the foliage - convert the potential position to a map coord to see if its occupied
 # use seperate meshes for the roads, water, grass
@@ -126,7 +126,7 @@ func mesh():
 	# Water
 	var water_plane = load("res://Shaders/WaterPlane.tscn").instantiate()
 	water_plane.position.x = (width * tile_scale) / 2
-	water_plane.position.y = (WATER_LEVEL) * height_scale
+	water_plane.position.y = (WATER_LEVEL * height_scale) + height_scale - 1
 	water_plane.position.z = (height * tile_scale) / 2
 	
 	water_plane.scale.x = width * tile_scale
@@ -171,8 +171,8 @@ func buildings():
 
 func logging_camp():
 	const CLEARING = 21
-	var clearing_size_x = 16
-	var clearing_size_y = 16
+	var clearing_size_x = 12
+	var clearing_size_y = 6
 	
 	# we need a place thats near the water but we cant have the clearing be in
 	# the water
@@ -195,15 +195,31 @@ func logging_camp():
 			var tile = Vector2i(x,y) + clearing_top_left
 			if is_water(tile):
 				continue
-			_s(self,tile, CLEARING)
-			
-			var mesh = load("res://Levels/Forest/Gen/mesh_instance_3d.tscn").instantiate()
-			var cell = map_to_local(tile) * tile_scale
-			mesh.global_position = Vector3(cell.x, _g(self, tile),cell.y)
-			level.add_child.call_deferred(mesh)
+			_s($Buildings,tile, CLEARING)
 			
 	var clearing_tiles = $Buildings.get_used_cells_by_id(0,Vector2(CLEARING,0))
+	clearing_tiles.erase(clearing_top_left) # reserved for the station
+	clearing_tiles.shuffle()
+	var num_clearing_buildings:int = 6
+	for i in num_clearing_buildings:
+		var tile = clearing_tiles[i]
+		var x = tile.x * tile_scale
+		var z = tile.y * tile_scale
+		var height = _g(self, tile) * height_scale
+		print(tile, " ", height)
+		var pos = Vector3(x,height,z)
+		
+		var building = load("res://Levels/GridTown/Buildings/Building1/1.tscn").instantiate()
+		building.global_position = pos
+		level.add_child.call_deferred(building)
 	
+	var station = load("res://Levels/GridTown/Buildings/Station/station.tscn").instantiate()
+	var station_tile = closest_tile_to_center - Vector2i(0, clearing_size_y)
+	station_tile *= tile_scale
+	station.position = tile_to_local(clearing_top_left)
+	# station.rotation.y = PI / 2
+	level.add_child.call_deferred(station)
+
 
 func _s(which:TileMapLayer,where:Vector2i,atlas:int):
 	which.set_cell(where,0,Vector2i(atlas,0))
@@ -215,3 +231,10 @@ func is_water(tile:Vector2i) -> bool:
 	if get_cell_atlas_coords(tile).x <= WATER_LEVEL:
 		return true
 	return false
+
+func tile_to_local(tile:Vector2i):
+	var x = tile.x * tile_scale
+	var z = tile.y * tile_scale
+	var height = _g(self, tile) * height_scale
+	var pos = Vector3(x,height,z)
+	return pos
