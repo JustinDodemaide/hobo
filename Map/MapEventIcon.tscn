@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cc7snigacrw6"]
+
+[ext_resource type="Texture2D" uid="uid://dhh7qljr8ncex" path="res://Map/Icons/level.png" id="1_c5vje"]
+[ext_resource type="Script" uid="uid://d252fp07xkpqk" path="res://Map/map_event_icon.gd" id="2_c5vje"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c5vje"]
+size = Vector3(1, 1, 0.01)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("2_c5vje")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-1.5, 2.26494e-07, 9.90035e-15, 0, -6.55671e-08, 1.5, 2.26494e-07, 1.5, 6.55671e-08, 0, 0, 0)
+texture_filter = 0
+render_priority = 1
+texture = ExtResource("1_c5vje")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(-0.25, 3.7749e-08, 1.65006e-15, 0, -1.09278e-08, 0.25, 3.7749e-08, 0.25, 1.09278e-08, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_c5vje")
+
+[connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_entered" from="Area3D" to="Sprite3D" method="_on_area_3d_mouse_entered"]
+[connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]
+[connection signal="mouse_exited" from="Area3D" to="Sprite3D" method="_on_area_3d_mouse_exited"]

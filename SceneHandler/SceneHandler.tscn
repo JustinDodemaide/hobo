@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8d0cfiwtqvl0"]
+[gd_scene load_steps=7 format=3 uid="uid://c8d0cfiwtqvl0"]
 
+[ext_resource type="Script" uid="uid://b34p5g72yvg3j" path="res://Map/Map.gd" id="1_kt0lv"]
 [ext_resource type="Script" uid="uid://bqhcjjyo5cpc8" path="res://SceneHandler/SceneHandler.gd" id="1_quput"]
 [ext_resource type="PackedScene" uid="uid://bs2bixsdhm6c7" path="res://Train/TrainCar/TrainCar.tscn" id="2_4jf80"]
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="3_8xope"]
@@ -21,3 +22,8 @@ script = ExtResource("4_kt0lv")
 
 [node name="BetweenStops" type="Node" parent="."]
 script = ExtResource("4_24s13")
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("1_kt0lv")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Node"]

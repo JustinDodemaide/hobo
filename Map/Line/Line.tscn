@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkjfmeojow2v7"]
+
+[ext_resource type="Texture2D" uid="uid://ck4hk4ifxin3p" path="res://Map/Line/line.png" id="1_hisb6"]
+[ext_resource type="Script" uid="uid://c1hsx7rfic3hy" path="res://Map/Line/line.gd" id="2_mhpvr"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_h1cr1"]
+lightmap_size_hint = Vector2i(2, 7)
+size = Vector2(0.15, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvu1d"]
+transparency = 1
+albedo_texture = ExtResource("1_hisb6")
+uv1_scale = Vector3(8, 1, 1)
+uv1_offset = Vector3(0.5, 0, 0)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_mhpvr"]
+radius = 0.15
+height = 1.0
+
+[node name="Line" type="MeshInstance3D"]
+mesh = SubResource("PlaneMesh_h1cr1")
+surface_material_override/0 = SubResource("StandardMaterial3D_fvu1d")
+script = ExtResource("2_mhpvr")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_mhpvr")
