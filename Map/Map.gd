@@ -40,34 +40,6 @@ func _map(current_node,depth):
 	for node in current_node.branches:
 		_map(node, depth + 1)
 
-func make_map():
-	var map = {}
-	var levels_per_map = 3
-	var events_per_level = 2
-	var max_breadth = 3
-	var depth = 0
-	for i in levels_per_map:
-		for j in events_per_level:
-			randomize()
-			var breadth = randi_range(1,max_breadth)
-			map[depth] = []
-			for k in breadth:
-				map[depth].append(MapNode.new("random"))
-			depth += 1
-		map[depth] = [MapNode.new("level")]
-		depth += 1
-	make_connections(map)
-	graphic()
-
-func make_connections(map):
-	for depth in map.size() - 1: # last node doesn't connect to anything
-		var nodes = map[depth]
-		var possible_connections = map[depth + 1]
-		for node in nodes:
-			var num_connections = randi_range(1, possible_connections.size() - 1)
-			for connection in num_connections:
-				node.connections.append(possible_connections[connection])
-
 @onready var vert = $VBoxContainer
 @onready var template = $Sprite3D
 func graphic():
