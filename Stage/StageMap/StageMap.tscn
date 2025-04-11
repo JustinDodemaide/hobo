@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhbg5jwxrkjre"]
+
+[ext_resource type="Script" uid="uid://e8x43d683nud" path="res://Stage/StageMap/StageMap.gd" id="1_frp4b"]
+
+[node name="StageMap" type="Node3D"]
+script = ExtResource("1_frp4b")

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://d4lsglp3ur0pp"]
+
+[ext_resource type="Script" uid="uid://bvpxtwq4phifv" path="res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/SewerPiece.gd" id="1_v87mu"]
+[ext_resource type="Texture2D" uid="uid://dmyhipe4w7ksu" path="res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/DeadEnd/big wall.png" id="2_f11vq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_txkk4"]
+albedo_texture = ExtResource("2_f11vq")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f11vq"]
+material = SubResource("StandardMaterial3D_txkk4")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6fafk"]
+size = Vector3(5, 5, 0.01)
+
+[node name="DeadEnd" type="Node3D" node_paths=PackedStringArray("spawn")]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0, 0, 0)
+script = ExtResource("1_v87mu")
+spawn = NodePath("Marker3D")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(12, 0, 0, 0, 12, 0, 0, 0, 12, 0, 2.75, -6)
+visible = false
+texture_filter = 0
+texture = ExtResource("2_f11vq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-2.5, 1.39071e-07, -1.10471e-15, 0, -1.09278e-07, -2.5, -1.39071e-07, -2.5, 1.09278e-07, 0, 2.45144, -6)
+mesh = SubResource("PlaneMesh_f11vq")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+transform = Transform3D(0.4, 0, 0, 0, -1.74846e-08, 0.4, 1.05879e-22, -0.4, -1.74846e-08, 0, 0, -0.015804)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_6fafk")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -9)

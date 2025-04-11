@@ -19,6 +19,8 @@ func activate():
 	prep_choices()
 
 func _ready() -> void:
+	print($MeshInstance3D.get_surface_override_material(0).albedo_color)
+	
 	map = {0: [MapNode.new()]}
 	_map(map[0][0],0)
 	graphic()

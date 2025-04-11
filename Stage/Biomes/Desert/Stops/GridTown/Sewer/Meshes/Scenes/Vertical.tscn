@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://d4cfqab6mprfq"]
+
+[ext_resource type="Script" uid="uid://bvpxtwq4phifv" path="res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/SewerPiece.gd" id="1_ert2u"]
+[ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="2_4dxvy"]
+[ext_resource type="PackedScene" uid="uid://cjalkwyleinth" path="res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Vertical/tunnel.glb" id="2_torhy"]
+[ext_resource type="PackedScene" uid="uid://bghrrewmb2wy3" path="res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Doors/Exit/SewerExit.tscn" id="3_j0xlb"]
+[ext_resource type="PackedScene" uid="uid://bwvx4takfdukb" path="res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Doors/Exit/Tunnel/sewer_ladder_tunnel.glb" id="4_ert2u"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_fm7fv"]
+data = PackedVector3Array(-3, 0, 0.5, 3, 0, -0.5, 3, 0, 0.5, -3, 0, 0.5, -3, 0, -0.5, 3, 0, -0.5, 3, 0.7021, 1.2021, -3, 1.7021, 1.2021, -3, 0.7021, 1.2021, 3, 0.7021, 1.2021, 3, 1.7021, 1.2021, -3, 1.7021, 1.2021, 3, -0.0018, 0.4967, -3, 0.7053, 1.2038, -3, -0.0018, 0.4967, 3, -0.0018, 0.4967, 3, 0.7053, 1.2038, -3, 0.7053, 1.2038, 3, 0.7071, -1.2021, -3, 0, -0.495, -3, 0.7071, -1.2021, 3, 0.7071, -1.2021, 3, 0, -0.495, -3, 0, -0.495, 3, 2.4042, 0.495, -3, 1.6971, 1.2021, -3, 2.4041, 0.495, 3, 2.4042, 0.495, 3, 1.6971, 1.2021, -3, 1.6971, 1.2021, 3, 2.4042, -0.495, -3, 1.6971, -1.2021, -3, 2.4042, -0.495, 3, 2.4042, -0.495, 3, 1.6971, -1.2021, -3, 1.6971, -1.2021, 3, 1.7003, -1.2003, -3, 0.7003, -1.2003, -3, 1.7003, -1.2003, 3, 1.7003, -1.2003, 3, 0.7003, -1.2003, -3, 0.7003, -1.2003, -3, 2.4024, -0.4982, 3, 2.4024, 0.5018, 3, 2.4024, -0.4982, -3, 2.4024, -0.4982, -3, 2.4024, 0.5018, 3, 2.4024, 0.5018)
+
+[node name="Vertical" type="Node3D" node_paths=PackedStringArray("spawn")]
+script = ExtResource("1_ert2u")
+spawn = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Water" parent="." instance=ExtResource("2_4dxvy")]
+transform = Transform3D(12, 0, 0, 0, 1, 0, 0, 0, 12, 0, 0.101, 0)
+
+[node name="SewerExit" parent="." instance=ExtResource("3_j0xlb")]
+
+[node name="sewer_ladder_tunnel" parent="SewerExit" instance=ExtResource("4_ert2u")]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 4.67353, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0, 1.41421, 1.41421, 0, -1.41421, 1.41421, 2, 0, 0, -1.7, 4.1, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_fm7fv")
+
+[node name="tunnel2" parent="." instance=ExtResource("2_torhy")]

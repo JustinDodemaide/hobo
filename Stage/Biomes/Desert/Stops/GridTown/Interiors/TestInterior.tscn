@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bsakxqip0go25"]
+
+[ext_resource type="Script" uid="uid://pb0fwppchnow" path="res://Stage/Biomes/Desert/Stops/GridTown/Interiors/Interior.gd" id="1_lfdgq"]
+[ext_resource type="Material" uid="uid://br2ckj3t125n0" path="res://Shaders/Water.tres" id="2_wweck"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vb8vw"]
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_0hq2l"]
+data = PackedVector3Array(-2.5, 0.25, 2.5, 2.5, 0.25, 2.5, -2.5, -0.25, 2.5, 2.5, 0.25, 2.5, 2.5, -0.25, 2.5, -2.5, -0.25, 2.5, 2.5, 0.25, -2.5, -2.5, 0.25, -2.5, 2.5, -0.25, -2.5, -2.5, 0.25, -2.5, -2.5, -0.25, -2.5, 2.5, -0.25, -2.5, 2.5, 0.25, 2.5, 2.5, 0.25, -2.5, 2.5, -0.25, 2.5, 2.5, 0.25, -2.5, 2.5, -0.25, -2.5, 2.5, -0.25, 2.5, -2.5, 0.25, -2.5, -2.5, 0.25, 2.5, -2.5, -0.25, -2.5, -2.5, 0.25, 2.5, -2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, 0.25, 2.5, -2.5, 0.25, 2.5, 2.5, 0.25, -2.5, -2.5, 0.25, 2.5, -2.5, 0.25, -2.5, 2.5, 0.25, -2.5, -2.5, -0.25, 2.5, 2.5, -0.25, 2.5, -2.5, -0.25, -2.5, 2.5, -0.25, 2.5, 2.5, -0.25, -2.5, -2.5, -0.25, -2.5)
+
+[node name="TestInterior" type="Node3D" node_paths=PackedStringArray("entry_point")]
+script = ExtResource("1_lfdgq")
+entry_point = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_vb8vw")
+surface_material_override/0 = ExtResource("2_wweck")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_0hq2l")

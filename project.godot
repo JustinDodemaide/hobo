@@ -29,7 +29,11 @@ window/stretch/mode="viewport"
 folder_colors={
 "res://Player/Components/Health/UI/": "green",
 "res://Player/Components/Inventory/UI/": "green",
-"res://Player/UI/": "green"
+"res://Player/UI/": "green",
+"res://Stage/Biomes/Desert/": "yellow",
+"res://Stage/Biomes/Forest/": "green",
+"res://Stage/Biomes/Mountains/": "gray",
+"res://Stage/Biomes/Swamp/": "teal"
 }
 
 [input]

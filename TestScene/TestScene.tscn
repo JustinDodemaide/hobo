@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c7eq64ya3j7ei"]
 
-[ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Levels/GridTown/Environment/GridTown_Env.tres" id="1_sreuk"]
+[ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Stage/Biomes/Desert/Stops/GridTown/Environment/GridTown_Env.tres" id="1_sreuk"]
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="2_tq6uv"]
-[ext_resource type="PackedScene" uid="uid://c0sisgu0mfksg" path="res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn" id="6_tq6uv"]
+[ext_resource type="PackedScene" uid="uid://c0sisgu0mfksg" path="res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Junction.tscn" id="6_tq6uv"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_0xtca"]
 size = Vector3(100, 1, 100)

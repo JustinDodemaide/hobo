@@ -1,0 +1,26 @@
+[remap]
+
+importer="3d_texture"
+type="CompressedTexture3D"
+uid="uid://cj3r227hsjals"
+path="res://.godot/imported/lut test.png-9cd6c1017bbc0a94449bba96ef66d6d1.ctex3d"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Stage/Biomes/Desert/Stops/GridTown/Environment/lut test.png"
+dest_files=["res://.godot/imported/lut test.png-9cd6c1017bbc0a94449bba96ef66d6d1.ctex3d"]
+
+[params]
+
+compress/mode=0
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+slices/horizontal=33
+slices/vertical=1

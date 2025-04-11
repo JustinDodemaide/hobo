@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://7ryuaso11stc"]
+
+[ext_resource type="Script" uid="uid://bhsf2p6rmbbww" path="res://Stage/Biomes/Desert/Stops/GridTown/Level_GridTown.gd" id="1_v3144"]
+[ext_resource type="PackedScene" uid="uid://dmsyd4n8k25wk" path="res://Levels/LevelGen/LevelGen.tscn" id="2_gvxhc"]
+[ext_resource type="PackedScene" uid="uid://ccl5oq8c65iw1" path="res://Train/Tracks/Tracks.tscn" id="3_w8n7n"]
+[ext_resource type="PackedScene" uid="uid://ldkx6bgxyvy2" path="res://Shaders/WaterPlane.tscn" id="5_kfcjh"]
+[ext_resource type="Environment" uid="uid://sgni8chhd38k" path="res://Stage/Biomes/Desert/Stops/GridTown/Environment/GridTown_Env.tres" id="5_w7l7n"]
+[ext_resource type="Texture2D" uid="uid://cgoo0guwakivh" path="res://Player/UI/Watch/under.png" id="7_exxes"]
+[ext_resource type="Texture2D" uid="uid://c5lu8iolanyd5" path="res://Player/UI/Watch/over.png" id="8_lcklc"]
+[ext_resource type="Texture2D" uid="uid://xv2gy40fprs7" path="res://Player/UI/Watch/progress.png" id="9_x4w7q"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o4etc"]
+auto_exposure_enabled = true
+dof_blur_far_distance = 20.0
+dof_blur_far_transition = 10.0
+
+[node name="Level" type="Node3D" node_paths=PackedStringArray("ui", "timer")]
+script = ExtResource("1_v3144")
+ui = NodePath("CanvasLayer")
+timer = NodePath("Timer")
+
+[node name="LevelGen" parent="." instance=ExtResource("2_gvxhc")]
+
+[node name="Tracks" parent="." instance=ExtResource("3_w8n7n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("5_w7l7n")
+camera_attributes = SubResource("CameraAttributesPractical_o4etc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.0796997, 0.503362, -0.860392, 0.111374, 0.853237, 0.509493, 0.990578, -0.136432, 0.0119417, -1.05107, 4.73361, -1.74183)
+shadow_enabled = true
+
+[node name="Water" parent="." instance=ExtResource("5_kfcjh")]
+transform = Transform3D(85, 0, 0, 0, 1, 0, 0, 0, 85, 42.5, 3.5, 43)
+visible = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer"]
+texture_filter = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(10, 10)
+fill_mode = 4
+radial_center_offset = Vector2(0, 2.5)
+texture_under = ExtResource("7_exxes")
+texture_over = ExtResource("8_lcklc")
+texture_progress = ExtResource("9_x4w7q")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
