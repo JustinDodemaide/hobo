@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8d0cfiwtqvl0"]
+[gd_scene load_steps=8 format=3 uid="uid://c8d0cfiwtqvl0"]
 
-[ext_resource type="Script" uid="uid://b34p5g72yvg3j" path="res://Map/Map.gd" id="1_kt0lv"]
 [ext_resource type="Script" uid="uid://bqhcjjyo5cpc8" path="res://SceneHandler/SceneHandler.gd" id="1_quput"]
 [ext_resource type="PackedScene" uid="uid://bs2bixsdhm6c7" path="res://Train/TrainCar/TrainCar.tscn" id="2_4jf80"]
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="3_8xope"]
 [ext_resource type="Script" uid="uid://b4vqr0v1j06te" path="res://SceneHandler/BetweenStops/BetweenStops.gd" id="4_24s13"]
 [ext_resource type="Script" uid="uid://dqvgb6tgq5sq2" path="res://SceneHandler/LoadLevel.gd" id="4_kt0lv"]
+[ext_resource type="PackedScene" uid="uid://dov8pk0bu44bv" path="res://Map/Map.tscn" id="4_rs2dg"]
+[ext_resource type="Script" uid="uid://dlutc4krelyne" path="res://SceneHandler/SelectingNextStop.gd" id="7_kyj1t"]
 
 [node name="SceneHandler" type="Node" node_paths=PackedStringArray("train_car", "initial_state")]
 script = ExtResource("1_quput")
@@ -17,13 +18,14 @@ initial_state = NodePath("Level")
 [node name="Player" parent="TrainCar" instance=ExtResource("3_8xope")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.735818, 0)
 
+[node name="Map" parent="." instance=ExtResource("4_rs2dg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.28341, 0)
+
 [node name="Level" type="Node" parent="."]
 script = ExtResource("4_kt0lv")
 
 [node name="BetweenStops" type="Node" parent="."]
 script = ExtResource("4_24s13")
 
-[node name="Node" type="Node" parent="."]
-script = ExtResource("1_kt0lv")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Node"]
+[node name="SelectingNextStop" type="Node" parent="."]
+script = ExtResource("7_kyj1t")

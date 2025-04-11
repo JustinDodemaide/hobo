@@ -8,19 +8,19 @@ var held_item:Item = null
 func _ready() -> void:
 	Global.players.append(self)
 
-var fast_mode:bool = true
+func enable():
+	$Camera3D.enable()
+	$CanvasLayer.process_mode = Node.PROCESS_MODE_INHERIT
+	$CanvasLayer.visible = true
+
+func disable():
+	$Camera3D.disable()
+	$CanvasLayer.process_mode = Node.PROCESS_MODE_DISABLED
+	$CanvasLayer.visible = false
+
 func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("Esc"):
 		get_tree().quit()
-	#if Input.is_action_pressed("equal"):
-		#fast_mode = !fast_mode
-		#if fast_mode:
-			#SPEED = 50.0
-			#JUMP_VELOCITY = 7
-		#else:
-			#SPEED = 5.0
-			#JUMP_VELOCITY = 3
-	#handle_movement(delta)
 	$CanvasLayer/FPS.text = str(Engine.get_frames_per_second())
 
 #region Movement

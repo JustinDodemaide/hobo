@@ -23,6 +23,3 @@ func exit() -> void:
 	Global.level = null
 	Global.scene_handler.train_car.reparent(Global.scene_handler)
 	level.queue_free()
-
-func cot_interacted_with(who):
-	pass

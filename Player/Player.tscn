@@ -434,6 +434,7 @@ player = NodePath("..")
 interactable_cast = NodePath("../Camera3D/InteractableRayCast")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 4
 
 [node name="FPS" type="Label" parent="CanvasLayer"]
 offset_right = 40.0

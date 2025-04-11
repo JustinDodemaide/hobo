@@ -1,6 +1,8 @@
-extends State
+extends Node3D
 
 var biome
+var map = {}
+var max_depth = 3
 
 class MapNode:
 	const EVENTS = ["idk"]
@@ -11,13 +13,16 @@ class MapNode:
 		if _event == "random":
 			event = EVENTS.pick_random()
 
+func activate():
+	visible = true
+	$Camera3D.current = true
+	prep_choices()
+
 func _ready() -> void:
 	map = {0: [MapNode.new()]}
 	_map(map[0][0],0)
 	graphic()
 
-var map = {}
-var max_depth = 3
 func _map(current_node,depth):
 	if depth == max_depth:
 		return
@@ -25,9 +30,9 @@ func _map(current_node,depth):
 	var num_branches = randi_range(1,2)
 	# First, check if there are any nodes already on the next level that we can connect to
 	if map.has(depth + 1):
-		#if randi_range(0,1) == 0:
-		current_node.branches.append(map[depth + 1].back())
-		num_branches -= 1
+		if randi_range(0,1) == 0:
+			current_node.branches.append(map[depth + 1].back())
+			num_branches -= 1
 	else:
 		map[depth + 1] = []
 	
@@ -42,8 +47,8 @@ func _map(current_node,depth):
 
 @onready var vert = $VBoxContainer
 @onready var template = $Sprite3D
+var icons = {}
 func graphic():
-	var icons = {}
 	var icon_packed_scene = load("res://Map/MapEventIcon.tscn")
 	var canvas_size = $MeshInstance3D.mesh.size
 	var vertical_increment = (canvas_size.y / map.size()) / 1.5 * 1.5
@@ -80,3 +85,59 @@ func icon_hovered(icon):
 
 func icon_selected(icon):
 	focus(icon)
+
+var current_depth:int = 0
+func prep_choices():
+	for node in map[current_depth]:
+		var icon = icons[node]
+		icon.deactivate()
+	var next_depth = current_depth + 1
+	for node in map[next_depth]:
+		var icon = icons[node]
+		icon.activate()
+
+func choice_made(choice:MapNodeIcon):
+	# move train figurine
+	for node in map[current_depth]:
+		var icon = icons[node]
+		icon.deactivate()
+	current_depth += 1
+
+#region Camera
+var camera_speed = 0.1
+var camera_moving:bool = false
+var up:bool = true
+var upper_bound = 2.25
+var lower_bound = -1.0
+var time_held = 0.0
+func _process(delta: float) -> void:
+	if not camera_moving:
+		return
+	if $Camera3D.position.z >= upper_bound and up:
+		return
+	if $Camera3D.position.z <= lower_bound and not up:
+		return
+	time_held += delta
+	
+	var direction = -1
+	if up:
+		direction = 1
+	var dx = camera_speed * time_held
+	$Camera3D.position.z += -(cos(PI * dx) - 1) / 4 * direction
+
+func _on_up_mouse_entered() -> void:
+	camera_moving = true
+	up = true
+
+func _on_up_mouse_exited() -> void:
+	camera_moving = false
+	time_held = 0
+
+func _on_down_mouse_entered() -> void:
+	camera_moving = true
+	up = false
+
+func _on_down_mouse_exited() -> void:
+	camera_moving = false
+	time_held = 0
+#endregion

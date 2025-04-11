@@ -1,5 +1,6 @@
 extends Camera3D
 
+var enabled:bool = true
 # Camera sensitivity settings
 @export var mouse_sensitivity: float = 0.005
 @export var controller_sensitivity: float = 0.05
@@ -44,12 +45,24 @@ func _ready():
 	
 	# Get the parent node (likely the player)
 	parent_node = get_parent()
-	
+	enable()
+
+func enable():
 	# Capture the mouse cursor
+	enabled = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	await get_tree().process_frame
+
+func disable():
+	enabled = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	# get_parent().queue_free()
+	await get_tree().process_frame
 
 func _input(event):
 	# Mouse look
+	if not enabled:
+		return
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		target_rotation_y -= event.relative.x * mouse_sensitivity
 		target_rotation_x -= event.relative.y * mouse_sensitivity
@@ -59,6 +72,9 @@ func _input(event):
 			var deg_x = rad_to_deg(target_rotation_x)
 			deg_x = clamp(deg_x, -max_down_aim_angle, max_up_aim_angle)
 			target_rotation_x = deg_to_rad(deg_x)
+	
+	if event is InputEventMouseButton:
+		pass
 	
 	# Toggle mouse capture with Escape
 	if event is InputEventKey:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ca7h5qg0mko64"]
+[gd_scene load_steps=6 format=3 uid="uid://ca7h5qg0mko64"]
 
 [ext_resource type="Script" uid="uid://dswj1r2odhpg4" path="res://SceneHandler/BetweenStops/Cot/Cot.gd" id="1_r0peu"]
 [ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="2_gtnxw"]
@@ -9,6 +9,9 @@ data = PackedVector3Array(-0.75, 0.125, 0.5, 0.75, 0.125, 0.5, -0.75, -0.125, 0.
 [sub_resource type="BoxMesh" id="BoxMesh_35fyr"]
 size = Vector3(1.5, 0.25, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h5soj"]
+albedo_color = Color(1, 0.367788, 0.300217, 1)
+
 [node name="Cot" type="Node3D"]
 script = ExtResource("1_r0peu")
 
@@ -16,6 +19,8 @@ script = ExtResource("1_r0peu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableArea"]
 shape = SubResource("ConcavePolygonShape3D_pebi1")
+disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_35fyr")
+surface_material_override/0 = SubResource("StandardMaterial3D_h5soj")

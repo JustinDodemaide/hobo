@@ -6,7 +6,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_c5vje"]
 size = Vector3(1, 1, 0.01)
 
-[node name="Node3D" type="Node3D"]
+[node name="Icon" type="Node3D"]
 script = ExtResource("2_c5vje")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
@@ -20,8 +20,13 @@ transform = Transform3D(-0.25, 3.7749e-08, 1.65006e-15, 0, -1.09278e-08, 0.25, 3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_c5vje")
+disabled = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.188267, 0)
+light_color = Color(1, 0.682353, 0.431373, 1)
+light_energy = 0.0
+omni_range = 0.4
 
 [connection signal="mouse_entered" from="Area3D" to="." method="_on_area_3d_mouse_entered"]
-[connection signal="mouse_entered" from="Area3D" to="Sprite3D" method="_on_area_3d_mouse_entered"]
 [connection signal="mouse_exited" from="Area3D" to="." method="_on_area_3d_mouse_exited"]
-[connection signal="mouse_exited" from="Area3D" to="Sprite3D" method="_on_area_3d_mouse_exited"]

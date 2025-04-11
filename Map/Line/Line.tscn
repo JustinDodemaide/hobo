@@ -25,6 +25,8 @@ surface_material_override/0 = SubResource("StandardMaterial3D_fvu1d")
 script = ExtResource("2_mhpvr")
 
 [node name="Area3D" type="Area3D" parent="."]
+input_ray_pickable = false
+monitoring = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)

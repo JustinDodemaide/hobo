@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://dov8pk0bu44bv"]
+[gd_scene load_steps=5 format=3 uid="uid://dov8pk0bu44bv"]
 
 [ext_resource type="Script" uid="uid://b34p5g72yvg3j" path="res://Map/Map.gd" id="1_17lxq"]
 
@@ -6,6 +6,9 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2623n"]
 albedo_color = Color(0.667107, 0.59234, 0.376842, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_17lxq"]
+size = Vector3(1.5, 0.1, 0.01)
 
 [node name="Map" type="Node3D"]
 script = ExtResource("1_17lxq")
@@ -21,10 +24,30 @@ mesh = SubResource("PlaneMesh_7s3fs")
 surface_material_override/0 = SubResource("StandardMaterial3D_2623n")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1, 6.15348e-15, -8.74228e-08, -6.18172e-08, 0.707107, 0.707107, 6.18172e-08, 0.707107, -0.707107, 1, 1, -1)
+transform = Transform3D(-1, -6.18173e-08, 6.18173e-08, 0, 0.707107, 0.707107, -8.74228e-08, 0.707107, -0.707107, 1, 1, -1)
 fov = 35.0
+
+[node name="Up" type="Area3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.158214, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Up"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.116531, -1)
+shape = SubResource("BoxShape3D_17lxq")
+
+[node name="Down" type="Area3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.546794, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Down"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.96046e-08, 0.269672, -1)
+shape = SubResource("BoxShape3D_17lxq")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.874353, 0.409515, 1.70539)
 light_color = Color(1, 0.682353, 0.431373, 1)
+light_energy = 0.0
 omni_range = 1.0
+
+[connection signal="mouse_entered" from="Camera3D/Up" to="." method="_on_up_mouse_entered"]
+[connection signal="mouse_exited" from="Camera3D/Up" to="." method="_on_up_mouse_exited"]
+[connection signal="mouse_entered" from="Camera3D/Down" to="." method="_on_down_mouse_entered"]
+[connection signal="mouse_exited" from="Camera3D/Down" to="." method="_on_down_mouse_exited"]
