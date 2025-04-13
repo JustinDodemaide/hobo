@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://758cuylc3f8l"]
+[gd_scene load_steps=2 format=3 uid="uid://2mvk132w5vsn"]
 
 [ext_resource type="Script" uid="uid://fklnfl6pbluh" path="res://Stage/Stage.gd" id="1_rvcyj"]
-[ext_resource type="Script" uid="uid://b6khohacq23xs" path="res://stage/Initialize.gd" id="2_teaws"]
 
 [node name="Stage" type="Node"]
 script = ExtResource("1_rvcyj")
-
-[node name="Initialize" type="Node" parent="."]
-script = ExtResource("2_teaws")

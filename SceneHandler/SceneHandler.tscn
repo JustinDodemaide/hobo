@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ccd2kgud4w32e" path="res://Player/Player.tscn" id="3_8xope"]
 [ext_resource type="Script" uid="uid://b4vqr0v1j06te" path="res://SceneHandler/BetweenStops/BetweenStops.gd" id="4_24s13"]
 [ext_resource type="Script" uid="uid://dqvgb6tgq5sq2" path="res://SceneHandler/LoadLevel.gd" id="4_kt0lv"]
-[ext_resource type="PackedScene" uid="uid://dov8pk0bu44bv" path="res://Map/Map.tscn" id="4_rs2dg"]
+[ext_resource type="PackedScene" uid="uid://dov8pk0bu44bv" path="res://World/Map/Map.tscn" id="4_rs2dg"]
 [ext_resource type="Script" uid="uid://dlutc4krelyne" path="res://SceneHandler/SelectingNextStop.gd" id="7_kyj1t"]
 
 [node name="SceneHandler" type="Node" node_paths=PackedStringArray("train_car", "initial_state")]

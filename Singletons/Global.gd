@@ -3,10 +3,19 @@ extends Node
 var scene_handler:StateMachine
 var level:Level
 var players:Array[Player]
+var car:TrainCar
 
 var sustenance_deduction:int = 4
 
 enum DIRECTION{NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST}
+
+func enable_players():
+	for player in players:
+		player.enable()
+
+func disable_players():
+	for player in players:
+		player.disable()
 
 func sprite(pos:Vector3) -> void:
 	var sprite = Sprite3D.new()

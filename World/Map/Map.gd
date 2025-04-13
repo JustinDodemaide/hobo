@@ -1,64 +1,34 @@
 extends Node3D
 
-var biome
-var map = {}
-var max_depth = 3
+var _world
 
-class MapNode:
-	const EVENTS = ["idk"]
-	var event:String
-	var branches = []
-	
-	func _init(_event:String = "random") -> void:
-		if _event == "random":
-			event = EVENTS.pick_random()
+signal selection_made(icon)
 
 func activate():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	visible = true
 	$Camera3D.current = true
 	prep_choices()
 
-func _ready() -> void:
-	print($MeshInstance3D.get_surface_override_material(0).albedo_color)
-	
-	map = {0: [MapNode.new()]}
-	_map(map[0][0],0)
-	graphic()
-
-func _map(current_node,depth):
-	if depth == max_depth:
-		return
-	randomize()
-	var num_branches = randi_range(1,2)
-	# First, check if there are any nodes already on the next level that we can connect to
-	if map.has(depth + 1):
-		if randi_range(0,1) == 0:
-			current_node.branches.append(map[depth + 1].back())
-			num_branches -= 1
-	else:
-		map[depth + 1] = []
-	
-	# Then make new nodes and add them to the next level
-	for branch in num_branches:
-		var new_node = MapNode.new()
-		current_node.branches.append(new_node)
-		map[depth + 1].append(new_node)
-	
-	for node in current_node.branches:
-		_map(node, depth + 1)
+func deactivate():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	visible = false
+	$Camera3D.current = false
+	Global.enable_players()
 
 @onready var vert = $VBoxContainer
 @onready var template = $Sprite3D
 var icons = {}
-func graphic():
-	var icon_packed_scene = load("res://Map/MapEventIcon.tscn")
+func generate(world:World):
+	_world = world
+	var icon_packed_scene = load("res://World/Map/MapEventIcon.tscn")
 	var canvas_size = $MeshInstance3D.mesh.size
-	var vertical_increment = (canvas_size.y / map.size()) / 1.5 * 1.5
+	var vertical_increment = canvas_size.y / world.nodes.size()
 	var v_pos = vertical_increment
-	for depth in map.size():
-		var nodes = map[depth]
-		var horizontal_increment = (canvas_size.x / nodes.size()) / 1.5
-		var h_pos = (horizontal_increment / 2) * 1.5
+	for depth in world.nodes.size():
+		var nodes = world.nodes[depth]
+		var horizontal_increment = canvas_size.x / (world.nodes[depth].size() + 1)
+		var h_pos = horizontal_increment
 		for node in nodes:
 			var icon = icon_packed_scene.instantiate()
 			icon.position = Vector3(h_pos, 0, v_pos)
@@ -68,9 +38,9 @@ func graphic():
 			h_pos += horizontal_increment
 		v_pos += vertical_increment
 	
-	var line_packed_scene = load("res://Map/Line/Line.tscn")
-	for level in map:
-		for node in map[level]:
+	var line_packed_scene = load("res://World/Map/Line/Line.tscn")
+	for level in world.nodes:
+		for node in world.nodes[level]:
 			for connected_node in node.branches:
 				var line = line_packed_scene.instantiate()
 				line.connect_icons(icons[node], icons[connected_node])
@@ -83,24 +53,24 @@ func focus(icon:MapNodeIcon):
 	tween.tween_property($Camera3D,"position",final_pos,1).set_trans(Tween.TRANS_CUBIC)
 
 func icon_hovered(icon):
-	pass
+	focus(icon)
 
 func icon_selected(icon):
-	focus(icon)
+	emit_signal("selection_made",icon)
 
 var current_depth:int = 0
 func prep_choices():
-	for node in map[current_depth]:
+	for node in _world.nodes[current_depth]:
 		var icon = icons[node]
 		icon.deactivate()
 	var next_depth = current_depth + 1
-	for node in map[next_depth]:
+	for node in _world.nodes[next_depth]:
 		var icon = icons[node]
 		icon.activate()
 
 func choice_made(choice:MapNodeIcon):
 	# move train figurine
-	for node in map[current_depth]:
+	for node in _world[current_depth]:
 		var icon = icons[node]
 		icon.deactivate()
 	current_depth += 1
@@ -109,7 +79,7 @@ func choice_made(choice:MapNodeIcon):
 var camera_speed = 0.1
 var camera_moving:bool = false
 var up:bool = true
-var upper_bound = 2.25
+var upper_bound = 1
 var lower_bound = -1.0
 var time_held = 0.0
 func _process(delta: float) -> void:

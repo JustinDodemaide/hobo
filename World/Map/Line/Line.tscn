@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bkjfmeojow2v7"]
 
-[ext_resource type="Texture2D" uid="uid://ck4hk4ifxin3p" path="res://Map/Line/line.png" id="1_hisb6"]
-[ext_resource type="Script" uid="uid://c1hsx7rfic3hy" path="res://Map/Line/line.gd" id="2_mhpvr"]
+[ext_resource type="Texture2D" uid="uid://ck4hk4ifxin3p" path="res://World/Map/Line/line.png" id="1_hisb6"]
+[ext_resource type="Script" uid="uid://c1hsx7rfic3hy" path="res://World/Map/Line/line.gd" id="2_mhpvr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_h1cr1"]
 lightmap_size_hint = Vector2i(2, 7)

@@ -24,3 +24,5 @@ disabled = true
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_35fyr")
 surface_material_override/0 = SubResource("StandardMaterial3D_h5soj")
+
+[connection signal="interacted" from="InteractableArea" to="." method="_on_interactable_area_interacted"]

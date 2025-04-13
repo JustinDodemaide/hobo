@@ -2,20 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhh7qljr8ncex"
-path="res://.godot/imported/level.png-47875f2ac528452fd1d65d4edf2f860d.ctex"
+uid="uid://cyyww6xdjyhtv"
+path.s3tc="res://.godot/imported/tracks.png-7651864792f15259678db03ffb25f1c7.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://Map/Icons/level.png"
-dest_files=["res://.godot/imported/level.png-47875f2ac528452fd1d65d4edf2f860d.ctex"]
+source_file="res://World/Map/Line/tracks.png"
+dest_files=["res://.godot/imported/tracks.png-7651864792f15259678db03ffb25f1c7.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsmbglcpv37to"]
+
+[ext_resource type="Script" uid="uid://hf76h71daflp" path="res://GameLoop/StageHandler.gd" id="1_ltoti"]
+
+[node name="StageHandler" type="Node"]
+script = ExtResource("1_ltoti")

@@ -17,8 +17,9 @@ size = Vector2(4, 4)
 [sub_resource type="BoxShape3D" id="BoxShape3D_gnct0"]
 size = Vector3(8, 4, 4)
 
-[node name="TrainCar" type="Node3D"]
+[node name="TrainCar" type="Node3D" node_paths=PackedStringArray("cot")]
 script = ExtResource("1_my22d")
+cot = NodePath("Cot")
 
 [node name="Floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_4bypq")

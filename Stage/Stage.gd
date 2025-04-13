@@ -1,4 +1,3 @@
-extends Node
 class_name Stage
 
 var biome:Biome
@@ -13,7 +12,7 @@ var current_stop:int = 0
 var map
 
 func generate():
-	biome = _biomes.pick_random()
+	biome = _biomes[_biomes.keys().pick_random()]
 	var possible_stops = biome.stop_scenes()
 	for i in number_of_stops:
 		stops.append(possible_stops.pick_random()) # Probably want a score-based selection method

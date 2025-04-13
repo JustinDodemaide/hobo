@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ck4hk4ifxin3p"
-path.s3tc="res://.godot/imported/line.png-c0b123a04b361e2d084fae3a89c8daa6.s3tc.ctex"
+path.s3tc="res://.godot/imported/line.png-e84cb00aac36ba774d66521ba9b2324e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Map/Line/line.png"
-dest_files=["res://.godot/imported/line.png-c0b123a04b361e2d084fae3a89c8daa6.s3tc.ctex"]
+source_file="res://World/Map/Line/line.png"
+dest_files=["res://.godot/imported/line.png-e84cb00aac36ba774d66521ba9b2324e.s3tc.ctex"]
 
 [params]
 

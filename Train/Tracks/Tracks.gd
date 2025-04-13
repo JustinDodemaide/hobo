@@ -2,6 +2,10 @@ extends Node3D
 
 var checking_players:bool
 
+@export var start_marker:Marker3D
+@export var middle_marker:Marker3D
+@export var end_marker:Marker3D
+
 func start():
 	Global.scene_handler.train_car.global_position = $Train.get_node("CarMarker").global_position
 	Global.scene_handler.train_car.reparent($Train)

@@ -13,10 +13,10 @@ const WIDTH:int = 35
 const TILE_TO_METER_RATIO:int = 10
 
 var plots = [
-load("res://Levels/GridTown/Buildings/Building1/1.tscn"),
-load("res://Levels/GridTown/Buildings/Building2/2.tscn"),
-load("res://Levels/GridTown/Buildings/Building3/3.tscn"),
-load("res://Levels/GridTown/Buildings/Alley/alley.tscn"),
+load("res://Stage/Biomes/Desert/Stops/GridTown/Buildings/Building1/1.tscn"),
+load("res://Stage/Biomes/Desert/Stops/GridTown/Buildings/Building2/2.tscn"),
+load("res://Stage/Biomes/Desert/Stops/GridTown/Buildings/Building3/3.tscn"),
+load("res://Stage/Biomes/Desert/Stops/GridTown/Buildings/Alley/alley.tscn"),
 ]
 
 @export var sewer_scene:Node3D
@@ -68,8 +68,8 @@ func building_layout():
 			
 		row += 1
 		
-	var citizen_handler = load("res://Levels/GridTown/CitizenHandler/CitizenHandler.tscn").instantiate()
-	level.add_child(citizen_handler)
+	#var citizen_handler = load("res://Levels/GridTown/CitizenHandler/CitizenHandler.tscn").instantiate()
+	#level.add_child(citizen_handler)
 
 var offset = 0.0
 func place_structure(tile):
@@ -82,7 +82,7 @@ func place_structure(tile):
 
 func place_station():
 	var cell = station_tile * TILE_TO_METER_RATIO
-	var station = load("res://Levels/GridTown/Buildings/Station/station.tscn").instantiate()
+	var station = load("res://Stage/Biomes/Desert/Stops/GridTown/Buildings/Station/station.tscn").instantiate()
 	station.position = Vector3(cell.x, get_height(station_tile), cell.y)
 	level.add_child(station)
 
@@ -112,7 +112,7 @@ func path() -> void:
 	level.path.curve = curve
 
 func terrain_mesh() -> void:
-	var ground = preload("res://Levels/GridTown/Ground/GridTownGround.tscn").instantiate()
+	var ground = preload("res://Stage/Biomes/Desert/Stops/GridTown/Ground/GridTownGround.tscn").instantiate()
 	ground.init(self)
 	level.add_child(ground)
 
@@ -126,7 +126,7 @@ func get_height(_where:Vector2i):
 	return 0
 
 func sewer():
-	level.add_child(load("res://Levels/GridTown/Sewer/Sewer.tscn").instantiate())
+	level.add_child(load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Sewer.tscn").instantiate())
 	sewer_exits.shuffle()
 	sewer_entrances.shuffle()
 	for i in num_sewer_connections:

@@ -23,22 +23,22 @@ extends Node3D
 	"dead_end_w": Vector2i(15, 0)
 }
 var meshes = {
-	"vertical": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical.tscn"),
-				load("res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical_Room.tscn")],
-	"horizontal": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Vertical.tscn")],
-	"corner_ne": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
-	"corner_es": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
-	"corner_sw": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
-	"corner_wn": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
-	"t_junction_n": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
-	"t_junction_e": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
-	"t_junction_s": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
-	"t_junction_w": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
-	"cross": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/Cross.tscn")],
-	"dead_end_n": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
-	"dead_end_e": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
-	"dead_end_s": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
-	"dead_end_w": [load("res://Levels/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")]
+	"vertical": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Vertical.tscn"),
+				load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Vertical_Room.tscn")],
+	"horizontal": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Vertical.tscn")],
+	"corner_ne": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
+	"corner_es": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
+	"corner_sw": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
+	"corner_wn": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Corner.tscn")],
+	"t_junction_n": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
+	"t_junction_e": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
+	"t_junction_s": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
+	"t_junction_w": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Junction.tscn")],
+	"cross": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/Cross.tscn")],
+	"dead_end_n": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
+	"dead_end_e": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
+	"dead_end_s": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")],
+	"dead_end_w": [load("res://Stage/Biomes/Desert/Stops/GridTown/Sewer/Meshes/Scenes/DeadEnd.tscn")]
 }
 
 var player

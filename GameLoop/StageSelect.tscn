@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://kvyfcdvofycb"]
+
+[ext_resource type="Script" uid="uid://br2vrnoksr2q2" path="res://GameLoop/StageSelect.gd" id="1_hwbph"]
+
+[node name="StageSelect" type="Node"]
+script = ExtResource("1_hwbph")

@@ -1,13 +1,15 @@
 extends Node3D
 class_name Level
 
-@export var pullup_time:float = 10
+@export var pullup_time:float = 30
 @export var level_time:float = 1#00
-@export var leave_time:float = 10
+@export var leave_time:float = 30
 
 @export var ui:CanvasLayer
 @export var timer:Timer
 var car:TrainCar
+
+signal complete
 
 func _ready() -> void:
 	Global.level = self
@@ -15,17 +17,24 @@ func _ready() -> void:
 	level_gen.level = self
 	level_gen.generate()
 	
-#	var train = load("res://Train/Train.tscn").instantiate()
-#	$Tracks.add_child(train)
-#	car = train.get_node("TrainCar")
-	
-	#var player = load("res://Player/Player.tscn").instantiate()
-	#Global.players.append(player)
-	#var timer = get_tree().create_timer(0.1)
-	#await timer.timeout
-	#player.global_position = train.spawn_point.global_position
-	
-	$Tracks.start()
+	car = get_parent().get_parent().train_car
+	car.global_position = $Tracks.start_marker.global_position
+	_start()
+
+func _start() -> void:
+	var tween = create_tween()
+	tween.finished.connect(_midpoint_reached)
+	tween.tween_property(car,"position", $Tracks.middle_marker.global_position, pullup_time).set_trans(Tween.TRANS_CUBIC)
+
+func _midpoint_reached() -> void:
+	var tween = create_tween()
+	tween.finished.connect(_end)
+	tween.tween_interval(level_time)
+
+func _end() -> void:
+	var tween = create_tween()
+	tween.finished.connect(level_complete)
+	tween.tween_property(car,"position", $Tracks.end_marker.global_position, pullup_time).set_trans(Tween.TRANS_CUBIC)
 
 func additional_ready_instructions() -> void:
 	pass
@@ -38,7 +47,7 @@ func add_item(item:Item, where:Vector3, player:Player=null) -> void:
 	level_item.dropped(player)
 
 func level_complete() -> void:
-	pass
+	emit_signal("complete")
 
 func _process(_delta: float) -> void:
 	if $Timer.is_stopped():
