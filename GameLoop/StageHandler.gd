@@ -20,4 +20,4 @@ func after_level():
 	get_parent().train_car.cot.interacted.connect(next_stop)
 
 func stage_complete():
-	pass
+	after_level()

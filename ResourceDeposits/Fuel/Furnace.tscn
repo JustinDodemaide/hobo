@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://24vq87trki7s"]
+
+[ext_resource type="Script" uid="uid://uvho5qwye13d" path="res://ResourceDeposits/ResourceDeposit.gd" id="1_6xe3e"]
+[ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="2_frh0n"]
+
+[node name="Furnace" type="Node3D"]
+script = ExtResource("1_6xe3e")
+
+[node name="InteractableArea" parent="." instance=ExtResource("2_frh0n")]

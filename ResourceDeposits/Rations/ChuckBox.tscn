@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgitndxd8lgry"]
+
+[ext_resource type="Script" uid="uid://uvho5qwye13d" path="res://ResourceDeposits/ResourceDeposit.gd" id="1_hs6sl"]
+[ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="2_x16cs"]
+
+[node name="ChuckBox" type="Node3D"]
+script = ExtResource("1_hs6sl")
+accepted_category = 1
+
+[node name="InteractableArea" parent="." instance=ExtResource("2_x16cs")]

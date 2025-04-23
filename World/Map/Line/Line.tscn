@@ -8,6 +8,7 @@ lightmap_size_hint = Vector2i(2, 7)
 size = Vector2(0.15, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fvu1d"]
+render_priority = -1
 transparency = 1
 albedo_texture = ExtResource("1_hisb6")
 uv1_scale = Vector3(8, 1, 1)

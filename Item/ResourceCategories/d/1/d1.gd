@@ -7,4 +7,4 @@ func image_path() -> String:
 	return "res://Item/ResourceCategories/d/1/d1.gd"
 
 func category() -> RESOURCE_CATEGORIES:
-	return RESOURCE_CATEGORIES.D
+	return RESOURCE_CATEGORIES.MONEY

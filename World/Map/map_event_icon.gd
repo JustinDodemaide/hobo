@@ -7,11 +7,13 @@ var _scale
 
 var area_hovered:bool = false
 signal hovered(icon:MapNodeIcon)
+signal unhovered(icon:MapNodeIcon)
 signal selected(icon:MapNodeIcon)
 
 func _ready() -> void:
 	stage = load("res://Stage/Stage.gd").new()
 	stage.generate()
+	$Label3D.text = stage.info_text()
 	_scale = $Sprite3D.scale
 
 func added_to_map(node, map):
@@ -33,6 +35,8 @@ func _on_area_3d_mouse_exited() -> void:
 	area_hovered = false
 	var tween = create_tween()
 	tween.tween_property($Sprite3D,"scale",scale * 1.5,0.5).set_trans(Tween.TRANS_ELASTIC)
+	emit_signal("unhovered",self)
+
 
 func activate():
 	var light_tween = create_tween()
@@ -47,3 +51,9 @@ func deactivate():
 	var dim_tween = create_tween()
 	dim_tween.tween_property($OmniLight3D,"light_energy",0.0,0.1)
 	$Sprite3D.modulate = Color(0,0,0)
+
+func _on_hovered(icon: MapNodeIcon) -> void:
+	$Label3D.visible = true
+
+func _on_unhovered(icon: MapNodeIcon) -> void:
+	$Label3D.visible = false

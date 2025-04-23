@@ -1,6 +1,6 @@
 extends Node3D
 
-@export var accepted_category:Item.RESOURCE_CATEGORIES = Item.RESOURCE_CATEGORIES.A
+@export var accepted_category:Item.RESOURCE_CATEGORIES = Item.RESOURCE_CATEGORIES.FUEL
 
 func _ready() -> void:
 	deactivate()

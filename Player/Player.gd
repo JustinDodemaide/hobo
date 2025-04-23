@@ -23,33 +23,6 @@ func _physics_process(delta: float) -> void:
 		get_tree().quit()
 	$CanvasLayer/FPS.text = str(Engine.get_frames_per_second())
 
-#region Movement
-var SPEED = 50.0
-var JUMP_VELOCITY = 7
-func handle_movement(delta) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-		
-	if Input.is_action_just_pressed("ui_accept"):# and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-	
-	# Calculate effect of player input
-	var input_dir := Input.get_vector("A", "D", "W", "S")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	
-	# Determine how much control the player has (less when under external force)
-	var control_factor = 1.0
-	if external_velocity.length() > 0.01:
-		control_factor = control_reduction
-	
-	if direction:
-		velocity.x = direction.x * SPEED * control_factor
-		velocity.z = direction.z * SPEED * control_factor
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * control_factor)
-		velocity.z = move_toward(velocity.z, 0, SPEED * control_factor)
-#endregion
-
 #region Apply Force
 	if external_velocity != Vector3.ZERO:
 		velocity += external_velocity

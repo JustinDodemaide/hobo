@@ -1,6 +1,6 @@
 class_name Item
 
-enum RESOURCE_CATEGORIES {A, B, C, D, E}
+enum RESOURCE_CATEGORIES {FUEL, RATIONS, HYDRATION, MONEY}
 
 func item_name() -> String:
 	return "Item"
@@ -9,7 +9,7 @@ func image_path() -> String:
 	return "res://test_test.png"
 
 func category() -> RESOURCE_CATEGORIES:
-	return RESOURCE_CATEGORIES.A
+	return RESOURCE_CATEGORIES.FUEL
 
 func resource_value() -> int:
 	return 1

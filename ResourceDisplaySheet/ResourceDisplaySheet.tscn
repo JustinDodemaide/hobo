@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwo723hmffgnp"]
+
+[ext_resource type="Script" uid="uid://bb064g5f7xr0o" path="res://ResourceDisplaySheet/ResourceDisplaySheet.gd" id="1_h7qvx"]
+
+[node name="ResourceDisplaySheet" type="Node3D"]
+script = ExtResource("1_h7qvx")

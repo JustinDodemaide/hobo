@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy8mume5iaxoj"]
+
+[ext_resource type="Script" uid="uid://uvho5qwye13d" path="res://ResourceDeposits/ResourceDeposit.gd" id="1_u8md0"]
+[ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="3_0ja4y"]
+
+[node name="ItemDeposit" type="Node3D"]
+script = ExtResource("1_u8md0")
+
+[node name="InteractableArea" parent="." instance=ExtResource("3_0ja4y")]
+
+[connection signal="interacted" from="InteractableArea" to="." method="_on_interactable_area_interacted"]

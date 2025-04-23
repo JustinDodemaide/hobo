@@ -3,6 +3,7 @@ class_name TrainCar
 
 @onready var spawn_point = $Spawn
 @export var cot:Node3D
+@export var sheet:Node3D
 
 var allow_player_exit = false
 
