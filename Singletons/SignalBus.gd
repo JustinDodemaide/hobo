@@ -11,4 +11,5 @@ signal checkpoint_reached
 
 signal player_entered_train_car(player)
 signal item_deposited(item)
+signal resources_deducted
 signal continue_button_pressed

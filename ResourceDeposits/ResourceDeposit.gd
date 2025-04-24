@@ -3,6 +3,7 @@ extends Node3D
 @export var accepted_category:Item.RESOURCE_CATEGORIES = Item.RESOURCE_CATEGORIES.FUEL
 
 func _ready() -> void:
+	return
 	deactivate()
 	SignalBus.out_of_level.connect(stop_reached)
 	SignalBus.preparing_for_level.connect(deactivate)
@@ -37,3 +38,5 @@ func _on_interactable_area_interacted(who: Variant) -> void:
 	var item = who.held_item
 	who.inventory_component.remove_item()
 	SignalBus.emit_signal("item_deposited",item)
+	if Global.resources[accepted_category] >= Global.MAX_RESOURCES:
+		deactivate()

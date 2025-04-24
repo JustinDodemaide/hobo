@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cc7snigacrw6"]
 
 [ext_resource type="Texture2D" uid="uid://dhh7qljr8ncex" path="res://World/Map/Icons/level.png" id="1_c5vje"]
-[ext_resource type="Script" uid="uid://d252fp07xkpqk" path="res://World/Map/map_event_icon.gd" id="2_c5vje"]
+[ext_resource type="Script" uid="uid://d252fp07xkpqk" path="res://World/Map/MapEventIcon.gd" id="2_c5vje"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c5vje"]
 size = Vector3(1, 1, 0.01)

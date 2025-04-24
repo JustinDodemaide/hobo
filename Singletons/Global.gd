@@ -4,8 +4,8 @@ var scene_handler:StateMachine
 var level:Level
 var players:Array[Player]
 var car:TrainCar
-
-var sustenance_deduction:int = 4
+var MAX_RESOURCES:int = 20
+var resources:Dictionary
 
 enum DIRECTION{NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST}
 

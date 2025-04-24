@@ -12,7 +12,6 @@ signal selected(icon:MapNodeIcon)
 
 func _ready() -> void:
 	stage = load("res://Stage/Stage.gd").new()
-	stage.generate()
 	$Label3D.text = stage.info_text()
 	_scale = $Sprite3D.scale
 

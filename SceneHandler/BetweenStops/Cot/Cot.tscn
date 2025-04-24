@@ -19,7 +19,6 @@ script = ExtResource("1_r0peu")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableArea"]
 shape = SubResource("ConcavePolygonShape3D_pebi1")
-disabled = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_35fyr")

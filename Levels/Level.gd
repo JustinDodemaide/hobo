@@ -30,11 +30,15 @@ func _midpoint_reached() -> void:
 	var tween = create_tween()
 	tween.finished.connect(_end)
 	tween.tween_interval(level_time)
+	Global.car.cot.interacted.connect(_end)
 
 func _end() -> void:
 	var tween = create_tween()
 	tween.finished.connect(level_complete)
-	tween.tween_property(car,"position", $Tracks.end_marker.global_position, pullup_time).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(car,"position", $Tracks.end_marker.global_position, leave_time).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	emit_signal("complete")
+	queue_free()
 
 func additional_ready_instructions() -> void:
 	pass

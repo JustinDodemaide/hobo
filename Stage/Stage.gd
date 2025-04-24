@@ -7,13 +7,18 @@ var _biomes = {
 
 var number_of_stops:int = 3
 var stops = []
-var current_stop:int = 0
+var current_stop:int = -1
 
+const DEFAULT_RESOURCE_REDUCTION:int = 5
 var resource_deduction_modifiers = []
 
 var map
 
+func _init():
+	generate()
+
 func generate():
+	stops.clear()
 	biome = _biomes[_biomes.keys().pick_random()]
 	var possible_stops = biome.stop_scenes()
 	for i in number_of_stops:

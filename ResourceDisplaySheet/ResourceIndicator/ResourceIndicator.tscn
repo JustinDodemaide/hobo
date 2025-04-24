@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg04bx4dwkjam"]
+
+[ext_resource type="Script" uid="uid://cgrkt8bffiws8" path="res://ResourceDisplaySheet/ResourceIndicator/ResourceIndicator.gd" id="1_dbt6v"]
+
+[node name="ResourceIndicator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_dbt6v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Test test test test"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+max_value = 20.0
+show_percentage = false
