@@ -3,8 +3,6 @@ extends Control
 @export var player:Player
 
 @export_category("UI Elements")
-@export var checkpoint_label:Label
-@export var challenge_label:Label
 @export var health_scene:Control
 @export var held_item_label:Label
 @export var inventory_slots:HBoxContainer
@@ -18,15 +16,7 @@ extends Control
 @export var interaction_component:Node
 
 func _ready() -> void:
-	SignalBus.new_level_challenged_assigned.connect(challenge_label.update)
-	SignalBus.item_deposited.connect(challenge_label.update)
-	SignalBus.new_level_challenged_assigned.connect(challenge_label.update)
-	
-	SignalBus.new_checkpoint_assigned.connect(checkpoint_label.update)
-	SignalBus.item_deposited.connect(checkpoint_label.update)
-	SignalBus.out_of_level.connect(checkpoint_label.update)
-	SignalBus.new_checkpoint_assigned.connect(challenge_label.update)
-	#$MarginContainer/VBoxContainer/PlayerHealth.init(player)
+	pass
 
 func fade_in():
 	return

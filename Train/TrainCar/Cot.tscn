@@ -1,7 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca7h5qg0mko64"]
+[gd_scene load_steps=6 format=3 uid="uid://c6pwir705garg"]
 
-[ext_resource type="Script" uid="uid://dswj1r2odhpg4" path="res://SceneHandler/BetweenStops/Cot/Cot.gd" id="1_r0peu"]
-[ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="2_gtnxw"]
+[ext_resource type="PackedScene" uid="uid://dfifyb2giwurr" path="res://Interactable/InteractableArea.tscn" id="1_4da2h"]
+
+[sub_resource type="GDScript" id="GDScript_r77iy"]
+script/source = "extends Node3D
+class_name Cot
+
+signal interacted
+
+func _on_interactable_area_interacted(who: Variant) -> void:
+	emit_signal(\"interacted\")
+"
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pebi1"]
 data = PackedVector3Array(-0.75, 0.125, 0.5, 0.75, 0.125, 0.5, -0.75, -0.125, 0.5, 0.75, 0.125, 0.5, 0.75, -0.125, 0.5, -0.75, -0.125, 0.5, 0.75, 0.125, -0.5, -0.75, 0.125, -0.5, 0.75, -0.125, -0.5, -0.75, 0.125, -0.5, -0.75, -0.125, -0.5, 0.75, -0.125, -0.5, 0.75, 0.125, 0.5, 0.75, 0.125, -0.5, 0.75, -0.125, 0.5, 0.75, 0.125, -0.5, 0.75, -0.125, -0.5, 0.75, -0.125, 0.5, -0.75, 0.125, -0.5, -0.75, 0.125, 0.5, -0.75, -0.125, -0.5, -0.75, 0.125, 0.5, -0.75, -0.125, 0.5, -0.75, -0.125, -0.5, 0.75, 0.125, 0.5, -0.75, 0.125, 0.5, 0.75, 0.125, -0.5, -0.75, 0.125, 0.5, -0.75, 0.125, -0.5, 0.75, 0.125, -0.5, -0.75, -0.125, 0.5, 0.75, -0.125, 0.5, -0.75, -0.125, -0.5, 0.75, -0.125, 0.5, 0.75, -0.125, -0.5, -0.75, -0.125, -0.5)
@@ -13,9 +22,9 @@ size = Vector3(1.5, 0.25, 1)
 albedo_color = Color(1, 0.367788, 0.300217, 1)
 
 [node name="Cot" type="Node3D"]
-script = ExtResource("1_r0peu")
+script = SubResource("GDScript_r77iy")
 
-[node name="InteractableArea" parent="." instance=ExtResource("2_gtnxw")]
+[node name="InteractableArea" parent="." instance=ExtResource("1_4da2h")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableArea"]
 shape = SubResource("ConcavePolygonShape3D_pebi1")

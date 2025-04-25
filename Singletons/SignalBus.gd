@@ -1,15 +1,7 @@
 extends Node
 
-signal out_of_level
-signal preparing_for_level
+signal stop_started
+signal stop_complete
 
-signal checkpoint_complete
-signal new_checkpoint_assigned
-signal challenge_complete
-signal new_level_challenged_assigned
-signal checkpoint_reached
-
-signal player_entered_train_car(player)
-signal item_deposited(item)
+signal item_deposited(item:Item)
 signal resources_deducted
-signal continue_button_pressed

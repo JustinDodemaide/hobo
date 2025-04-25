@@ -1,13 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://1xtl1qp8yajl"]
+[gd_scene load_steps=5 format=3 uid="uid://1xtl1qp8yajl"]
 
 [ext_resource type="PackedScene" uid="uid://d0qa4nkyty6s5" path="res://Player/Components/Health/UI/PlayerHealth.tscn" id="1_1j6n8"]
 [ext_resource type="Script" uid="uid://dvuyc2el7gova" path="res://Player/UI/PlayerUI.gd" id="1_n1e2r"]
-[ext_resource type="Script" uid="uid://cddbsbthwvkom" path="res://Player/UI/checkpoint.gd" id="2_10dcs"]
-[ext_resource type="Script" uid="uid://cxvb53v1l4n8y" path="res://Player/UI/level_goal.gd" id="3_mperr"]
 [ext_resource type="PackedScene" uid="uid://bdsao1btboyay" path="res://Player/Components/Inventory/UI/inventory_slot.tscn" id="3_yosim"]
 [ext_resource type="Texture2D" uid="uid://d3c1lda62gkc1" path="res://Player/Components/Inventory/UI/hand.png" id="4_1rftq"]
 
-[node name="PlayerUI" type="Control" node_paths=PackedStringArray("checkpoint_label", "challenge_label", "health_scene", "held_item_label", "inventory_slots", "hand_icon", "item_prompt", "interaction_prompt")]
+[node name="PlayerUI" type="Control" node_paths=PackedStringArray("health_scene", "held_item_label", "inventory_slots", "hand_icon", "item_prompt", "interaction_prompt")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,8 +13,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n1e2r")
-checkpoint_label = NodePath("MarginContainer/ObjectivePromptContainer/Checkpoint")
-challenge_label = NodePath("MarginContainer/ObjectivePromptContainer/Challenge")
 health_scene = NodePath("MarginContainer/CenterBottom/PlayerHealth")
 held_item_label = NodePath("MarginContainer/CenterBottom/HeldItem")
 inventory_slots = NodePath("MarginContainer/CenterBottom/SlotContainer")
@@ -35,23 +31,6 @@ theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 54
-
-[node name="ObjectivePromptContainer" type="VBoxContainer" parent="MarginContainer"]
-layout_mode = 2
-
-[node name="Checkpoint" type="Label" parent="MarginContainer/ObjectivePromptContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "placeholder placeholder placeholder"
-horizontal_alignment = 2
-script = ExtResource("2_10dcs")
-
-[node name="Challenge" type="Label" parent="MarginContainer/ObjectivePromptContainer"]
-layout_mode = 2
-text = "placeholder placeholder"
-horizontal_alignment = 2
-script = ExtResource("3_mperr")
 
 [node name="CenterBottom" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2

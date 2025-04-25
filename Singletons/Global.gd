@@ -1,11 +1,8 @@
 extends Node
 
-var scene_handler:StateMachine
+var game:Game
 var level:Level
 var players:Array[Player]
-var car:TrainCar
-var MAX_RESOURCES:int = 20
-var resources:Dictionary
 
 enum DIRECTION{NORTH,NORTHEAST,EAST,SOUTHEAST,SOUTH,SOUTHWEST,WEST,NORTHWEST}
 

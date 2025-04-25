@@ -17,7 +17,7 @@ func _ready() -> void:
 	level_gen.level = self
 	level_gen.generate()
 	
-	car = get_parent().get_parent().train_car
+	car = Global.game.car
 	car.global_position = $Tracks.start_marker.global_position
 	_start()
 
@@ -30,7 +30,7 @@ func _midpoint_reached() -> void:
 	var tween = create_tween()
 	tween.finished.connect(_end)
 	tween.tween_interval(level_time)
-	Global.car.cot.interacted.connect(_end)
+	car.cot.interacted.connect(_end)
 
 func _end() -> void:
 	var tween = create_tween()

@@ -43,7 +43,7 @@ func populate_node(current_node,current_depth):
 	for node in current_node.branches:
 		populate_node(node, next_depth)
 
-func get_map():
+func generate_map():
 	var map = load("res://World/Map/Map.tscn").instantiate()
 	map.generate(self)
 	return map

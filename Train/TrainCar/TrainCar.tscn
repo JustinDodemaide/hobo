@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ls1clvyprrgc" path="res://Train/TrainCar/TrainCar.gd" id="1_my22d"]
 [ext_resource type="PackedScene" uid="uid://uawwbqn7ejs5" path="res://ItemDispenser/ItemDispenser.tscn" id="3_da1fj"]
 [ext_resource type="PackedScene" uid="uid://dwo723hmffgnp" path="res://ResourceDisplaySheet/ResourceDisplaySheet.tscn" id="4_nyokr"]
-[ext_resource type="PackedScene" uid="uid://ca7h5qg0mko64" path="res://SceneHandler/BetweenStops/Cot/Cot.tscn" id="4_rc0qd"]
+[ext_resource type="PackedScene" uid="uid://c6pwir705garg" path="res://Train/TrainCar/Cot.tscn" id="4_rc0qd"]
 [ext_resource type="PackedScene" uid="uid://24vq87trki7s" path="res://ResourceDeposits/Fuel/Furnace.tscn" id="5_nyokr"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_4bypq"]

@@ -36,7 +36,6 @@ func _on_area_3d_mouse_exited() -> void:
 	tween.tween_property($Sprite3D,"scale",scale * 1.5,0.5).set_trans(Tween.TRANS_ELASTIC)
 	emit_signal("unhovered",self)
 
-
 func activate():
 	var light_tween = create_tween()
 	light_tween.tween_property($OmniLight3D,"light_energy",0.5,2.0).set_trans(Tween.TRANS_CUBIC)

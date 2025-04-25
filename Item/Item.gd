@@ -9,7 +9,7 @@ func image_path() -> String:
 	return "res://test_test.png"
 
 func category() -> RESOURCE_CATEGORIES:
-	return RESOURCE_CATEGORIES.FUEL
+	return -1
 
 func resource_value() -> int:
 	return 1

@@ -9,7 +9,6 @@ var number_of_stops:int = 3
 var stops = []
 var current_stop:int = -1
 
-const DEFAULT_RESOURCE_REDUCTION:int = 5
 var resource_deduction_modifiers = []
 
 var map

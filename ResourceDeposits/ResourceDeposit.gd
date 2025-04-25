@@ -38,5 +38,5 @@ func _on_interactable_area_interacted(who: Variant) -> void:
 	var item = who.held_item
 	who.inventory_component.remove_item()
 	SignalBus.emit_signal("item_deposited",item)
-	if Global.resources[accepted_category] >= Global.MAX_RESOURCES:
+	if Global.game.resources[accepted_category] >= Global.game.MAX_RESOURCES:
 		deactivate()
