@@ -24,6 +24,10 @@ offset_top = 24.0
 offset_right = 243.0
 offset_bottom = 248.0
 
+[node name="Label" type="Label" parent="Sprite3D/SubViewport/VBoxContainer"]
+layout_mode = 2
+text = "Morale"
+
 [node name="Fuel" parent="Sprite3D/SubViewport/VBoxContainer" instance=ExtResource("2_2rm7m")]
 layout_mode = 2
 

@@ -9,7 +9,7 @@ var DEFAULT_RESOURCE_REDUCTION:int = 5
 var MAX_RESOURCES:int = 20
 var resources:Dictionary
 
-var MAX_MORALe:int = 3
+var MAX_MORALE:int = 3
 var morale:int = 3
 
 var stage:Stage
